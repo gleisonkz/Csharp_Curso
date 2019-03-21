@@ -24,7 +24,7 @@ namespace Menus
 
         private void btn_executar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Exemplo de uso do GitHub");
+            MessageBox.Show("Exemplo de uso do GitHub com o Visual Studio 2017!");
         }
     }
 }
