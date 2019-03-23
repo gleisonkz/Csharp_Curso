@@ -10,22 +10,17 @@ using System.Windows.Forms;
 
 namespace mdiprojeto
 {
-    public partial class frmMain : Form
+    public partial class frm1 : Form
     {
-
-        public frmMain()
+        public frm1(Form frmParent)
         {
             InitializeComponent();
-            
+            this.MdiParent = frmParent;
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void frm1_Load(object sender, EventArgs e)
         {
-            frm1 f = new frm1(this);
-            f.Show();
 
         }
-
-
     }
 }
