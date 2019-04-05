@@ -77,9 +77,32 @@ namespace colecoes
             
 
             MessageBox.Show(listaNomes.Count.ToString());
+            
 
 
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, string> lista_valores = new Dictionary<string, string>();
+            
+            lista_valores.Add("button4", "Dictionary");
+            lista_valores.Add("button3", "HashSet");
+            lista_valores.Add("button2", "List Inline");
+
+            foreach (KeyValuePair <string,string> item in lista_valores)
+            {
+                lista.Items.Add(item.Value);
+            }
+
+            if (lista_valores.ContainsKey("button5"))
+            {
+                MessageBox.Show("SIM");
+            }
+            else
+            {
+                MessageBox.Show("NÂO");
+            }
         }
     }
 }
