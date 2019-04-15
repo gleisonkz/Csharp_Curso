@@ -51,6 +51,7 @@
             this.text_operacao.Name = "text_operacao";
             this.text_operacao.Size = new System.Drawing.Size(204, 20);
             this.text_operacao.TabIndex = 0;
+            this.text_operacao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.text_operacao_KeyDown);
             // 
             // label_algoritmo
             // 
