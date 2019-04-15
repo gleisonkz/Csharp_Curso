@@ -59,17 +59,17 @@ namespace CalculadoraSimples
 
                             case "-": // realiza a subtração
                                 {
-                                    resultado = parcela1 + parcela2;
+                                    resultado = parcela1 - parcela2;
                                     break;
                                 }
                             case "*": // realiza a multiplicação
                                 {
-                                    resultado = parcela1 + parcela2;
+                                    resultado = parcela1 * parcela2;
                                     break;
                                 }
                             case "/": // realiza a divisão
                                 {
-                                    resultado = parcela1 + parcela2;
+                                    resultado = parcela1 / parcela2;
                                     break;
                                 }
                         }
@@ -78,13 +78,24 @@ namespace CalculadoraSimples
                 }
                 if (resultado != null)
                 {
+
                     break;
                 }
+                               
                 index++;
             }
 
-            //apresenta o resultado final da operação
-            MessageBox.Show($"O resultado da operação {algoritmo} é = {resultado}");
+            if (resultado != null)
+            {
+                //apresenta o resultado final da operação
+                MessageBox.Show($"O resultado da operação {algoritmo} é = {resultado}");
+            }
+            else
+            {
+                MessageBox.Show("Insira argumentos válido para que possa ser realizado o cálculo");
+            }
+
+
 
             //Limpa a caixa de texto
             text_operacao.Text = null;
@@ -111,6 +122,14 @@ namespace CalculadoraSimples
             {
                 cmd_calcular_Click(cmd_calcular, EventArgs.Empty);
                 
+            }
+
+            //Analisa se foi pressionada a tecla Esc e limpa da textbox
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                text_operacao.Text = null;
+
             }
 
         }
