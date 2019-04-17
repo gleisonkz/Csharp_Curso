@@ -15,12 +15,15 @@ namespace CalculadoraSimples
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void cmd_sair_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        
 
         private void cmd_calcular_Click(object sender, EventArgs e)
         {
@@ -101,6 +104,7 @@ namespace CalculadoraSimples
             text_operacao.Text = null;
             // Volta o tab index para a caixa de texto
             text_operacao.Focus();
+            
             
         }
 

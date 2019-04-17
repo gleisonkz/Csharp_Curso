@@ -77,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 146);
+            this.ClientSize = new System.Drawing.Size(275, 151);
             this.Controls.Add(this.cmd_sair);
             this.Controls.Add(this.label_algoritmo);
             this.Controls.Add(this.text_operacao);
