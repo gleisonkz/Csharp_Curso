@@ -43,7 +43,7 @@
             // 
             // cmd_fechar
             // 
-            this.cmd_fechar.Location = new System.Drawing.Point(390, 399);
+            this.cmd_fechar.Location = new System.Drawing.Point(413, 399);
             this.cmd_fechar.Name = "cmd_fechar";
             this.cmd_fechar.Size = new System.Drawing.Size(124, 44);
             this.cmd_fechar.TabIndex = 0;
@@ -99,14 +99,14 @@
             // lista_contatos
             // 
             this.lista_contatos.FormattingEnabled = true;
-            this.lista_contatos.Location = new System.Drawing.Point(12, 179);
+            this.lista_contatos.Location = new System.Drawing.Point(12, 181);
             this.lista_contatos.Name = "lista_contatos";
-            this.lista_contatos.Size = new System.Drawing.Size(502, 212);
+            this.lista_contatos.Size = new System.Drawing.Size(524, 212);
             this.lista_contatos.TabIndex = 6;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(12, 153);
+            this.label3.Location = new System.Drawing.Point(12, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(182, 23);
             this.label3.TabIndex = 7;
@@ -115,16 +115,16 @@
             // 
             // label_numero_registros
             // 
-            this.label_numero_registros.Location = new System.Drawing.Point(12, 399);
+            this.label_numero_registros.Location = new System.Drawing.Point(12, 420);
             this.label_numero_registros.Name = "label_numero_registros";
-            this.label_numero_registros.Size = new System.Drawing.Size(112, 23);
+            this.label_numero_registros.Size = new System.Drawing.Size(135, 23);
             this.label_numero_registros.TabIndex = 8;
-            this.label_numero_registros.Text = "Registros: 0";
+            this.label_numero_registros.Text = "Qtd Registros: 0";
             this.label_numero_registros.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cmd_apagar
             // 
-            this.cmd_apagar.Location = new System.Drawing.Point(260, 399);
+            this.cmd_apagar.Location = new System.Drawing.Point(283, 399);
             this.cmd_apagar.Name = "cmd_apagar";
             this.cmd_apagar.Size = new System.Drawing.Size(124, 44);
             this.cmd_apagar.TabIndex = 9;
@@ -134,7 +134,7 @@
             // 
             // cmd_editar
             // 
-            this.cmd_editar.Location = new System.Drawing.Point(130, 399);
+            this.cmd_editar.Location = new System.Drawing.Point(153, 399);
             this.cmd_editar.Name = "cmd_editar";
             this.cmd_editar.Size = new System.Drawing.Size(124, 44);
             this.cmd_editar.TabIndex = 10;
@@ -146,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 455);
+            this.ClientSize = new System.Drawing.Size(558, 465);
             this.Controls.Add(this.cmd_editar);
             this.Controls.Add(this.cmd_apagar);
             this.Controls.Add(this.label_numero_registros);
@@ -164,6 +164,7 @@
             this.Name = "frmInserirEditar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agenda - Inserir / Editar";
+            this.Load += new System.EventHandler(this.frmInserirEditar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

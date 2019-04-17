@@ -16,21 +16,19 @@ namespace Agenda
 
         public static List<contato> listaDeContatos;
 
-        public static void CriarListaContatos()
+        public static void CriarListaContatos() //Metodo para carregar a lista de contatos
         {
-            //Metodo para carregar a lista de contatos
-
-            //Verifica se o arquivo existe
+            listaDeContatos = new List<contato>(); // Instancia a lista de contatos
 
             string meus_documentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             string nome_base_de_dados = meus_documentos + @"\BASE_DE_DADOS.TXT";
 
-            if (File.Exists(nome_base_de_dados))
+            if (File.Exists(nome_base_de_dados)) //Verifica se o arquivo existe
             {  
                 StreamReader str = new StreamReader(nome_base_de_dados, Encoding.Default);
 
                 //Carregar todos os contatos do arquivo
-                listaDeContatos = new List<contato>();
+                
                 while (!str.EndOfStream)
                 {
                     //Carrega o nome
