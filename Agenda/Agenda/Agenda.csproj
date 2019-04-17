@@ -46,7 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cl_geral.cs" />
+    <Compile Include="Class\geral.cs" />
+    <Compile Include="Class\contato.cs" />
     <Compile Include="frmInserirEditar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,5 +90,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

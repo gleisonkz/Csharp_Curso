@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Agenda
 {
-    public static class cl_geral
+    public class contato
     {
-        public static string versao = "v1.0.0";
+        public string nome { get; set; }
+        public string numero { get; set; }
     }
 }

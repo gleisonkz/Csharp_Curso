@@ -16,8 +16,11 @@ namespace Agenda
         {
             InitializeComponent();
 
+            //Carrega a lista de contatos
+            geral.CriarListaContatos();
+
             //Apresenta a versão do programa
-            label_versao.Text = cl_geral.versao;
+            label_versao.Text = geral.versao;
         }
 
         private void cmd_sair_Click(object sender, EventArgs e)
