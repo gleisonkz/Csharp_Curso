@@ -17,10 +17,10 @@ namespace Agenda
             InitializeComponent();
 
             //Carrega a lista de contatos
-            geral.CriarListaContatos();
+            Geral.AtualizaListaDeContatos();
 
             //Apresenta a versão do programa
-            label_versao.Text = geral.versao;
+            label_versao.Text = Geral.versao;
         }
 
         private void cmd_sair_Click(object sender, EventArgs e)

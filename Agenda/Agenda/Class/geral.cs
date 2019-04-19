@@ -1,53 +1,102 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Agenda
 {
-    public static class geral
+    public static class Geral
     {
         public static string versao = "v1.0.0";
 
-        //Lista que irá receber as informações da agenda
+        public static string nome_arquivo_base_de_dados = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BASE_DE_DADOS.TXT";
 
         public static List<contato> listaDeContatos;
 
-        public static void CriarListaContatos() //Metodo para carregar a lista de contatos
+        //===========================================================================================
+
+        public static void AtualizaListaDeContatos() //Método para carregar a lista de contatos do TXT.
         {
-            listaDeContatos = new List<contato>(); // Instancia a lista de contatos
+            listaDeContatos = new List<contato>(); // Instanciação da lista de contatos.
 
-            string meus_documentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string nome_base_de_dados = meus_documentos + @"\BASE_DE_DADOS.TXT";
-
-            if (File.Exists(nome_base_de_dados)) //Verifica se o arquivo existe
+            if (File.Exists(nome_arquivo_base_de_dados)) //Verifica se o arquivo existe.
             {  
-                StreamReader str = new StreamReader(nome_base_de_dados, Encoding.Default);
-
-                //Carregar todos os contatos do arquivo
+                //Instanciação do leitor de arquivos.
+                StreamReader arquivo = new StreamReader(nome_arquivo_base_de_dados, Encoding.Default);
                 
-                while (!str.EndOfStream)
+                while (!arquivo.EndOfStream) //Executa o comando abaixo até o final do arquivo.
                 {
-                    //Carrega o nome
-                    string nome = str.ReadLine();
-                    //Carrega o numero
-                    string numero = str.ReadLine();
 
-                    //Adiocionar a lista de contatos o contato carregado
+                    //Retorna um array de 02 elementos o '\t' se refere a tabulação.
+                    var nomeNumero = arquivo.ReadLine().Split('\t'); 
 
-                    contato novoContato = new contato();
+                    //Atribui o primeiro elemento do array a variavél nome.
+                    string nome = nomeNumero[0];
+
+                    //Atribui o segundo elemento do array a variavél número.
+                    string numero = nomeNumero[1];
+
+                    //Adiociona a lista de contatos o contato carregado.
+
+                    var novoContato = new contato();
                     novoContato.nome = nome;
                     novoContato.numero = numero;
                     listaDeContatos.Add(novoContato);
                 }
-
-  
-
-                str.Dispose();
+                arquivo.Dispose();
             }
         }
+
+        //===========================================================================================
+
+        public static bool VerificaDulicidadeContato(string nome, string numero)
+        {
+            bool contatoDuplicado = false;
+
+            foreach (contato item in listaDeContatos)
+            {
+                if (item.nome == nome && item.numero == numero)
+                {
+                    contatoDuplicado = true;
+                    break;
+                }
+            }
+            return contatoDuplicado;
+        }
+
+        //===========================================================================================
+
+        public static void AtualizaArquivoBancoDeDados()
+        {
+            //Instanciação do gravador de arquivos.
+            StreamWriter SW = new StreamWriter(nome_arquivo_base_de_dados, false, Encoding.Default);
+
+            foreach (contato item in listaDeContatos)
+            {
+                SW.WriteLine($"{item.nome}\t{item.numero}");
+            }
+            SW.Dispose();
+        }
+
+        //===========================================================================================
+
+        public static void InserirContatoLista(string nome, string numero)
+        {
+            //Adiciona um novo registro na lista e na base de dados
+
+            listaDeContatos.Add(new contato() { nome = nome, numero = numero });
+            AtualizaArquivoBancoDeDados();
+        }
+
+        //===========================================================================================
+
+        public static void ApagaContadoLista(int index)
+        {
+            //Remove o registro da lista e da base de dados
+
+            listaDeContatos.RemoveAt(index);
+            AtualizaArquivoBancoDeDados();
+        }
+
     }
 }
