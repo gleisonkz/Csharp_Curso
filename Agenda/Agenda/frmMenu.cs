@@ -39,8 +39,11 @@ namespace Agenda
 
         private void cmd_inserir_Click(object sender, EventArgs e)
         {
+            Geral.AtualizaListaDeContatos();
             var frmInserirEditar = new frmInserirEditar();
             frmInserirEditar.ShowDialog();
         }
+
+
     }
 }

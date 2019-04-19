@@ -30,7 +30,7 @@ namespace Agenda
 
             LB_lista_contatos.Items.Clear();
 
-            foreach (contato item in Geral.listaDeContatos)
+            foreach (Contato item in Geral.listaDeContatos)
             {
                 LB_lista_contatos.Items.Add($"{item.nome.PadRight(25)} ({int.Parse(item.numero).ToString(@"0000-0000")})");
             }
@@ -39,6 +39,15 @@ namespace Agenda
             cmd_apagar.Enabled = false;
             cmd_editar.Enabled = false;
         }
+
+        private void LimparDadosTextBox()
+        {
+            text_nome.Text = String.Empty;
+            text_numero.Text = String.Empty;
+            text_nome.Focus();
+        }
+
+
 
         private void cmd_gravar_Click(object sender, EventArgs e)
         {
@@ -62,12 +71,21 @@ namespace Agenda
                 MessageBox.Show("Já existe um contato registrado com este Nome e Numero.");
                 return;
             }
+
+            if (LB_lista_contatos.SelectedIndex != -1)
+            {
+                Geral.InserirContatoLista(text_nome.Text.ToUpper(), text_numero.Text, LB_lista_contatos.SelectedIndex);
+                Geral.AtualizaArquivoBancoDeDados();
+                CarregarDadosLista();
+                LimparDadosTextBox();
+                return;
+            }
                                              
             Geral.InserirContatoLista(text_nome.Text.ToUpper(), text_numero.Text);
             CarregarDadosLista();
-            text_nome.Text = String.Empty;
-            text_numero.Text = String.Empty;
-            text_nome.Focus();
+            LimparDadosTextBox();
+
+
         }
 
         private void cmd_apagar_Click(object sender, EventArgs e)
@@ -76,7 +94,8 @@ namespace Agenda
             {
                 Geral.ApagaContadoLista(LB_lista_contatos.SelectedIndex);
                 CarregarDadosLista();
-                text_nome.Focus();
+                LimparDadosTextBox();
+                cmd_gravar.Enabled = true;
             }
 
         }
@@ -85,6 +104,22 @@ namespace Agenda
         {
             cmd_apagar.Enabled = true;
             cmd_editar.Enabled = true;
+            cmd_gravar.Enabled = false;
+        }
+
+        private void cmd_editar_Click(object sender, EventArgs e)
+        {
+            var contato = Geral.BuscarContatoLista(LB_lista_contatos.SelectedIndex);
+            text_nome.Text = contato.nome;
+            text_numero.Text = contato.numero;
+            cmd_gravar.Enabled = true;
+            text_nome.Focus();
+        }
+
+        private void frmInserirEditar_MouseClick(object sender, MouseEventArgs e)
+        {
+            LB_lista_contatos.SelectedIndex = -1;
+            cmd_gravar.Enabled = true;
         }
     }
 }

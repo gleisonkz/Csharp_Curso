@@ -11,13 +11,13 @@ namespace Agenda
 
         public static string nome_arquivo_base_de_dados = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\BASE_DE_DADOS.TXT";
 
-        public static List<contato> listaDeContatos;
+        public static List<Contato> listaDeContatos;
 
         //===========================================================================================
 
         public static void AtualizaListaDeContatos() //Método para carregar a lista de contatos do TXT.
         {
-            listaDeContatos = new List<contato>(); // Instanciação da lista de contatos.
+            listaDeContatos = new List<Contato>(); // Instanciação da lista de contatos.
 
             if (File.Exists(nome_arquivo_base_de_dados)) //Verifica se o arquivo existe.
             {  
@@ -38,7 +38,7 @@ namespace Agenda
 
                     //Adiociona a lista de contatos o contato carregado.
 
-                    var novoContato = new contato();
+                    var novoContato = new Contato();
                     novoContato.nome = nome;
                     novoContato.numero = numero;
                     listaDeContatos.Add(novoContato);
@@ -53,7 +53,7 @@ namespace Agenda
         {
             bool contatoDuplicado = false;
 
-            foreach (contato item in listaDeContatos)
+            foreach (Contato item in listaDeContatos)
             {
                 if (item.nome == nome && item.numero == numero)
                 {
@@ -71,7 +71,7 @@ namespace Agenda
             //Instanciação do gravador de arquivos.
             StreamWriter SW = new StreamWriter(nome_arquivo_base_de_dados, false, Encoding.Default);
 
-            foreach (contato item in listaDeContatos)
+            foreach (Contato item in listaDeContatos)
             {
                 SW.WriteLine($"{item.nome}\t{item.numero}");
             }
@@ -84,8 +84,20 @@ namespace Agenda
         {
             //Adiciona um novo registro na lista e na base de dados
 
-            listaDeContatos.Add(new contato() { nome = nome, numero = numero });
+            listaDeContatos.Add(new Contato() { nome = nome, numero = numero });
             AtualizaArquivoBancoDeDados();
+        }
+
+        //===========================================================================================
+
+        public static void InserirContatoLista(string nome, string numero, int index)
+        {
+            //Atualiza o registro na lista e na base de dados
+
+            var contato = new Contato() { nome = nome, numero = numero };
+
+            listaDeContatos.Insert(index, contato);
+            listaDeContatos.RemoveAt(index + 1);
         }
 
         //===========================================================================================
@@ -96,6 +108,12 @@ namespace Agenda
 
             listaDeContatos.RemoveAt(index);
             AtualizaArquivoBancoDeDados();
+        }
+
+        public static Contato BuscarContatoLista(int index)
+        {
+            var contato = listaDeContatos[index];
+            return contato;
         }
 
     }

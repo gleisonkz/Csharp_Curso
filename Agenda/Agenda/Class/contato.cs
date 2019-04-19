@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Agenda
 {
-    public class contato
+    public class Contato
     {
         public string nome { get; set; }
         public string numero { get; set; }

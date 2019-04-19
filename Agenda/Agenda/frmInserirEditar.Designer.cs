@@ -146,6 +146,7 @@
             this.cmd_editar.TabStop = false;
             this.cmd_editar.Text = "Editar";
             this.cmd_editar.UseVisualStyleBackColor = true;
+            this.cmd_editar.Click += new System.EventHandler(this.cmd_editar_Click);
             // 
             // frmInserirEditar
             // 
@@ -170,6 +171,7 @@
             this.Name = "frmInserirEditar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agenda - Inserir / Editar";
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmInserirEditar_MouseClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 
