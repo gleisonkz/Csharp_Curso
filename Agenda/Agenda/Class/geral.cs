@@ -96,8 +96,8 @@ namespace Agenda
 
             var contato = new Contato() { nome = nome, numero = numero };
 
-            listaDeContatos.Insert(index, contato);
-            listaDeContatos.RemoveAt(index + 1);
+            listaDeContatos[index].nome = nome;
+            listaDeContatos[index].numero = numero;
         }
 
         //===========================================================================================
