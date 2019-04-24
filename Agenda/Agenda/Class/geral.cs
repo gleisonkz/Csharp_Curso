@@ -110,10 +110,28 @@ namespace Agenda
             AtualizaArquivoBancoDeDados();
         }
 
+        //===========================================================================================
+
         public static Contato BuscarContatoLista(int index)
         {
             var contato = listaDeContatos[index];
             return contato;
+        }
+
+        public static List<Contato> BuscarContatoLista(string texto)
+        {
+            var lst = new List<Contato>();
+
+            foreach (var Contato in Geral.listaDeContatos)
+            {
+                if (Contato.nome.ToUpper().Contains(texto) || Contato.numero.ToUpper().Contains(texto))
+                {
+                    lst.Add(Contato);
+                }
+            }
+
+            return lst;
+            
         }
 
     }

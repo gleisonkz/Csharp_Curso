@@ -72,7 +72,7 @@
             // text_numero
             // 
             this.text_numero.Location = new System.Drawing.Point(82, 62);
-            this.text_numero.MaxLength = 20;
+            this.text_numero.MaxLength = 9;
             this.text_numero.Name = "text_numero";
             this.text_numero.Size = new System.Drawing.Size(112, 20);
             this.text_numero.TabIndex = 1;

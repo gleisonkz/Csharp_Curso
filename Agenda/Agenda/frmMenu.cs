@@ -12,6 +12,7 @@ namespace Agenda
 {
     public partial class frmMenu : Form
     {
+
         public frmMenu()
         {
             InitializeComponent();
@@ -44,6 +45,23 @@ namespace Agenda
             frmInserirEditar.ShowDialog();
         }
 
+        private void cmd_pesquisar_Click(object sender, EventArgs e)
+        {
+            //Abrir um quadro de pesquisa
 
+            var form_pesquisa = new frmTexto();
+            form_pesquisa.ShowDialog();
+
+            //Quando o quadro for fechado, verificar se foi cancelado
+
+            if (form_pesquisa.cancelado)
+            {
+                return;
+            }
+
+            var form_results = new frmResultado(form_pesquisa.texto);
+            form_results.ShowDialog();
+
+        }
     }
 }
