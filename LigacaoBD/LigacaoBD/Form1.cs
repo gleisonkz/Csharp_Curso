@@ -28,10 +28,30 @@ namespace LigacaoBD
                 SqlCeConnection conexao = new SqlCeConnection();
                 conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
                 conexao.Open();
+                var sqlcecommand = new SqlCeCommand("SELECT * FROM Pessoas",conexao);
+
+                var dr = sqlcecommand.ExecuteReader();
+
+                var sc = dr.GetSchemaTable();
+                while (dr.Read())
+                {
+                    lista_dados.Font = new Font("Courier New", 8.25F, FontStyle.Regular);
+                    var lst = sc.Columns.Cast<DataColumn>().Select(c => dr[c.ColumnName].ToString().PadRight(30));
+
+
+                    var info = string.Join(string.Empty.PadRight(30), lst);
+
+                    lista_dados.Items.Add(info);
+                }
+
+
+
+
+
 
                 //Selecação dos dados do BD para a Mémoria
                 var dados = new DataTable();
-                var adaptador = new SqlCeDataAdapter("SELECT * FROM Pessoas", conexao);
+                var adaptador = new SqlCeDataAdapter(sqlcecommand);
                 adaptador.Fill(dados);
 
      
