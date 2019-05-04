@@ -18,9 +18,77 @@ namespace LigacaoBD
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_select_Click(object sender, EventArgs e)
         {
-            //Faz a seleção de todos os dados contidos no banco de dados
+            #region Forma Ensinada No Video
+            ////Faz a seleção de todos os dados contidos no banco de dados
+
+            //try
+            //{
+            //    //Conectar a Base de Dados
+            //    SqlCeConnection conexao = new SqlCeConnection();
+            //    conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
+            //    conexao.Open();
+
+            //    //Selecação dos dados do BD para a Mémoria
+            //    var dados = new DataTable();
+            //    var adaptador = new SqlCeDataAdapter("SELECT * FROM Pessoas", conexao);
+            //    adaptador.Fill(dados);
+
+            //    //Desconecta da Base de Dados
+            //    conexao.Close();
+
+            //    //Apresenta os dados na lista
+            //    lista_dados.Items.Clear();
+            //    foreach (DataRow linha in dados.Rows)
+            //    {
+            //        lista_dados.Font = new Font("Courier New", 8.25F, FontStyle.Regular);
+
+            //        lista_dados.Items.Add(linha["Nome"].ToString().PadRight(30) +
+            //                              linha["Morada"].ToString().PadRight(30) +
+            //                              linha["Telefone"].ToString()
+            //              );
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //} 
+            #endregion
+
+            //Conectar a Base de Dados.
+            SqlCeConnection conexao = new SqlCeConnection();
+            conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
+            conexao.Open();
+
+            //Criando o comando SQL.
+            var sqlcecommand = new SqlCeCommand("SELECT * FROM Pessoas", conexao);
+
+            //Criando um DataReader.
+            var dr = sqlcecommand.ExecuteReader();
+
+            //Atribuindo o Schema do banco no DataTable.
+            var dt = dr.GetSchemaTable();
+
+            lista_dados.Items.Clear();
+
+            while (dr.Read())
+            {
+                //Alteração da fonte da lista para uma fonte monoespaçada.
+                lista_dados.Font = new Font("Courier New", 8.25F, FontStyle.Regular);
+
+
+                var lst = dt.Rows.Cast<DataRow>().Select(c => dr[c[0].ToString()].ToString().PadRight(30));
+
+                var info = string.Join(string.Empty.PadRight(1), lst);
+
+                lista_dados.Items.Add(info);
+            }
+        }
+
+        private void btn_insert_Click(object sender, EventArgs e)
+        {
+            //Inserção de um novo registro no banco de dados
 
             try
             {
@@ -29,28 +97,14 @@ namespace LigacaoBD
                 conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
                 conexao.Open();
 
-                //Selecação dos dados do BD para a Mémoria
-                var dados = new DataTable();
-                var adaptador = new SqlCeDataAdapter("SELECT * FROM Pessoas", conexao);
-                adaptador.Fill(dados);
+                //String com a query a ser executada
+                string query = $"INSERT INTO Pessoas VALUES('{tb_nome.Text}','{tb_morada.Text}','{tb_telefone.Text}')";
 
-     
+                var command = new SqlCeCommand(query, conexao);
+                command.ExecuteNonQuery();
 
                 //Desconecta da Base de Dados
-
                 conexao.Close();
-
-                //Apresenta os dados na lista
-                lista_dados.Items.Clear();
-                foreach (DataRow linha in dados.Rows)
-                {
-                    lista_dados.Font = new Font("Courier New", 8.25F, FontStyle.Regular);
-
-                    lista_dados.Items.Add(linha["Nome"].ToString().PadRight(30) +
-                                          linha["Morada"].ToString().PadRight(30) +
-                                          linha["Telefone"].ToString()
-                          );
-                }
             }
             catch (Exception ex)
             {
@@ -58,10 +112,9 @@ namespace LigacaoBD
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_delete_Click(object sender, EventArgs e)
         {
-            //Inserção de um novo registro no banco de dados
-
+            //Deleta um registro no banco de dados
 
             try
             {
@@ -70,24 +123,45 @@ namespace LigacaoBD
                 conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
                 conexao.Open();
 
-                string query = "INSERT INTO Pessoas VALUES('Fabio Alexandre','Rua das oportunidades','987875316')";
+                //String com a query a ser executada
+                string query = $"DELETE FROM Pessoas WHERE Nome = ('{tb_nome.Text}')";
 
-                var adaptador = new SqlCeCommand(query, conexao);
-                adaptador.ExecuteNonQuery();
+                var command = new SqlCeCommand(query, conexao);
+                command.ExecuteNonQuery();
 
                 //Desconecta da Base de Dados
-
                 conexao.Close();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
+        }
 
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            //Atualiza um registro no banco de dados
 
+            try
+            {
+                //Conectar a Base de Dados
+                SqlCeConnection conexao = new SqlCeConnection();
+                conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
+                conexao.Open();
 
+                //String com a query a ser executada
+                string query = $"UPDATE Pessoas SET Nome = '{tb_nome.Text}' WHERE Nome = 'Mariana Correia'";
 
+                var command = new SqlCeCommand(query, conexao);
+                command.ExecuteNonQuery();
+
+                //Desconecta da Base de Dados
+                conexao.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
