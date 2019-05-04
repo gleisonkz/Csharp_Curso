@@ -56,33 +56,41 @@ namespace LigacaoBD
             //} 
             #endregion
 
-            //Conectar a Base de Dados.
-            SqlCeConnection conexao = new SqlCeConnection();
-            conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
-            conexao.Open();
-
-            //Criando o comando SQL.
-            var sqlcecommand = new SqlCeCommand("SELECT * FROM Pessoas", conexao);
-
-            //Criando um DataReader.
-            var dr = sqlcecommand.ExecuteReader();
-
-            //Atribuindo o Schema do banco no DataTable.
-            var dt = dr.GetSchemaTable();
-
-            lista_dados.Items.Clear();
-
-            while (dr.Read())
+            try
             {
-                //Alteração da fonte da lista para uma fonte monoespaçada.
-                lista_dados.Font = new Font("Courier New", 8.25F, FontStyle.Regular);
+                //Conectar a Base de Dados.
+                SqlCeConnection conexao = new SqlCeConnection();
+                conexao.ConnectionString = $@"Data Source = C:\Csharp\{text_bd.Text}.sdf";
+                conexao.Open();
+
+                //Criando o comando SQL.
+                var sqlcecommand = new SqlCeCommand("SELECT * FROM Pessoas", conexao);
+
+                //Criando um DataReader.
+                var dr = sqlcecommand.ExecuteReader();
+
+                //Atribuindo o Schema do banco no DataTable.
+                var dt = dr.GetSchemaTable();
+
+                lista_dados.Items.Clear();
+
+                while (dr.Read())
+                {
+                    //Alteração da fonte da lista para uma fonte monoespaçada.
+                    lista_dados.Font = new Font("Courier New", 8.25F, FontStyle.Regular);
 
 
-                var lst = dt.Rows.Cast<DataRow>().Select(c => dr[c[0].ToString()].ToString().PadRight(30));
+                    var lst = dt.Rows.Cast<DataRow>().Select(c => dr[c[0].ToString()].ToString().PadRight(30));
 
-                var info = string.Join(string.Empty.PadRight(1), lst);
+                    var info = string.Join(string.Empty.PadRight(1), lst);
 
-                lista_dados.Items.Add(info);
+                    lista_dados.Items.Add(info);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 
@@ -155,7 +163,7 @@ namespace LigacaoBD
                 var command = new SqlCeCommand(query, conexao);
                 command.ExecuteNonQuery();
 
-                //Desconecta da Base de Dados
+                //Desconectar da Base de Dados
                 conexao.Close();
             }
             catch (Exception ex)
