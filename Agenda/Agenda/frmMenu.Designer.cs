@@ -39,7 +39,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(262, 77);
+            this.label1.Location = new System.Drawing.Point(194, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 24);
             this.label1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // 
             // cmd_inserir
             // 
-            this.cmd_inserir.Location = new System.Drawing.Point(212, 129);
+            this.cmd_inserir.Location = new System.Drawing.Point(144, 121);
             this.cmd_inserir.Name = "cmd_inserir";
             this.cmd_inserir.Size = new System.Drawing.Size(198, 55);
             this.cmd_inserir.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             // cmd_pesquisar
             // 
-            this.cmd_pesquisar.Location = new System.Drawing.Point(212, 200);
+            this.cmd_pesquisar.Location = new System.Drawing.Point(144, 192);
             this.cmd_pesquisar.Name = "cmd_pesquisar";
             this.cmd_pesquisar.Size = new System.Drawing.Size(198, 55);
             this.cmd_pesquisar.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // cmd_sair
             // 
-            this.cmd_sair.Location = new System.Drawing.Point(212, 270);
+            this.cmd_sair.Location = new System.Drawing.Point(144, 262);
             this.cmd_sair.Name = "cmd_sair";
             this.cmd_sair.Size = new System.Drawing.Size(198, 55);
             this.cmd_sair.TabIndex = 3;
@@ -78,7 +78,7 @@
             // label_versao
             // 
             this.label_versao.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_versao.Location = new System.Drawing.Point(137, 351);
+            this.label_versao.Location = new System.Drawing.Point(69, 343);
             this.label_versao.Name = "label_versao";
             this.label_versao.Size = new System.Drawing.Size(349, 22);
             this.label_versao.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 451);
+            this.ClientSize = new System.Drawing.Size(487, 434);
             this.ControlBox = false;
             this.Controls.Add(this.label_versao);
             this.Controls.Add(this.cmd_sair);

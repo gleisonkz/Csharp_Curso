@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Teste
+namespace AgendaSQL
 {
     static class Program
     {
@@ -14,9 +14,12 @@ namespace Teste
         [STAThread]
         static void Main()
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Vars.Iniciar();
+            Application.Run(new frmMenu());
         }
     }
 }
