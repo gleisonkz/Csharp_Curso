@@ -70,8 +70,9 @@
             this.cmd_adicionar.Name = "cmd_adicionar";
             this.cmd_adicionar.Size = new System.Drawing.Size(131, 43);
             this.cmd_adicionar.TabIndex = 3;
-            this.cmd_adicionar.Text = "Adicionar";
+            this.cmd_adicionar.Text = "Adicionar / Editar";
             this.cmd_adicionar.UseVisualStyleBackColor = true;
+            this.cmd_adicionar.Click += new System.EventHandler(this.cmd_adicionar_Click);
             // 
             // cmd_visualizar_tudo
             // 

@@ -36,5 +36,12 @@ namespace AgendaSQL
                    return;
 
               Application.Exit();      
-    }   }
+    }
+
+        private void cmd_adicionar_Click(object sender, EventArgs e)
+        {
+            frmMenu frmMenu = new frmMenu();
+            frmMenu.ShowDialog();
+        }
+    }
 }

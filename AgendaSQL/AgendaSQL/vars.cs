@@ -68,7 +68,30 @@ namespace AgendaSQL
             {
                 throw ex;
             }
-        }               
+        }
+
+        public static void InsertBaseDados(string nome, int telefone)
+        {
+
+            var query = $"INSERT INTO TABLE {"Contatos"} VALUES (" +
+                $"'{nome}'," +
+                $"{telefone}," +
+                $"GETDATE())";
+            try
+            {
+                //Cria a estrutura da base de dados.
+                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
+                SqlCeCommand command = new SqlCeCommand(query, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                command.Dispose();
+                connection.Dispose();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
 
