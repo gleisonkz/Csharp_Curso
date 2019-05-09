@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -18,6 +19,107 @@ namespace PrimeiraAplicacao
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //var lista1 = new List<string>();
+            //lista1.Add("Marcos");
+            //lista1.Add("Henrique");
+            //lista1.Add("Joaquim");
+            //lista1.Add("Felipe");
+            //lista1.Add("Ronaldo");
+            //lista1.Add("Pedro");
+
+            //var lista2 = new List<string>();
+
+            //lista2.Add("Carlos");
+            //lista2.Add("Paula");
+            //lista2.Add("Joaquim");
+            //lista2.Add("Felipe");
+            //lista2.Add("Rita");
+            //lista2.Add("Ricardo");
+
+
+            var registrosDuplicados = new List<string>();
+            var exclusivosLista1 = new List<string>();
+            var exclusivosLista2 = new List<string>();
+
+            var lista1 = new List<string>();
+            var lista2 = new List<string>();
+            string selectedFolder = null;
+
+            //var fbd = new FolderBrowserDialog();
+            //fbd.RootFolder = Environment.SpecialFolder.Desktop;
+            //var tela = fbd.ShowDialog();
+
+            var ofd = new OpenFileDialog();
+            ofd.InitialDirectory = Environment.SpecialFolder.MyDocuments.ToString();
+            ofd.DefaultExt = "*.txt";
+            var arquivo = ofd.ShowDialog();
+
+            if (arquivo != DialogResult.OK)
+            {
+                return;
+            }
+
+            selectedFolder = ofd.FileName;
+
+            var sr = new StreamReader(selectedFolder, Encoding.Default);
+
+            while (!sr.EndOfStream)
+            {
+                var item = sr.ReadLine().Split('\t');
+                lista1.Add(item[0]);
+                lista2.Add(item[1]);
+            }
+            sr.Dispose();
+
+
+            foreach (var item1 in lista1)
+            {
+                bool encontrou = false;
+
+                foreach (var item2 in lista2)
+                {
+                    if (item1 == item2)
+                    {
+                        registrosDuplicados.Add(item1);
+                        encontrou = true;
+                        break;
+                    }
+                    else
+                    {
+                        encontrou = false;
+                    }
+                }
+
+                if (encontrou == false)
+                {
+                    exclusivosLista1.Add(item1);
+                }
+            }
+
+            foreach (var item2 in lista2)
+            {
+                bool encontrou = false;
+
+                foreach (var item1 in lista1)
+                {
+                    if (item1 == item2)
+                    {
+                        encontrou = true;
+                        break;
+                    }
+                    else
+                    {
+                        encontrou = false;
+                    }
+                }
+
+                if (encontrou == false)
+                {
+                    exclusivosLista2.Add(item2);
+                }
+            }
+
+
 
         }
 
@@ -45,16 +147,16 @@ namespace PrimeiraAplicacao
 
             //ALFANUMERICAS
 
-            string resultado = "João Ribeiro";
-            char caracter1 = 'a';
-            bool decisao = false;
+            //string resultado = "João Ribeiro";
+            //char caracter1 = 'a';
+            //bool decisao = false;
 
 
 
 
-            caixa_texto.Text = resultado;
+            //caixa_texto.Text = resultado;
 
-           
+
         }
 
 
