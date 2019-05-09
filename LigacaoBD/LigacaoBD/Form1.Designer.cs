@@ -28,30 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_select = new System.Windows.Forms.Button();
             this.lista_dados = new System.Windows.Forms.ListBox();
             this.text_bd = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_insert = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_update = new System.Windows.Forms.Button();
+            this.tb_nome = new System.Windows.Forms.TextBox();
+            this.label_nome = new System.Windows.Forms.Label();
+            this.label_morada = new System.Windows.Forms.Label();
+            this.tb_morada = new System.Windows.Forms.TextBox();
+            this.label_telefone = new System.Windows.Forms.Label();
+            this.tb_telefone = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_select
             // 
-            this.button1.Location = new System.Drawing.Point(629, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 55);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Select";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_select.Location = new System.Drawing.Point(629, 68);
+            this.btn_select.Name = "btn_select";
+            this.btn_select.Size = new System.Drawing.Size(159, 55);
+            this.btn_select.TabIndex = 0;
+            this.btn_select.Text = "Select";
+            this.btn_select.UseVisualStyleBackColor = true;
+            this.btn_select.Click += new System.EventHandler(this.btn_select_Click);
             // 
             // lista_dados
             // 
             this.lista_dados.FormattingEnabled = true;
             this.lista_dados.Location = new System.Drawing.Point(12, 66);
             this.lista_dados.Name = "lista_dados";
-            this.lista_dados.Size = new System.Drawing.Size(611, 355);
+            this.lista_dados.Size = new System.Drawing.Size(611, 238);
             this.lista_dados.TabIndex = 3;
             // 
             // text_bd
@@ -62,45 +68,101 @@
             this.text_bd.TabIndex = 4;
             this.text_bd.Text = "dados";
             // 
-            // button2
+            // btn_insert
             // 
-            this.button2.Location = new System.Drawing.Point(629, 129);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 55);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Insert";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_insert.Location = new System.Drawing.Point(629, 129);
+            this.btn_insert.Name = "btn_insert";
+            this.btn_insert.Size = new System.Drawing.Size(159, 55);
+            this.btn_insert.TabIndex = 5;
+            this.btn_insert.Text = "Insert";
+            this.btn_insert.UseVisualStyleBackColor = true;
+            this.btn_insert.Click += new System.EventHandler(this.btn_insert_Click);
             // 
-            // button3
+            // btn_delete
             // 
-            this.button3.Location = new System.Drawing.Point(629, 190);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(159, 55);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_delete.Location = new System.Drawing.Point(629, 190);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(159, 55);
+            this.btn_delete.TabIndex = 6;
+            this.btn_delete.Text = "Delete";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
-            // button4
+            // btn_update
             // 
-            this.button4.Location = new System.Drawing.Point(629, 251);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(159, 55);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Update";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_update.Location = new System.Drawing.Point(629, 251);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(159, 55);
+            this.btn_update.TabIndex = 7;
+            this.btn_update.Text = "Update";
+            this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
+            // 
+            // tb_nome
+            // 
+            this.tb_nome.Location = new System.Drawing.Point(243, 40);
+            this.tb_nome.Name = "tb_nome";
+            this.tb_nome.Size = new System.Drawing.Size(117, 20);
+            this.tb_nome.TabIndex = 8;
+            // 
+            // label_nome
+            // 
+            this.label_nome.AutoSize = true;
+            this.label_nome.Location = new System.Drawing.Point(243, 21);
+            this.label_nome.Name = "label_nome";
+            this.label_nome.Size = new System.Drawing.Size(35, 13);
+            this.label_nome.TabIndex = 9;
+            this.label_nome.Text = "Nome";
+            // 
+            // label_morada
+            // 
+            this.label_morada.AutoSize = true;
+            this.label_morada.Location = new System.Drawing.Point(366, 21);
+            this.label_morada.Name = "label_morada";
+            this.label_morada.Size = new System.Drawing.Size(43, 13);
+            this.label_morada.TabIndex = 11;
+            this.label_morada.Text = "Morada";
+            // 
+            // tb_morada
+            // 
+            this.tb_morada.Location = new System.Drawing.Point(366, 40);
+            this.tb_morada.Name = "tb_morada";
+            this.tb_morada.Size = new System.Drawing.Size(117, 20);
+            this.tb_morada.TabIndex = 10;
+            // 
+            // label_telefone
+            // 
+            this.label_telefone.AutoSize = true;
+            this.label_telefone.Location = new System.Drawing.Point(489, 21);
+            this.label_telefone.Name = "label_telefone";
+            this.label_telefone.Size = new System.Drawing.Size(49, 13);
+            this.label_telefone.TabIndex = 13;
+            this.label_telefone.Text = "Telefone";
+            // 
+            // tb_telefone
+            // 
+            this.tb_telefone.Location = new System.Drawing.Point(489, 40);
+            this.tb_telefone.Name = "tb_telefone";
+            this.tb_telefone.Size = new System.Drawing.Size(117, 20);
+            this.tb_telefone.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(807, 321);
+            this.Controls.Add(this.label_telefone);
+            this.Controls.Add(this.tb_telefone);
+            this.Controls.Add(this.label_morada);
+            this.Controls.Add(this.tb_morada);
+            this.Controls.Add(this.label_nome);
+            this.Controls.Add(this.tb_nome);
+            this.Controls.Add(this.btn_update);
+            this.Controls.Add(this.btn_delete);
+            this.Controls.Add(this.btn_insert);
             this.Controls.Add(this.text_bd);
             this.Controls.Add(this.lista_dados);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_select);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -110,12 +172,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_select;
         private System.Windows.Forms.ListBox lista_dados;
         private System.Windows.Forms.TextBox text_bd;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_insert;
+        private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Button btn_update;
+        private System.Windows.Forms.TextBox tb_nome;
+        private System.Windows.Forms.Label label_nome;
+        private System.Windows.Forms.Label label_morada;
+        private System.Windows.Forms.TextBox tb_morada;
+        private System.Windows.Forms.Label label_telefone;
+        private System.Windows.Forms.TextBox tb_telefone;
     }
 }
 
