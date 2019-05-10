@@ -2,6 +2,7 @@
 using System.IO;
 using System.Data.SqlServerCe;
 using System.Data;
+using System.Windows.Forms;
 
 namespace AgendaSQL
 {
@@ -24,10 +25,10 @@ namespace AgendaSQL
 
                 pathBancoDeDados = folderBancoDeDados + "dados.sdf";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                var erro = ex.Message;
+                MessageBox.Show(erro);
             }
 
             try
@@ -36,10 +37,28 @@ namespace AgendaSQL
                 if (!File.Exists(pathBancoDeDados))
                     CriarBaseDados();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                var erro = ex.Message;
+                MessageBox.Show(erro);
+            }
+        }
 
-                throw;
+        public static void ExecuteSQL(string query)
+        {
+            try
+            {
+                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
+                SqlCeCommand command = new SqlCeCommand(query, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                command.Dispose();
+                connection.Dispose();
+            }
+            catch (Exception ex)
+            {
+                var erro = ex.Message;
+                MessageBox.Show(erro);
             }
         }
 
@@ -52,45 +71,37 @@ namespace AgendaSQL
             var query = $"CREATE TABLE {"Contatos"} (" +
                         "ContatoID      INT NOT NULL PRIMARY KEY IDENTITY," +
                         "Nome           NVARCHAR(50) NOT NULL," +
-                        "Telefone       INT NOT NULL)," +
+                        "Telefone       INT NOT NULL," +
                         "DtAtualizacao  DATETIME)";
-            try
-            {
-                //Cria a estrutura da base de dados.
-                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-                SqlCeCommand command = new SqlCeCommand(query, connection);
-                connection.Open();
-                command.ExecuteNonQuery();
-                command.Dispose();
-                connection.Dispose();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            ExecuteSQL(query);
         }
 
         public static void InsertBaseDados(string nome, int telefone)
         {
-
-            var query = $"INSERT INTO TABLE {"Contatos"} VALUES (" +
+            var query = $"INSERT INTO Contatos (Nome,Telefone,DtAtualizacao)" +
+                $" VALUES (" +
                 $"'{nome}'," +
                 $"{telefone}," +
                 $"GETDATE())";
-            try
-            {
-                //Cria a estrutura da base de dados.
-                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-                SqlCeCommand command = new SqlCeCommand(query, connection);
-                connection.Open();
-                command.ExecuteNonQuery();
-                command.Dispose();
-                connection.Dispose();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            ExecuteSQL(query);
+        }
+
+        public static void BuscarContato(int contatoID)
+        {
+            var query = $"SELECT* FROM Contatos WHERE ContatoID = {contatoID}";
+
+            ExecuteSQL(query);
+        }
+
+        public static void AtualizarContato(int contatoID, string nome, int telefone)
+        {
+            var query = $"UPDATE Contatos " +
+                        $"SET Nome = '{nome}', Telefone = '{telefone}', DtAtualizacao = GETDATE() " +
+                        $"WHERE ContatoID = {contatoID}";
+
+            ExecuteSQL(query);
         }
     }
 }

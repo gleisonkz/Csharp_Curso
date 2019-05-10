@@ -40,8 +40,8 @@ namespace AgendaSQL
 
         private void cmd_adicionar_Click(object sender, EventArgs e)
         {
-            frmMenu frmMenu = new frmMenu();
-            frmMenu.ShowDialog();
+            frmAdicionarEditar frmAdicionarEditar = new frmAdicionarEditar();
+            frmAdicionarEditar.ShowDialog();
         }
     }
 }

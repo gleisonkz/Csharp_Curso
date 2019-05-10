@@ -41,7 +41,7 @@
             this.cmd_pesquisar.Location = new System.Drawing.Point(116, 179);
             this.cmd_pesquisar.Name = "cmd_pesquisar";
             this.cmd_pesquisar.Size = new System.Drawing.Size(131, 43);
-            this.cmd_pesquisar.TabIndex = 0;
+            this.cmd_pesquisar.TabIndex = 2;
             this.cmd_pesquisar.Text = "Pesquisar";
             this.cmd_pesquisar.UseVisualStyleBackColor = true;
             // 
@@ -51,7 +51,7 @@
             this.label_titulo.Location = new System.Drawing.Point(89, 27);
             this.label_titulo.Name = "label_titulo";
             this.label_titulo.Size = new System.Drawing.Size(184, 39);
-            this.label_titulo.TabIndex = 1;
+            this.label_titulo.TabIndex = 5;
             this.label_titulo.Text = "Agenda SQL";
             // 
             // cmd_sair
@@ -59,7 +59,7 @@
             this.cmd_sair.Location = new System.Drawing.Point(116, 228);
             this.cmd_sair.Name = "cmd_sair";
             this.cmd_sair.Size = new System.Drawing.Size(131, 43);
-            this.cmd_sair.TabIndex = 2;
+            this.cmd_sair.TabIndex = 3;
             this.cmd_sair.Text = "Sair";
             this.cmd_sair.UseVisualStyleBackColor = true;
             this.cmd_sair.Click += new System.EventHandler(this.cmd_sair_Click);
@@ -69,7 +69,7 @@
             this.cmd_adicionar.Location = new System.Drawing.Point(116, 130);
             this.cmd_adicionar.Name = "cmd_adicionar";
             this.cmd_adicionar.Size = new System.Drawing.Size(131, 43);
-            this.cmd_adicionar.TabIndex = 3;
+            this.cmd_adicionar.TabIndex = 1;
             this.cmd_adicionar.Text = "Adicionar / Editar";
             this.cmd_adicionar.UseVisualStyleBackColor = true;
             this.cmd_adicionar.Click += new System.EventHandler(this.cmd_adicionar_Click);
@@ -79,7 +79,7 @@
             this.cmd_visualizar_tudo.Location = new System.Drawing.Point(116, 81);
             this.cmd_visualizar_tudo.Name = "cmd_visualizar_tudo";
             this.cmd_visualizar_tudo.Size = new System.Drawing.Size(131, 43);
-            this.cmd_visualizar_tudo.TabIndex = 4;
+            this.cmd_visualizar_tudo.TabIndex = 0;
             this.cmd_visualizar_tudo.Text = "Visualizar Tudo";
             this.cmd_visualizar_tudo.UseVisualStyleBackColor = true;
             // 
@@ -89,7 +89,7 @@
             this.label_versao.Location = new System.Drawing.Point(162, 311);
             this.label_versao.Name = "label_versao";
             this.label_versao.Size = new System.Drawing.Size(39, 13);
-            this.label_versao.TabIndex = 5;
+            this.label_versao.TabIndex = 4;
             this.label_versao.Text = "versao";
             // 
             // frmMenu

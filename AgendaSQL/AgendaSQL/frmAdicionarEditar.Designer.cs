@@ -42,7 +42,7 @@
             this.label_telefone.Location = new System.Drawing.Point(12, 69);
             this.label_telefone.Name = "label_telefone";
             this.label_telefone.Size = new System.Drawing.Size(83, 16);
-            this.label_telefone.TabIndex = 0;
+            this.label_telefone.TabIndex = 4;
             this.label_telefone.Text = "Telefone:";
             // 
             // text_telefone
@@ -55,7 +55,7 @@
             // 
             // cmd_gravar
             // 
-            this.cmd_gravar.Location = new System.Drawing.Point(285, 212);
+            this.cmd_gravar.Location = new System.Drawing.Point(235, 167);
             this.cmd_gravar.Name = "cmd_gravar";
             this.cmd_gravar.Size = new System.Drawing.Size(137, 41);
             this.cmd_gravar.TabIndex = 2;
@@ -69,7 +69,7 @@
             this.text_nome.MaxLength = 50;
             this.text_nome.Name = "text_nome";
             this.text_nome.Size = new System.Drawing.Size(185, 20);
-            this.text_nome.TabIndex = 4;
+            this.text_nome.TabIndex = 0;
             // 
             // label_nome
             // 
@@ -77,23 +77,24 @@
             this.label_nome.Location = new System.Drawing.Point(12, 27);
             this.label_nome.Name = "label_nome";
             this.label_nome.Size = new System.Drawing.Size(83, 16);
-            this.label_nome.TabIndex = 3;
+            this.label_nome.TabIndex = 5;
             this.label_nome.Text = "Nome:";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(142, 212);
+            this.button1.Location = new System.Drawing.Point(92, 167);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(137, 41);
-            this.button1.TabIndex = 5;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Fechar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmAdicionarEditar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 265);
+            this.ClientSize = new System.Drawing.Size(387, 224);
             this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.text_nome);
@@ -106,6 +107,7 @@
             this.Name = "frmAdicionarEditar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdicionarEditar";
+            this.Load += new System.EventHandler(this.frmAdicionarEditar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
