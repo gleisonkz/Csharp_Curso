@@ -20,9 +20,6 @@ namespace ComparaListasDuplicadas
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            var ItemsDuplicados = new List<string>();
-            var itemsExclusivosLista1 = new List<string>();
-            var itemsExclusivosLista2 = new List<string>();
             var lista1 = new List<string>();
             var lista2 = new List<string>();
             string selectedFolder = null;
@@ -49,54 +46,60 @@ namespace ComparaListasDuplicadas
                 lista2.Add(item[1]);
             }
             sr.Dispose();
-            
-            foreach (var item1 in lista1)
-            {
-                bool encontrou = false;
 
-                foreach (var item2 in lista2)
-                {
-                    if (item1 == item2)
-                    {
-                        ItemsDuplicados.Add(item1);
-                        encontrou = true;
-                        break;
-                    }
-                    else
-                    {
-                        encontrou = false;
-                    }
-                }
+            #region MétodoFeitoNaUnha
+            //foreach (var item1 in lista1)
+            //{
+            //    bool encontrou = false;
 
-                if (encontrou == false)
-                {
-                    itemsExclusivosLista1.Add(item1);
-                }
-                
-            }
+            //    foreach (var item2 in lista2)
+            //    {
+            //        if (item1 == item2)
+            //        {
+            //            ItemsDuplicados.Add(item1);
+            //            encontrou = true;
+            //            break;
+            //        }
+            //        else
+            //        {
+            //            encontrou = false;
+            //        }
+            //    }
 
-            foreach (var item2 in lista2)
-            {
-                bool encontrou = false;
+            //    if (encontrou == false)
+            //    {
+            //        itemsExclusivosLista1.Add(item1);
+            //    }
 
-                foreach (var item1 in lista1)
-                {
-                    if (item1 == item2)
-                    {
-                        encontrou = true;
-                        break;
-                    }
-                    else
-                    {
-                        encontrou = false;
-                    }
-                }
+            //}
 
-                if (encontrou == false)
-                {
-                    itemsExclusivosLista2.Add(item2);
-                }
-            }
+            //foreach (var item2 in lista2)
+            //{
+            //    bool encontrou = false;
+
+            //    foreach (var item1 in lista1)
+            //    {
+            //        if (item1 == item2)
+            //        {
+            //            encontrou = true;
+            //            break;
+            //        }
+            //        else
+            //        {
+            //            encontrou = false;
+            //        }
+            //    }
+
+            //    if (encontrou == false)
+            //    {
+            //        itemsExclusivosLista2.Add(item2);
+            //    }
+            //} 
+            #endregion
+
+            var ItemsDuplicados = lista1.Intersect(lista2).ToList();
+            var itemsExclusivosLista1 = lista1.Except(lista2).ToList();
+            var itemsExclusivosLista2 = lista2.Except(lista1).ToList();
 
             string caminhoListaRegistrosDuplicados = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ListaRegistrosDuplicados.txt");
             string caminhoListaExclusivos1 = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItemsExclusivosLista1.txt");
@@ -118,7 +121,7 @@ namespace ComparaListasDuplicadas
                 }
             }
 
-            MessageBox.Show("Informações exportadas para " + selectedFolder.ToString(),
+            MessageBox.Show("Informações exportadas para " + selectedFolderPath.ToString(),
             "Exportação Concluída", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
         }
