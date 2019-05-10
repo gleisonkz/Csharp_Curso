@@ -8,13 +8,10 @@ namespace AgendaSQL
 {
     public static class Extends
     {
-
         public static bool IsNullOrEmpty(this string text)
         {
             bool result = string.IsNullOrEmpty(text);
             return result;
         }
-
-
     }
 }
