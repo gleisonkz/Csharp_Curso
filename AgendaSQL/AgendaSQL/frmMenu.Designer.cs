@@ -82,6 +82,7 @@
             this.cmd_visualizar_tudo.TabIndex = 0;
             this.cmd_visualizar_tudo.Text = "Visualizar Tudo";
             this.cmd_visualizar_tudo.UseVisualStyleBackColor = true;
+            this.cmd_visualizar_tudo.Click += new System.EventHandler(this.cmd_visualizar_tudo_Click);
             // 
             // label_versao
             // 

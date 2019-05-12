@@ -102,6 +102,7 @@
             this.Controls.Add(this.cmd_gravar);
             this.Controls.Add(this.text_telefone);
             this.Controls.Add(this.label_telefone);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAdicionarEditar";
