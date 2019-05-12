@@ -76,9 +76,8 @@ namespace AgendaSQL
                     return;
                 }
                 MessageBox.Show("Registro Atualiado com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                text_nome.Text = null;
-                text_telefone.Text = null;
-                text_nome.Focus();
+                this.Close();
+                
             }
 
             #endregion

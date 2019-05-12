@@ -44,6 +44,7 @@ namespace AgendaSQL
         {
             frmResultados fr = new frmResultados();
             fr.ShowDialog();
+            
         }
     }
 }

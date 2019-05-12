@@ -70,7 +70,11 @@ namespace AgendaSQL
             frmAdicionarEditar frmAdicionarEditar = new frmAdicionarEditar(contatoID);
             frmAdicionarEditar.ShowDialog();
             Vars.IniciarGrid(grid_resultados);
-                       
+            grid_resultados.ClearSelection();
+            contatoID = -1;
+            btn_apagar.Enabled = false;
+            btn_editar.Enabled = false;
+
         }
     }
 }
