@@ -16,9 +16,7 @@ namespace AgendaSQL
         public frmMenu()
         {
             InitializeComponent();
-
-            //Apresenta a versão do software
-
+            //Apresenta a versão do software.
             label_versao.Text = Vars.versao;
         }
 
@@ -30,11 +28,9 @@ namespace AgendaSQL
         private void cmd_sair_Click(object sender, EventArgs e)
         {
             //Fecha a aplicação
-
             if (MessageBox.Show("Tem certeza que deseja sair ?",
                 "Sair!",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                    return;
-
               Application.Exit();      
     }
 
@@ -42,6 +38,13 @@ namespace AgendaSQL
         {
             frmAdicionarEditar frmAdicionarEditar = new frmAdicionarEditar();
             frmAdicionarEditar.ShowDialog();
+        }
+
+        private void cmd_visualizar_tudo_Click(object sender, EventArgs e)
+        {
+            frmResultados fr = new frmResultados();
+            fr.ShowDialog();
+            
         }
     }
 }

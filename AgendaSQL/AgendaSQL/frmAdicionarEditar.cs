@@ -14,7 +14,7 @@ namespace AgendaSQL
     {
         int contatoID;
         bool editar;
-        
+
         public frmAdicionarEditar(int contatoID = -1)
         {
             InitializeComponent();
@@ -26,22 +26,38 @@ namespace AgendaSQL
         {
             //Grava ou atualiza o registro
 
- 
+            #region Validações
+            //Verificar se todos os campos foram preenchidos.
             if (text_nome.Text.IsNullOrEmpty() || text_telefone.Text.IsNullOrEmpty())
             {
-                MessageBox.Show("É necesário que todos os campos estejam preenchidos");
+                MessageBox.Show("É necesário que todos os campos estejam preenchidos", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
+
+
+
+
+
+            #endregion
 
             #region GravarRegistro
 
             if (editar == false)
             {
-                Vars.InsertBaseDados(text_nome.Text, int.Parse(text_telefone.Text));
-                MessageBox.Show("Dados Inseridos com sucesso!");
+                try
+                {
+                    Vars.InsertBaseDados(text_nome.Text, int.Parse(text_telefone.Text));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{ex.Message} \nOperação Cancelada!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("Registro Inserido com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 text_nome.Text = null;
                 text_telefone.Text = null;
-                text_nome.Focus(); 
+                text_nome.Focus();
             }
 
             #endregion
@@ -50,11 +66,18 @@ namespace AgendaSQL
 
             if (editar)
             {
-                Vars.AtualizarContato(contatoID, text_nome.Text, int.Parse(text_telefone.Text));
-                MessageBox.Show("Dados Inseridos com sucesso!");
-                text_nome.Text = null;
-                text_telefone.Text = null;
-                text_nome.Focus(); 
+                try
+                {
+                    Vars.AtualizarContato(contatoID, text_nome.Text, int.Parse(text_telefone.Text));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{ex.Message} \nOperação Cancelada!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show("Registro Atualiado com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                this.Close();
+                
             }
 
             #endregion
@@ -69,8 +92,19 @@ namespace AgendaSQL
         {
             if (editar)
             {
-                Vars.BuscarContato(contatoID);
+                try
+                {
+                    var dados = Vars.BuscarContato(contatoID);
+                    text_nome.Text = dados.Rows[0]["Nome"].ToString();
+                    text_telefone.Text = Convert.ToInt32(dados.Rows[0]["Telefone"]).ToString(); ;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
             }
+
         }
 
     }
