@@ -27,8 +27,7 @@ namespace AgendaSQL
             }
             catch (Exception ex)
             {
-                var erro = ex.Message;
-                MessageBox.Show(erro);
+                MessageBox.Show(ex.Message);
             }
 
             try
@@ -44,12 +43,19 @@ namespace AgendaSQL
             }
         }
 
-        public static void ExecuteSQL(string query)
+        public static void ExecuteSQL(string query, params SqlCeParameter[] parameters)
         {
             try
             {
                 SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
                 SqlCeCommand command = new SqlCeCommand(query, connection);
+
+
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
                 connection.Open();
                 command.ExecuteNonQuery();
                 command.Dispose();
@@ -79,13 +85,20 @@ namespace AgendaSQL
 
         public static void InsertBaseDados(string nome, int telefone)
         {
+
+            SqlCeParameter par = new SqlCeParameter("@nome", SqlDbType.VarChar, 50);
+            par.Value = nome;
+
+            SqlCeParameter tel = new SqlCeParameter("@telefone", SqlDbType.VarChar, 50);
+            tel.Value = telefone;
+
             var query = $"INSERT INTO Contatos (Nome,Telefone,DtAtualizacao)" +
                 $" VALUES (" +
-                $"'{nome}'," +
-                $"{telefone}," +
+                $"@nome," +
+                $"@telefone," +
                 $"GETDATE())";
 
-            ExecuteSQL(query);
+            ExecuteSQL(query,par,tel);
         }
 
         public static void BuscarContato(int contatoID)

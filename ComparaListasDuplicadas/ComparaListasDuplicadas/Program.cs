@@ -44,8 +44,16 @@ namespace ComparaListasDuplicadas
                 while (!sr.EndOfStream)
                 {
                     var item = sr.ReadLine().Split('\t');
-                    lista1.Add(item[0]);
-                    lista2.Add(item[1]);
+
+                    if (item[0] != "")
+                    {
+                        lista1.Add(item[0]);
+                    }
+
+                    if (item[1] != "")
+                    {
+                        lista2.Add(item[1]);
+                    }                    
                 }
                 sr.Dispose();
 
@@ -99,17 +107,19 @@ namespace ComparaListasDuplicadas
                 //} 
                 #endregion
 
-                var ItemsDuplicados = lista1.Intersect(lista2).ToList();
-                var itemsExclusivosLista1 = lista1.Except(lista2).ToList();
-                var itemsExclusivosLista2 = lista2.Except(lista1).ToList();
+  
 
-                string caminhoListaRegistrosDuplicados = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ListaRegistrosDuplicados - Qtd {ItemsDuplicados.Count}.txt");
-                string caminhoListaExclusivos1 = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItemsExclusivosLista1 - Qtd {itemsExclusivosLista1.Count}.txt");
-                string caminhoListaExclusivos2 = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItemsExclusivosLista2 - Qtd {itemsExclusivosLista2.Count}.txt");
+                var itensDuplicados = lista1.Intersect(lista2).ToList();
+                var itensExclusivosLista1 = lista1.Except(lista2).ToList();
+                var itensExclusivosLista2 = lista2.Except(lista1).ToList();
 
-                Write(itemsExclusivosLista1, caminhoListaExclusivos1);
-                Write(itemsExclusivosLista2, caminhoListaExclusivos2);
-                Write(ItemsDuplicados, caminhoListaRegistrosDuplicados);
+                string caminhoListaRegistrosDuplicados = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_Itens - Qtd {itensDuplicados.Count}.txt");
+                string caminhoListaExclusivos1 = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItensExclusivosLista1 - Qtd {itensExclusivosLista1.Count()}.txt");
+                string caminhoListaExclusivos2 = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItensExclusivosLista2 - Qtd {itensExclusivosLista2.Count()}.txt");
+
+                Write(itensExclusivosLista1, caminhoListaExclusivos1);
+                Write(itensExclusivosLista2, caminhoListaExclusivos2);
+                Write(itensDuplicados, caminhoListaRegistrosDuplicados);
 
                 void Write(List<string> lista, string outputFilePath)
                 {
