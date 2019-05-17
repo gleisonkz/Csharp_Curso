@@ -113,7 +113,7 @@ namespace ComparaListasDuplicadas
                 var itensExclusivosLista1 = lista1.Except(lista2).ToList();
                 var itensExclusivosLista2 = lista2.Except(lista1).ToList();
 
-                string caminhoListaRegistrosDuplicados = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_Itens - Qtd {itensDuplicados.Count}.txt");
+                string caminhoListaRegistrosDuplicados = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItensDuplicadosEntreAsListas - Qtd {itensDuplicados.Count}.txt");
                 string caminhoListaExclusivos1 = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItensExclusivosLista1 - Qtd {itensExclusivosLista1.Count()}.txt");
                 string caminhoListaExclusivos2 = (selectedFolderPath + $@"\Exported_at_{DateTime.Now.ToString("dd-MM-yyyy")}_as_{DateTime.Now.ToString("H'h'mm")}_ItensExclusivosLista2 - Qtd {itensExclusivosLista2.Count()}.txt");
 
