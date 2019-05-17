@@ -46,5 +46,10 @@ namespace AgendaSQL
             fr.ShowDialog();
             
         }
+
+        private void cmd_pesquisar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
