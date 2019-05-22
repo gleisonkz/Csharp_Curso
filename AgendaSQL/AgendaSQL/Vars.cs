@@ -38,7 +38,7 @@ namespace AgendaSQL
             }
             catch (Exception ex)
             {
-                FCM - 16 / 05 / 2019 - 19:12                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -168,16 +168,39 @@ namespace AgendaSQL
 
         }
 
-        public static void IniciarGrid(DataGridView gridView)
+        public static void IniciarGrid(DataGridView gridView, string queryP = "")
         {
-            SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-            connection.Open();
-            SqlCeDataAdapter adapter = new SqlCeDataAdapter("SELECT* FROM Contatos", connection);
-            var DT = new DataTable();
-            adapter.Fill(DT);
-            gridView.DataSource = DT;
-            adapter.Dispose();
-            connection.Dispose();
+            if (queryP == "")
+            {
+                string query = "SELECT* FROM Contatos";
+
+                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
+                connection.Open();
+
+                SqlCeDataAdapter adapter = new SqlCeDataAdapter(query, connection);
+                var DT = new DataTable();
+                adapter.Fill(DT);
+                gridView.DataSource = DT;
+                adapter.Dispose();
+                connection.Dispose();
+
+            }
+            else
+            {
+                string query = queryP;
+
+                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
+                connection.Open();
+
+                SqlCeDataAdapter adapter = new SqlCeDataAdapter(query, connection);
+                var DT = new DataTable();
+                adapter.Fill(DT);
+                gridView.DataSource = DT;
+                adapter.Dispose();
+                connection.Dispose();
+
+            }
+
         }
     }
 }

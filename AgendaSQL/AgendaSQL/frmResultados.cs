@@ -13,12 +13,11 @@ namespace AgendaSQL
     public partial class frmResultados : Form
     {
         int contatoID;
+        private readonly string query;
 
-
-
-
-        public frmResultados()
+        public frmResultados(string query = "")
         {
+            this.query = query;
             InitializeComponent();
         }
 
@@ -29,7 +28,7 @@ namespace AgendaSQL
 
         private void frmResultados_Load(object sender, EventArgs e)
         {
-            Vars.IniciarGrid(grid_resultados);
+            Vars.IniciarGrid(grid_resultados, query);
             grid_resultados.ClearSelection();
             label_registros.Text = $"Qtd registros: {grid_resultados.Rows.Count.ToString()}";
         }
@@ -75,6 +74,15 @@ namespace AgendaSQL
             btn_apagar.Enabled = false;
             btn_editar.Enabled = false;
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Vars.IniciarGrid(grid_resultados);
+            grid_resultados.ClearSelection();
+            contatoID = -1;
+            btn_apagar.Enabled = false;
+            btn_editar.Enabled = false;
         }
     }
 }

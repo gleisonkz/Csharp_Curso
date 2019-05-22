@@ -49,7 +49,19 @@ namespace AgendaSQL
 
         private void cmd_pesquisar_Click(object sender, EventArgs e)
         {
+            frmPesquisar f = new frmPesquisar();
+            f.ShowDialog();
 
+            if (f.cancelado)
+            {
+                f.Dispose();
+                return;
+            }
+
+            string query = $"SELECT * FROM Contatos WHERE Nome LIKE'%{f.textoPesquisa}%' or Telefone LIKE'%{f.textoPesquisa}%'";
+
+            frmResultados fr = new frmResultados(query);
+            fr.ShowDialog();
         }
     }
 }

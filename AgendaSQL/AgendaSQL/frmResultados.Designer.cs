@@ -33,14 +33,15 @@
             this.label_registros = new System.Windows.Forms.Label();
             this.btn_apagar = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
+            this.btn_ver_tudo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid_resultados)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_fechar
             // 
-            this.btn_fechar.Location = new System.Drawing.Point(401, 315);
+            this.btn_fechar.Location = new System.Drawing.Point(428, 315);
             this.btn_fechar.Name = "btn_fechar";
-            this.btn_fechar.Size = new System.Drawing.Size(120, 41);
+            this.btn_fechar.Size = new System.Drawing.Size(93, 32);
             this.btn_fechar.TabIndex = 0;
             this.btn_fechar.Text = "Fechar";
             this.btn_fechar.UseVisualStyleBackColor = true;
@@ -74,9 +75,9 @@
             // btn_apagar
             // 
             this.btn_apagar.Enabled = false;
-            this.btn_apagar.Location = new System.Drawing.Point(275, 315);
+            this.btn_apagar.Location = new System.Drawing.Point(329, 315);
             this.btn_apagar.Name = "btn_apagar";
-            this.btn_apagar.Size = new System.Drawing.Size(120, 41);
+            this.btn_apagar.Size = new System.Drawing.Size(93, 32);
             this.btn_apagar.TabIndex = 3;
             this.btn_apagar.Text = "Apagar";
             this.btn_apagar.UseVisualStyleBackColor = true;
@@ -85,13 +86,23 @@
             // btn_editar
             // 
             this.btn_editar.Enabled = false;
-            this.btn_editar.Location = new System.Drawing.Point(149, 315);
+            this.btn_editar.Location = new System.Drawing.Point(230, 315);
             this.btn_editar.Name = "btn_editar";
-            this.btn_editar.Size = new System.Drawing.Size(120, 41);
+            this.btn_editar.Size = new System.Drawing.Size(93, 32);
             this.btn_editar.TabIndex = 4;
             this.btn_editar.Text = "Editar";
             this.btn_editar.UseVisualStyleBackColor = true;
             this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
+            // 
+            // btn_ver_tudo
+            // 
+            this.btn_ver_tudo.Location = new System.Drawing.Point(131, 315);
+            this.btn_ver_tudo.Name = "btn_ver_tudo";
+            this.btn_ver_tudo.Size = new System.Drawing.Size(93, 32);
+            this.btn_ver_tudo.TabIndex = 5;
+            this.btn_ver_tudo.Text = "Ver Tudo";
+            this.btn_ver_tudo.UseVisualStyleBackColor = true;
+            this.btn_ver_tudo.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmResultados
             // 
@@ -99,6 +110,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 368);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_ver_tudo);
             this.Controls.Add(this.btn_editar);
             this.Controls.Add(this.btn_apagar);
             this.Controls.Add(this.label_registros);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.Label label_registros;
         private System.Windows.Forms.Button btn_apagar;
         private System.Windows.Forms.Button btn_editar;
+        private System.Windows.Forms.Button btn_ver_tudo;
     }
 }

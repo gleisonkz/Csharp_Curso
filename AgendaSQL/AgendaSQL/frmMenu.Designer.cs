@@ -34,11 +34,12 @@
             this.cmd_adicionar = new System.Windows.Forms.Button();
             this.cmd_visualizar_tudo = new System.Windows.Forms.Button();
             this.label_versao = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmd_pesquisar
             // 
-            this.cmd_pesquisar.Location = new System.Drawing.Point(116, 179);
+            this.cmd_pesquisar.Location = new System.Drawing.Point(116, 164);
             this.cmd_pesquisar.Name = "cmd_pesquisar";
             this.cmd_pesquisar.Size = new System.Drawing.Size(131, 43);
             this.cmd_pesquisar.TabIndex = 2;
@@ -57,7 +58,7 @@
             // 
             // cmd_sair
             // 
-            this.cmd_sair.Location = new System.Drawing.Point(116, 228);
+            this.cmd_sair.Location = new System.Drawing.Point(116, 262);
             this.cmd_sair.Name = "cmd_sair";
             this.cmd_sair.Size = new System.Drawing.Size(131, 43);
             this.cmd_sair.TabIndex = 3;
@@ -67,7 +68,7 @@
             // 
             // cmd_adicionar
             // 
-            this.cmd_adicionar.Location = new System.Drawing.Point(116, 130);
+            this.cmd_adicionar.Location = new System.Drawing.Point(116, 115);
             this.cmd_adicionar.Name = "cmd_adicionar";
             this.cmd_adicionar.Size = new System.Drawing.Size(131, 43);
             this.cmd_adicionar.TabIndex = 1;
@@ -77,7 +78,7 @@
             // 
             // cmd_visualizar_tudo
             // 
-            this.cmd_visualizar_tudo.Location = new System.Drawing.Point(116, 81);
+            this.cmd_visualizar_tudo.Location = new System.Drawing.Point(116, 66);
             this.cmd_visualizar_tudo.Name = "cmd_visualizar_tudo";
             this.cmd_visualizar_tudo.Size = new System.Drawing.Size(131, 43);
             this.cmd_visualizar_tudo.TabIndex = 0;
@@ -94,6 +95,15 @@
             this.label_versao.TabIndex = 4;
             this.label_versao.Text = "versao";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(116, 213);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 43);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Apagar Base de Dados";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,6 +111,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(363, 353);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label_versao);
             this.Controls.Add(this.cmd_visualizar_tudo);
             this.Controls.Add(this.cmd_adicionar);
@@ -127,6 +138,7 @@
         private System.Windows.Forms.Button cmd_adicionar;
         private System.Windows.Forms.Button cmd_visualizar_tudo;
         private System.Windows.Forms.Label label_versao;
+        private System.Windows.Forms.Button button1;
     }
 }
 
