@@ -21,10 +21,14 @@ namespace AgendaSQL
             InitializeComponent();
         }
 
+        //==============================================================================================================
+
         private void btn_fechar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        //==============================================================================================================
 
         private void frmResultados_Load(object sender, EventArgs e)
         {
@@ -32,6 +36,8 @@ namespace AgendaSQL
             grid_resultados.ClearSelection();
             label_registros.Text = $"Qtd registros: {grid_resultados.Rows.Count.ToString()}";
         }
+
+        //==============================================================================================================
 
         private void btn_apagar_Click(object sender, EventArgs e)
         {
@@ -52,6 +58,8 @@ namespace AgendaSQL
             }
         }
 
+        //==============================================================================================================
+
         private void grid_resultados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
@@ -63,6 +71,8 @@ namespace AgendaSQL
             btn_apagar.Enabled = true;
             btn_editar.Enabled = true;
         }
+
+        //==============================================================================================================
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
@@ -76,6 +86,8 @@ namespace AgendaSQL
 
         }
 
+        //==============================================================================================================
+
         private void button1_Click(object sender, EventArgs e)
         {
             Vars.IniciarGrid(grid_resultados);
@@ -84,5 +96,7 @@ namespace AgendaSQL
             btn_apagar.Enabled = false;
             btn_editar.Enabled = false;
         }
+
+        //==============================================================================================================
     }
 }

@@ -15,6 +15,8 @@ namespace AgendaSQL
         int contatoID;
         bool editar;
 
+        //==============================================================================================================
+
         public frmAdicionarEditar(int contatoID = -1)
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace AgendaSQL
             editar = (contatoID == -1) ? false : true;
         }
 
+        //==============================================================================================================
         private void cmd_gravar_Click(object sender, EventArgs e)
         {
             //Grava ou atualiza o registro
@@ -83,11 +86,14 @@ namespace AgendaSQL
             #endregion
         }
 
+        //==============================================================================================================
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //==============================================================================================================
         private void frmAdicionarEditar_Load(object sender, EventArgs e)
         {
             if (editar)
@@ -106,6 +112,8 @@ namespace AgendaSQL
             }
 
         }
+
+        //==============================================================================================================
 
     }
 }

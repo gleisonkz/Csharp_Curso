@@ -12,6 +12,8 @@ namespace AgendaSQL
         public static string folderBancoDeDados;
         public static string pathBancoDeDados;
 
+        //==============================================================================================================
+
         public static void Iniciar()
         {
             folderBancoDeDados = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\AgendaSQL\";
@@ -42,6 +44,8 @@ namespace AgendaSQL
             }
         }
 
+        //==============================================================================================================
+
         public static void ExecuteSQL(string query, SqlCeCommand command, SqlCeConnection connection)
         {
             try
@@ -57,6 +61,8 @@ namespace AgendaSQL
                 throw ex;
             }
         }
+
+        //==============================================================================================================
 
         public static void CriarBaseDados()
         {
@@ -77,6 +83,8 @@ namespace AgendaSQL
 
             ExecuteSQL(query, command, connection);
         }
+
+        //==============================================================================================================
 
         public static void InsertBaseDados(string nome, int telefone)
         {
@@ -110,6 +118,8 @@ namespace AgendaSQL
             }
         }
 
+        //==============================================================================================================
+
         public static DataTable BuscarContato(int contatoID)
         {
             SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
@@ -122,6 +132,7 @@ namespace AgendaSQL
             return DT;
         }
 
+        //==============================================================================================================
         public static void AtualizarContato(int contatoID, string nome, int telefone)
         {
             var query = $"UPDATE Contatos " +
@@ -156,6 +167,8 @@ namespace AgendaSQL
 
         }
 
+        //==============================================================================================================
+
         public static void ApagarContato(int contatoID)
         {
             var query = $"DELETE FROM Contatos " +
@@ -168,6 +181,7 @@ namespace AgendaSQL
 
         }
 
+        //==============================================================================================================
         public static void IniciarGrid(DataGridView gridView, string queryP = "")
         {
             if (queryP == "")
@@ -202,6 +216,8 @@ namespace AgendaSQL
             }
 
         }
+
+        //==============================================================================================================
     }
 }
 

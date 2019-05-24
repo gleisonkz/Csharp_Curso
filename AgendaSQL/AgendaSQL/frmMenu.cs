@@ -20,10 +20,14 @@ namespace AgendaSQL
             label_versao.Text = Vars.versao;
         }
 
+        //==============================================================================================================
+
         private void frmMenu_Load(object sender, EventArgs e)
         {
             
         }
+
+        //==============================================================================================================
 
         private void cmd_sair_Click(object sender, EventArgs e)
         {
@@ -34,11 +38,15 @@ namespace AgendaSQL
               Application.Exit();      
     }
 
+        //==============================================================================================================
+
         private void cmd_adicionar_Click(object sender, EventArgs e)
         {
             frmAdicionarEditar frmAdicionarEditar = new frmAdicionarEditar();
             frmAdicionarEditar.ShowDialog();
         }
+
+        //==============================================================================================================
 
         private void cmd_visualizar_tudo_Click(object sender, EventArgs e)
         {
@@ -46,6 +54,8 @@ namespace AgendaSQL
             fr.ShowDialog();
             
         }
+
+        //==============================================================================================================
 
         private void cmd_pesquisar_Click(object sender, EventArgs e)
         {
@@ -63,5 +73,7 @@ namespace AgendaSQL
             frmResultados fr = new frmResultados(query);
             fr.ShowDialog();
         }
+
+        //==============================================================================================================
     }
 }

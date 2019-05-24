@@ -15,16 +15,22 @@ namespace AgendaSQL
         public string textoPesquisa { get; set; }
         public bool cancelado { get; set; }
 
+        //==============================================================================================================
+
         public frmPesquisar()
         {
             InitializeComponent();
         }
+
+        //==============================================================================================================
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             cancelado = true;
             this.Close();
         }
+
+        //==============================================================================================================
 
         private void btn_pesquisar_Click(object sender, EventArgs e)
         {
@@ -38,5 +44,7 @@ namespace AgendaSQL
             textoPesquisa = textbox_pesquisa.Text;
             this.Close();
         }
+
+        //==============================================================================================================
     }
 }
