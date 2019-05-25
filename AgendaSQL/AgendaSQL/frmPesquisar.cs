@@ -24,7 +24,7 @@ namespace AgendaSQL
 
         //==============================================================================================================
 
-        private void btn_cancelar_Click(object sender, EventArgs e)
+        private void BtnCancelarClick(object sender, EventArgs e)
         {
             cancelado = true;
             this.Close();
@@ -32,7 +32,7 @@ namespace AgendaSQL
 
         //==============================================================================================================
 
-        private void btn_pesquisar_Click(object sender, EventArgs e)
+        private void BtnPesquisarClick(object sender, EventArgs e)
         {
             //Verificar se todos os campos foram preenchidos.
             if (textbox_pesquisa.Text.IsNullOrEmpty())
@@ -42,6 +42,7 @@ namespace AgendaSQL
             }
 
             textoPesquisa = textbox_pesquisa.Text;
+            cancelado = false;
             this.Close();
         }
 

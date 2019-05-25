@@ -133,6 +133,7 @@ namespace AgendaSQL
         }
 
         //==============================================================================================================
+
         public static void AtualizarContato(int contatoID, string nome, int telefone)
         {
             var query = $"UPDATE Contatos " +
@@ -182,6 +183,7 @@ namespace AgendaSQL
         }
 
         //==============================================================================================================
+
         public static void IniciarGrid(DataGridView gridView, string queryP = "")
         {
             if (queryP == "")

@@ -22,14 +22,14 @@ namespace AgendaSQL
 
         //==============================================================================================================
 
-        private void frmMenu_Load(object sender, EventArgs e)
+        private void FrmMenuLoad(object sender, EventArgs e)
         {
             
         }
 
         //==============================================================================================================
 
-        private void cmd_sair_Click(object sender, EventArgs e)
+        private void BtnSairClick(object sender, EventArgs e)
         {
             //Fecha a aplicação
             if (MessageBox.Show("Tem certeza que deseja sair ?",
@@ -40,7 +40,7 @@ namespace AgendaSQL
 
         //==============================================================================================================
 
-        private void cmd_adicionar_Click(object sender, EventArgs e)
+        private void BtnAdicionarClick(object sender, EventArgs e)
         {
             frmAdicionarEditar frmAdicionarEditar = new frmAdicionarEditar();
             frmAdicionarEditar.ShowDialog();
@@ -48,7 +48,7 @@ namespace AgendaSQL
 
         //==============================================================================================================
 
-        private void cmd_visualizar_tudo_Click(object sender, EventArgs e)
+        private void BtnVisualizarTudoClick(object sender, EventArgs e)
         {
             frmResultados fr = new frmResultados();
             fr.ShowDialog();
@@ -57,11 +57,12 @@ namespace AgendaSQL
 
         //==============================================================================================================
 
-        private void cmd_pesquisar_Click(object sender, EventArgs e)
+        private void BtnPesquisarClick(object sender, EventArgs e)
         {
             frmPesquisar f = new frmPesquisar();
             f.ShowDialog();
 
+           
             if (f.cancelado)
             {
                 f.Dispose();

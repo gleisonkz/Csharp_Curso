@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_fechar = new System.Windows.Forms.Button();
+            this.BtnFechar = new System.Windows.Forms.Button();
             this.grid_resultados = new System.Windows.Forms.DataGridView();
             this.label_registros = new System.Windows.Forms.Label();
-            this.btn_apagar = new System.Windows.Forms.Button();
-            this.btn_editar = new System.Windows.Forms.Button();
-            this.btn_ver_tudo = new System.Windows.Forms.Button();
+            this.BtnApagar = new System.Windows.Forms.Button();
+            this.BtnEditar = new System.Windows.Forms.Button();
+            this.BtnVerTudo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid_resultados)).BeginInit();
             this.SuspendLayout();
             // 
-            // btn_fechar
+            // BtnFechar
             // 
-            this.btn_fechar.Location = new System.Drawing.Point(428, 315);
-            this.btn_fechar.Name = "btn_fechar";
-            this.btn_fechar.Size = new System.Drawing.Size(93, 32);
-            this.btn_fechar.TabIndex = 0;
-            this.btn_fechar.Text = "Fechar";
-            this.btn_fechar.UseVisualStyleBackColor = true;
-            this.btn_fechar.Click += new System.EventHandler(this.btn_fechar_Click);
+            this.BtnFechar.Location = new System.Drawing.Point(428, 315);
+            this.BtnFechar.Name = "BtnFechar";
+            this.BtnFechar.Size = new System.Drawing.Size(93, 32);
+            this.BtnFechar.TabIndex = 0;
+            this.BtnFechar.Text = "Fechar";
+            this.BtnFechar.UseVisualStyleBackColor = true;
+            this.BtnFechar.Click += new System.EventHandler(this.BtnFecharClick);
             // 
             // grid_resultados
             // 
@@ -61,7 +61,7 @@
             this.grid_resultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grid_resultados.Size = new System.Drawing.Size(509, 297);
             this.grid_resultados.TabIndex = 1;
-            this.grid_resultados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_resultados_CellClick);
+            this.grid_resultados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridResultadosCellClick);
             // 
             // label_registros
             // 
@@ -72,37 +72,37 @@
             this.label_registros.TabIndex = 2;
             this.label_registros.Text = "label1";
             // 
-            // btn_apagar
+            // BtnApagar
             // 
-            this.btn_apagar.Enabled = false;
-            this.btn_apagar.Location = new System.Drawing.Point(329, 315);
-            this.btn_apagar.Name = "btn_apagar";
-            this.btn_apagar.Size = new System.Drawing.Size(93, 32);
-            this.btn_apagar.TabIndex = 3;
-            this.btn_apagar.Text = "Apagar";
-            this.btn_apagar.UseVisualStyleBackColor = true;
-            this.btn_apagar.Click += new System.EventHandler(this.btn_apagar_Click);
+            this.BtnApagar.Enabled = false;
+            this.BtnApagar.Location = new System.Drawing.Point(329, 315);
+            this.BtnApagar.Name = "BtnApagar";
+            this.BtnApagar.Size = new System.Drawing.Size(93, 32);
+            this.BtnApagar.TabIndex = 3;
+            this.BtnApagar.Text = "Apagar";
+            this.BtnApagar.UseVisualStyleBackColor = true;
+            this.BtnApagar.Click += new System.EventHandler(this.BtnApagarClick);
             // 
-            // btn_editar
+            // BtnEditar
             // 
-            this.btn_editar.Enabled = false;
-            this.btn_editar.Location = new System.Drawing.Point(230, 315);
-            this.btn_editar.Name = "btn_editar";
-            this.btn_editar.Size = new System.Drawing.Size(93, 32);
-            this.btn_editar.TabIndex = 4;
-            this.btn_editar.Text = "Editar";
-            this.btn_editar.UseVisualStyleBackColor = true;
-            this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
+            this.BtnEditar.Enabled = false;
+            this.BtnEditar.Location = new System.Drawing.Point(230, 315);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(93, 32);
+            this.BtnEditar.TabIndex = 4;
+            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditarClick);
             // 
-            // btn_ver_tudo
+            // BtnVerTudo
             // 
-            this.btn_ver_tudo.Location = new System.Drawing.Point(131, 315);
-            this.btn_ver_tudo.Name = "btn_ver_tudo";
-            this.btn_ver_tudo.Size = new System.Drawing.Size(93, 32);
-            this.btn_ver_tudo.TabIndex = 5;
-            this.btn_ver_tudo.Text = "Ver Tudo";
-            this.btn_ver_tudo.UseVisualStyleBackColor = true;
-            this.btn_ver_tudo.Click += new System.EventHandler(this.button1_Click);
+            this.BtnVerTudo.Location = new System.Drawing.Point(131, 315);
+            this.BtnVerTudo.Name = "BtnVerTudo";
+            this.BtnVerTudo.Size = new System.Drawing.Size(93, 32);
+            this.BtnVerTudo.TabIndex = 5;
+            this.BtnVerTudo.Text = "Ver Tudo";
+            this.BtnVerTudo.UseVisualStyleBackColor = true;
+            this.BtnVerTudo.Click += new System.EventHandler(this.BtnVerTudoClick);
             // 
             // frmResultados
             // 
@@ -110,19 +110,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 368);
             this.ControlBox = false;
-            this.Controls.Add(this.btn_ver_tudo);
-            this.Controls.Add(this.btn_editar);
-            this.Controls.Add(this.btn_apagar);
+            this.Controls.Add(this.BtnVerTudo);
+            this.Controls.Add(this.BtnEditar);
+            this.Controls.Add(this.BtnApagar);
             this.Controls.Add(this.label_registros);
             this.Controls.Add(this.grid_resultados);
-            this.Controls.Add(this.btn_fechar);
+            this.Controls.Add(this.BtnFechar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmResultados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmResultados";
-            this.Load += new System.EventHandler(this.frmResultados_Load);
+            this.Load += new System.EventHandler(this.FrmResultadosLoad);
             ((System.ComponentModel.ISupportInitialize)(this.grid_resultados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -131,11 +131,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_fechar;
+        private System.Windows.Forms.Button BtnFechar;
         private System.Windows.Forms.DataGridView grid_resultados;
         private System.Windows.Forms.Label label_registros;
-        private System.Windows.Forms.Button btn_apagar;
-        private System.Windows.Forms.Button btn_editar;
-        private System.Windows.Forms.Button btn_ver_tudo;
+        private System.Windows.Forms.Button BtnApagar;
+        private System.Windows.Forms.Button BtnEditar;
+        private System.Windows.Forms.Button BtnVerTudo;
     }
 }

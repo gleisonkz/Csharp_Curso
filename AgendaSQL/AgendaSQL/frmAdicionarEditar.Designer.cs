@@ -61,7 +61,7 @@
             this.cmd_gravar.TabIndex = 2;
             this.cmd_gravar.Text = "Gravar";
             this.cmd_gravar.UseVisualStyleBackColor = true;
-            this.cmd_gravar.Click += new System.EventHandler(this.cmd_gravar_Click);
+            this.cmd_gravar.Click += new System.EventHandler(this.BtnGravarClick);
             // 
             // text_nome
             // 
@@ -88,7 +88,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Fechar";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.BtnFecharClick);
             // 
             // frmAdicionarEditar
             // 
@@ -108,7 +108,7 @@
             this.Name = "frmAdicionarEditar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdicionarEditar";
-            this.Load += new System.EventHandler(this.frmAdicionarEditar_Load);
+            this.Load += new System.EventHandler(this.FrmAdicionarEditar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
