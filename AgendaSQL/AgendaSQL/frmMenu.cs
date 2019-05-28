@@ -24,7 +24,7 @@ namespace AgendaSQL
 
         private void FrmMenuLoad(object sender, EventArgs e)
         {
-            
+
         }
 
         //==============================================================================================================
@@ -33,10 +33,10 @@ namespace AgendaSQL
         {
             //Fecha a aplicação
             if (MessageBox.Show("Tem certeza que deseja sair ?",
-                "Sair!",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation) == DialogResult.Cancel)
-                   return;
-              Application.Exit();      
-    }
+                "Sair!", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                return;
+            Application.Exit();
+        }
 
         //==============================================================================================================
 
@@ -52,7 +52,7 @@ namespace AgendaSQL
         {
             frmResultados fr = new frmResultados();
             fr.ShowDialog();
-            
+
         }
 
         //==============================================================================================================
@@ -62,7 +62,7 @@ namespace AgendaSQL
             frmPesquisar f = new frmPesquisar();
             f.ShowDialog();
 
-           
+
             if (f.cancelado)
             {
                 f.Dispose();
@@ -73,6 +73,24 @@ namespace AgendaSQL
 
             frmResultados fr = new frmResultados(query);
             fr.ShowDialog();
+        }
+
+        private void BtnApagarBaseDados_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Tem certeza que deseja apagar a base de dados?"
+                                , "ATENÇÃO"
+                                , MessageBoxButtons.YesNo
+                                , MessageBoxIcon.Warning) == DialogResult.No)
+                                                    return;
+            try
+            {
+                Vars.ApagarBaseDados();
+                MessageBox.Show("Banco de dados apagado com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //==============================================================================================================

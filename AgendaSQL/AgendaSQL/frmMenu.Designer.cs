@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.BtnPesquisar = new System.Windows.Forms.Button();
             this.label_titulo = new System.Windows.Forms.Label();
             this.BtnSair = new System.Windows.Forms.Button();
@@ -103,6 +104,7 @@
             this.BtnApagarBaseDados.TabIndex = 6;
             this.BtnApagarBaseDados.Text = "Apagar Base de Dados";
             this.BtnApagarBaseDados.UseVisualStyleBackColor = true;
+            this.BtnApagarBaseDados.Click += new System.EventHandler(this.BtnApagarBaseDados_Click);
             // 
             // frmMenu
             // 
@@ -119,6 +121,7 @@
             this.Controls.Add(this.label_titulo);
             this.Controls.Add(this.BtnPesquisar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMenu";

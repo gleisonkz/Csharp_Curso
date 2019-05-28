@@ -52,7 +52,11 @@ namespace AgendaSQL
             {
                 command.CommandText = query;
                 connection.Open();
+                command.Connection = connection;
+
+
                 command.ExecuteNonQuery();
+
                 connection.Dispose();
                 command.Dispose();
             }
@@ -69,9 +73,7 @@ namespace AgendaSQL
             //Método para a criação do banco de dados.
             SqlCeEngine eg = new SqlCeEngine($"Data source = {pathBancoDeDados}");
             eg.CreateDatabase();
-
-
-
+            
             var query = $"CREATE TABLE {"Contatos"} (" +
                         "ContatoID      INT NOT NULL PRIMARY KEY IDENTITY," +
                         "Nome           NVARCHAR(50) NOT NULL," +
@@ -199,6 +201,7 @@ namespace AgendaSQL
                 gridView.DataSource = DT;
                 adapter.Dispose();
                 connection.Dispose();
+                AtribuirLarguraGrid(gridView, 15, 40, 25, 20);
 
             }
             else
@@ -214,9 +217,48 @@ namespace AgendaSQL
                 gridView.DataSource = DT;
                 adapter.Dispose();
                 connection.Dispose();
+                AtribuirLarguraGrid(gridView, 15, 40, 25, 20);
 
             }
 
+        }
+
+        //==============================================================================================================
+
+        private static void AtribuirLarguraGrid(DataGridView gridView, int contatoID, int nome, int telefone, int dtAtualizacao)
+        {
+            gridView.Columns["ContatoID"].Width = CalcularLarguraGrid(contatoID, gridView);
+            gridView.Columns["Nome"].Width = CalcularLarguraGrid(nome, gridView);
+            gridView.Columns["Telefone"].Width = CalcularLarguraGrid(telefone, gridView);
+            gridView.Columns["DtAtualizacao"].Width = CalcularLarguraGrid(dtAtualizacao, gridView);
+        }
+
+        //==============================================================================================================
+
+        private static int CalcularLarguraGrid(int porcentagem, DataGridView dataGridView)
+        {
+            int larguraGrid = dataGridView.Width - 20;
+            int result = (larguraGrid * porcentagem / 100);
+            return result;
+        }
+
+        //==============================================================================================================
+
+        public static void ApagarBaseDados()
+        {
+            try
+            {
+                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
+                SqlCeCommand command = new SqlCeCommand();
+                
+
+                var query = $"DELETE FROM Contatos ";
+                ExecuteSQL(query, command, connection);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //==============================================================================================================
