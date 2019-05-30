@@ -20,36 +20,79 @@ namespace AgendaSQL
             label_versao.Text = Vars.versao;
         }
 
-        private void frmMenu_Load(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void FrmMenuLoad(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void cmd_sair_Click(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void BtnSairClick(object sender, EventArgs e)
         {
             //Fecha a aplicação
             if (MessageBox.Show("Tem certeza que deseja sair ?",
-                "Sair!",MessageBoxButtons.OKCancel,MessageBoxIcon.Exclamation) == DialogResult.Cancel)
-                   return;
-              Application.Exit();      
-    }
+                "Sair!", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                return;
+            Application.Exit();
+        }
 
-        private void cmd_adicionar_Click(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void BtnAdicionarClick(object sender, EventArgs e)
         {
             frmAdicionarEditar frmAdicionarEditar = new frmAdicionarEditar();
             frmAdicionarEditar.ShowDialog();
         }
 
-        private void cmd_visualizar_tudo_Click(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void BtnVisualizarTudoClick(object sender, EventArgs e)
         {
             frmResultados fr = new frmResultados();
             fr.ShowDialog();
-            
+
         }
 
-        private void cmd_pesquisar_Click(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void BtnPesquisarClick(object sender, EventArgs e)
         {
+            frmPesquisar f = new frmPesquisar();
+            f.ShowDialog();
 
+
+            if (f.cancelado)
+            {
+                f.Dispose();
+                return;
+            }
+
+            string query = $"SELECT * FROM Contatos WHERE Nome LIKE'%{f.textoPesquisa}%' or Telefone LIKE'%{f.textoPesquisa}%'";
+
+            frmResultados fr = new frmResultados(query);
+            fr.ShowDialog();
         }
+
+        private void BtnApagarBaseDados_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Tem certeza que deseja apagar a base de dados?"
+                                , "ATENÇÃO"
+                                , MessageBoxButtons.YesNo
+                                , MessageBoxIcon.Warning) == DialogResult.No)
+                                                    return;
+            try
+            {
+                Vars.ApagarBaseDados();
+                MessageBox.Show("Banco de dados apagado com sucesso!", "Concluído", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //==============================================================================================================
     }
 }

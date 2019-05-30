@@ -28,23 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmd_pesquisar = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
+            this.BtnPesquisar = new System.Windows.Forms.Button();
             this.label_titulo = new System.Windows.Forms.Label();
-            this.cmd_sair = new System.Windows.Forms.Button();
-            this.cmd_adicionar = new System.Windows.Forms.Button();
-            this.cmd_visualizar_tudo = new System.Windows.Forms.Button();
+            this.BtnSair = new System.Windows.Forms.Button();
+            this.BtnAdicionarEditar = new System.Windows.Forms.Button();
+            this.BtnVisualizarTudo = new System.Windows.Forms.Button();
             this.label_versao = new System.Windows.Forms.Label();
+            this.BtnApagarBaseDados = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // cmd_pesquisar
+            // BtnPesquisar
             // 
-            this.cmd_pesquisar.Location = new System.Drawing.Point(116, 179);
-            this.cmd_pesquisar.Name = "cmd_pesquisar";
-            this.cmd_pesquisar.Size = new System.Drawing.Size(131, 43);
-            this.cmd_pesquisar.TabIndex = 2;
-            this.cmd_pesquisar.Text = "Pesquisar";
-            this.cmd_pesquisar.UseVisualStyleBackColor = true;
-            this.cmd_pesquisar.Click += new System.EventHandler(this.cmd_pesquisar_Click);
+            this.BtnPesquisar.Location = new System.Drawing.Point(116, 164);
+            this.BtnPesquisar.Name = "BtnPesquisar";
+            this.BtnPesquisar.Size = new System.Drawing.Size(131, 43);
+            this.BtnPesquisar.TabIndex = 2;
+            this.BtnPesquisar.Text = "Pesquisar";
+            this.BtnPesquisar.UseVisualStyleBackColor = true;
+            this.BtnPesquisar.Click += new System.EventHandler(this.BtnPesquisarClick);
             // 
             // label_titulo
             // 
@@ -55,35 +57,35 @@
             this.label_titulo.TabIndex = 5;
             this.label_titulo.Text = "Agenda SQL";
             // 
-            // cmd_sair
+            // BtnSair
             // 
-            this.cmd_sair.Location = new System.Drawing.Point(116, 228);
-            this.cmd_sair.Name = "cmd_sair";
-            this.cmd_sair.Size = new System.Drawing.Size(131, 43);
-            this.cmd_sair.TabIndex = 3;
-            this.cmd_sair.Text = "Sair";
-            this.cmd_sair.UseVisualStyleBackColor = true;
-            this.cmd_sair.Click += new System.EventHandler(this.cmd_sair_Click);
+            this.BtnSair.Location = new System.Drawing.Point(116, 262);
+            this.BtnSair.Name = "BtnSair";
+            this.BtnSair.Size = new System.Drawing.Size(131, 43);
+            this.BtnSair.TabIndex = 3;
+            this.BtnSair.Text = "Sair";
+            this.BtnSair.UseVisualStyleBackColor = true;
+            this.BtnSair.Click += new System.EventHandler(this.BtnSairClick);
             // 
-            // cmd_adicionar
+            // BtnAdicionarEditar
             // 
-            this.cmd_adicionar.Location = new System.Drawing.Point(116, 130);
-            this.cmd_adicionar.Name = "cmd_adicionar";
-            this.cmd_adicionar.Size = new System.Drawing.Size(131, 43);
-            this.cmd_adicionar.TabIndex = 1;
-            this.cmd_adicionar.Text = "Adicionar / Editar";
-            this.cmd_adicionar.UseVisualStyleBackColor = true;
-            this.cmd_adicionar.Click += new System.EventHandler(this.cmd_adicionar_Click);
+            this.BtnAdicionarEditar.Location = new System.Drawing.Point(116, 115);
+            this.BtnAdicionarEditar.Name = "BtnAdicionarEditar";
+            this.BtnAdicionarEditar.Size = new System.Drawing.Size(131, 43);
+            this.BtnAdicionarEditar.TabIndex = 1;
+            this.BtnAdicionarEditar.Text = "Adicionar / Editar";
+            this.BtnAdicionarEditar.UseVisualStyleBackColor = true;
+            this.BtnAdicionarEditar.Click += new System.EventHandler(this.BtnAdicionarClick);
             // 
-            // cmd_visualizar_tudo
+            // BtnVisualizarTudo
             // 
-            this.cmd_visualizar_tudo.Location = new System.Drawing.Point(116, 81);
-            this.cmd_visualizar_tudo.Name = "cmd_visualizar_tudo";
-            this.cmd_visualizar_tudo.Size = new System.Drawing.Size(131, 43);
-            this.cmd_visualizar_tudo.TabIndex = 0;
-            this.cmd_visualizar_tudo.Text = "Visualizar Tudo";
-            this.cmd_visualizar_tudo.UseVisualStyleBackColor = true;
-            this.cmd_visualizar_tudo.Click += new System.EventHandler(this.cmd_visualizar_tudo_Click);
+            this.BtnVisualizarTudo.Location = new System.Drawing.Point(116, 66);
+            this.BtnVisualizarTudo.Name = "BtnVisualizarTudo";
+            this.BtnVisualizarTudo.Size = new System.Drawing.Size(131, 43);
+            this.BtnVisualizarTudo.TabIndex = 0;
+            this.BtnVisualizarTudo.Text = "Visualizar Tudo";
+            this.BtnVisualizarTudo.UseVisualStyleBackColor = true;
+            this.BtnVisualizarTudo.Click += new System.EventHandler(this.BtnVisualizarTudoClick);
             // 
             // label_versao
             // 
@@ -94,6 +96,16 @@
             this.label_versao.TabIndex = 4;
             this.label_versao.Text = "versao";
             // 
+            // BtnApagarBaseDados
+            // 
+            this.BtnApagarBaseDados.Location = new System.Drawing.Point(116, 213);
+            this.BtnApagarBaseDados.Name = "BtnApagarBaseDados";
+            this.BtnApagarBaseDados.Size = new System.Drawing.Size(131, 43);
+            this.BtnApagarBaseDados.TabIndex = 6;
+            this.BtnApagarBaseDados.Text = "Apagar Base de Dados";
+            this.BtnApagarBaseDados.UseVisualStyleBackColor = true;
+            this.BtnApagarBaseDados.Click += new System.EventHandler(this.BtnApagarBaseDados_Click);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,19 +113,21 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(363, 353);
             this.ControlBox = false;
+            this.Controls.Add(this.BtnApagarBaseDados);
             this.Controls.Add(this.label_versao);
-            this.Controls.Add(this.cmd_visualizar_tudo);
-            this.Controls.Add(this.cmd_adicionar);
-            this.Controls.Add(this.cmd_sair);
+            this.Controls.Add(this.BtnVisualizarTudo);
+            this.Controls.Add(this.BtnAdicionarEditar);
+            this.Controls.Add(this.BtnSair);
             this.Controls.Add(this.label_titulo);
-            this.Controls.Add(this.cmd_pesquisar);
+            this.Controls.Add(this.BtnPesquisar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AGENDA";
-            this.Load += new System.EventHandler(this.frmMenu_Load);
+            this.Load += new System.EventHandler(this.FrmMenuLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,12 +135,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmd_pesquisar;
+        private System.Windows.Forms.Button BtnPesquisar;
         private System.Windows.Forms.Label label_titulo;
-        private System.Windows.Forms.Button cmd_sair;
-        private System.Windows.Forms.Button cmd_adicionar;
-        private System.Windows.Forms.Button cmd_visualizar_tudo;
+        private System.Windows.Forms.Button BtnSair;
+        private System.Windows.Forms.Button BtnAdicionarEditar;
+        private System.Windows.Forms.Button BtnVisualizarTudo;
         private System.Windows.Forms.Label label_versao;
+        private System.Windows.Forms.Button BtnApagarBaseDados;
     }
 }
 

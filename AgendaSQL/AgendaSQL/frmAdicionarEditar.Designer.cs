@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdicionarEditar));
             this.label_telefone = new System.Windows.Forms.Label();
             this.text_telefone = new System.Windows.Forms.TextBox();
             this.cmd_gravar = new System.Windows.Forms.Button();
@@ -61,7 +62,7 @@
             this.cmd_gravar.TabIndex = 2;
             this.cmd_gravar.Text = "Gravar";
             this.cmd_gravar.UseVisualStyleBackColor = true;
-            this.cmd_gravar.Click += new System.EventHandler(this.cmd_gravar_Click);
+            this.cmd_gravar.Click += new System.EventHandler(this.BtnGravarClick);
             // 
             // text_nome
             // 
@@ -88,7 +89,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Fechar";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.BtnFecharClick);
             // 
             // frmAdicionarEditar
             // 
@@ -103,12 +104,13 @@
             this.Controls.Add(this.text_telefone);
             this.Controls.Add(this.label_telefone);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAdicionarEditar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdicionarEditar";
-            this.Load += new System.EventHandler(this.frmAdicionarEditar_Load);
+            this.Load += new System.EventHandler(this.FrmAdicionarEditar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

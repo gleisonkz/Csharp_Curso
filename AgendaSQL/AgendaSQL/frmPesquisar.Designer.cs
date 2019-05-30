@@ -28,7 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPesquisar));
+            this.textbox_pesquisa = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BtnCancelar = new System.Windows.Forms.Button();
+            this.BtnPesquisar = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // textbox_pesquisa
+            // 
+            this.textbox_pesquisa.Location = new System.Drawing.Point(12, 45);
+            this.textbox_pesquisa.MaxLength = 50;
+            this.textbox_pesquisa.Name = "textbox_pesquisa";
+            this.textbox_pesquisa.Size = new System.Drawing.Size(269, 20);
+            this.textbox_pesquisa.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Procurar:";
+            // 
+            // BtnCancelar
+            // 
+            this.BtnCancelar.Location = new System.Drawing.Point(12, 91);
+            this.BtnCancelar.Name = "BtnCancelar";
+            this.BtnCancelar.Size = new System.Drawing.Size(131, 41);
+            this.BtnCancelar.TabIndex = 3;
+            this.BtnCancelar.Text = "Cancelar";
+            this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelarClick);
+            // 
+            // BtnPesquisar
+            // 
+            this.BtnPesquisar.Location = new System.Drawing.Point(150, 91);
+            this.BtnPesquisar.Name = "BtnPesquisar";
+            this.BtnPesquisar.Size = new System.Drawing.Size(131, 41);
+            this.BtnPesquisar.TabIndex = 4;
+            this.BtnPesquisar.Text = "Pesquisar";
+            this.BtnPesquisar.UseVisualStyleBackColor = true;
+            this.BtnPesquisar.Click += new System.EventHandler(this.BtnPesquisarClick);
             // 
             // frmPesquisar
             // 
@@ -36,16 +78,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(293, 144);
             this.ControlBox = false;
+            this.Controls.Add(this.BtnPesquisar);
+            this.Controls.Add(this.BtnCancelar);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textbox_pesquisa);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPesquisar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmPesquisar";
+            this.Text = "Pesquisar";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox textbox_pesquisa;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BtnCancelar;
+        private System.Windows.Forms.Button BtnPesquisar;
     }
 }

@@ -13,28 +13,33 @@ namespace AgendaSQL
     public partial class frmResultados : Form
     {
         int contatoID;
+        private readonly string query;
 
-
-
-
-        public frmResultados()
+        public frmResultados(string query = "")
         {
+            this.query = query;
             InitializeComponent();
         }
 
-        private void btn_fechar_Click(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void BtnFecharClick(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void frmResultados_Load(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void FrmResultadosLoad(object sender, EventArgs e)
         {
-            Vars.IniciarGrid(grid_resultados);
+            Vars.IniciarGrid(grid_resultados, query);
             grid_resultados.ClearSelection();
             label_registros.Text = $"Qtd registros: {grid_resultados.Rows.Count.ToString()}";
         }
 
-        private void btn_apagar_Click(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void BtnApagarClick(object sender, EventArgs e)
         {
             if (MessageBox.Show("Tem certeza que desaja apagar o contato?", "Atenção!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
@@ -53,7 +58,9 @@ namespace AgendaSQL
             }
         }
 
-        private void grid_resultados_CellClick(object sender, DataGridViewCellEventArgs e)
+        //==============================================================================================================
+
+        private void GridResultadosCellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
             {
@@ -61,20 +68,35 @@ namespace AgendaSQL
             }
 
             contatoID = Convert.ToInt16(grid_resultados.Rows[e.RowIndex].Cells["ContatoID"].Value);
-            btn_apagar.Enabled = true;
-            btn_editar.Enabled = true;
+            BtnApagar.Enabled = true;
+            BtnEditar.Enabled = true;
         }
 
-        private void btn_editar_Click(object sender, EventArgs e)
+        //==============================================================================================================
+
+        private void BtnEditarClick(object sender, EventArgs e)
         {
             frmAdicionarEditar frmAdicionarEditar = new frmAdicionarEditar(contatoID);
             frmAdicionarEditar.ShowDialog();
             Vars.IniciarGrid(grid_resultados);
             grid_resultados.ClearSelection();
             contatoID = -1;
-            btn_apagar.Enabled = false;
-            btn_editar.Enabled = false;
+            BtnApagar.Enabled = false;
+            BtnEditar.Enabled = false;
 
         }
+
+        //==============================================================================================================
+
+        private void BtnVerTudoClick(object sender, EventArgs e)
+        {
+            Vars.IniciarGrid(grid_resultados);
+            grid_resultados.ClearSelection();
+            contatoID = -1;
+            BtnApagar.Enabled = false;
+            BtnEditar.Enabled = false;
+        }
+
+        //==============================================================================================================
     }
 }
