@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
 using System.IO;
+using System.Data;
 
 //===================================================================================================================
 //  Classe criada para realizar a gestão de todo o banco de dados
@@ -23,9 +24,7 @@ namespace GestorBD
         private SqlCeCommand command;
 
         private string connectionString = "";
-        private string passwordDataBase = "";
-
-        //===========================================================================================================
+        private string passwordDataBase = "123456";
 
         //===========================================================================================================
 
@@ -55,10 +54,6 @@ namespace GestorBD
 
                 connection = new SqlCeConnection(connectionString);
                 connection.Open();
-
-                MessageBox.Show($"DataBase {nameDataBase.ToUpper()} status: {connection.State}");
-
-                connection.Dispose();
             }
             catch (Exception ex)
             {
@@ -68,19 +63,19 @@ namespace GestorBD
 
         //===========================================================================================================
 
-        //===========================================================================================================
-
-        public void CriarBaseDados(string nameDataBase, bool verificarExistenciaArquivo = false)
+        public void CriarBaseDados(string dataBase, List<string> parametros, bool verificarExistenciaArquivo = false)
         {
             try
             {
-                #region Verificar se a Base de Dados existe
+                #region CRIACAO DO ARQUIVO DA BASE DE DADOS
+
+                #region VERIFICA SE A BASE DE DADOS JÁ EXISTE
 
                 StringBuilder str = new StringBuilder();
 
                 str.Append("Data source = ");
 
-                str.Append(nameDataBase);
+                str.Append(dataBase);
 
                 if (passwordDataBase != "")
                 {
@@ -91,7 +86,7 @@ namespace GestorBD
 
                 if (verificarExistenciaArquivo == true)
                 {
-                    if (File.Exists(nameDataBase) == true)
+                    if (File.Exists(dataBase) == true)
                     {
                         if (MessageBox.Show("Já existe uma base de dados no caminho informado com esse nome, deseja substituí-lá?"
                                             , "ATENÇÃO"
@@ -99,7 +94,7 @@ namespace GestorBD
                                             , MessageBoxIcon.Question) == DialogResult.No)
                             return;
                         {
-                            File.Delete(nameDataBase);
+                            File.Delete(dataBase);
                         }
                     }
                 }
@@ -109,6 +104,40 @@ namespace GestorBD
                 SqlCeEngine engine = new SqlCeEngine(connectionString);
                 engine.CreateDatabase();
                 engine.Dispose();
+                #endregion
+
+                #region CRIAÇÃO DAS TABELAS
+                //-----------------------------------------------------------------------------
+                // Realiza a criação das tabelas na base de dados.
+                //-----------------------------------------------------------------------------
+
+                connection = new SqlCeConnection(connectionString);
+                connection.Open();
+                command = new SqlCeCommand();
+                command.Connection = connection;
+
+                str.Clear();
+
+                foreach (var item in parametros)
+                {
+                    if (item.StartsWith("CREATE TABLE"))
+                    {
+                        str = new StringBuilder();
+                        str.Append(item);
+                    }
+                    else if (item == "FIM")
+                    {
+                        command.CommandText = str.ToString();
+                        command.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        str.Append(item);
+                    }
+                }
+                command.Dispose();
+                connection.Dispose();
+                #endregion
             }
             catch (Exception ex)
             {
@@ -117,6 +146,25 @@ namespace GestorBD
             }
 
             MessageBox.Show("Base de dados criada com sucesso!");
+        }
+
+        //===========================================================================================================
+
+        public DataTable Buscar(string query)
+        {
+            DataTable dataTable = new DataTable();
+            adapter = new SqlCeDataAdapter(query, connection);
+
+            try
+            {
+                adapter.Fill(dataTable);                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);                
+            }
+            adapter.Dispose();
+            return dataTable;
         }
 
         //===========================================================================================================
