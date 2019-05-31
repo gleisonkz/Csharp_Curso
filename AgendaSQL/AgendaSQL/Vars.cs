@@ -12,8 +12,6 @@ namespace AgendaSQL
         public static string folderBancoDeDados;
         public static string pathBancoDeDados;
 
-        //==============================================================================================================
-
         public static void Iniciar()
         {
             folderBancoDeDados = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\AgendaSQL\";
@@ -40,56 +38,59 @@ namespace AgendaSQL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                var erro = ex.Message;
+                MessageBox.Show(erro);
             }
         }
 
-        //==============================================================================================================
-
-        public static void ExecuteSQL(string query, SqlCeCommand command, SqlCeConnection connection)
+        public static void ExecuteSQL(string query, params SqlCeParameter[] parameters)
         {
             try
             {
-                command.CommandText = query;
+                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
+                SqlCeCommand command = new SqlCeCommand(query, connection);
+
+
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
                 connection.Open();
-                command.Connection = connection;
-
-
                 command.ExecuteNonQuery();
-
-                connection.Dispose();
                 command.Dispose();
+                connection.Dispose();
             }
             catch (Exception ex)
             {
-                throw ex;
+                var erro = ex.Message;
+                MessageBox.Show(erro);
             }
         }
-
-        //==============================================================================================================
 
         public static void CriarBaseDados()
         {
             //Método para a criação do banco de dados.
             SqlCeEngine eg = new SqlCeEngine($"Data source = {pathBancoDeDados}");
             eg.CreateDatabase();
-            
+
             var query = $"CREATE TABLE {"Contatos"} (" +
                         "ContatoID      INT NOT NULL PRIMARY KEY IDENTITY," +
                         "Nome           NVARCHAR(50) NOT NULL," +
                         "Telefone       INT NOT NULL," +
                         "DtAtualizacao  DATETIME)";
 
-            SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-            SqlCeCommand command = new SqlCeCommand(query, connection);
-
-            ExecuteSQL(query, command, connection);
+            ExecuteSQL(query);
         }
-
-        //==============================================================================================================
 
         public static void InsertBaseDados(string nome, int telefone)
         {
+
+            SqlCeParameter par = new SqlCeParameter("@nome", SqlDbType.VarChar, 50);
+            par.Value = nome;
+
+            SqlCeParameter tel = new SqlCeParameter("@telefone", SqlDbType.VarChar, 50);
+            tel.Value = telefone;
 
             var query = $"INSERT INTO Contatos (Nome,Telefone,DtAtualizacao)" +
                 $" VALUES (" +
@@ -97,171 +98,24 @@ namespace AgendaSQL
                 $"@telefone," +
                 $"GETDATE())";
 
-            SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-            SqlCeCommand command = new SqlCeCommand();
-            command.Connection = connection;
-            command.Parameters.AddWithValue("@nome", nome);
-            command.Parameters.AddWithValue("@telefone", telefone);
-
-            //Verifica se o contato a ser adicionado já existe no banco.
-            var adapter = new SqlCeDataAdapter();
-            var DT = new DataTable();
-            command.CommandText = $"SELECT* FROM Contatos WHERE Nome = @nome AND Telefone = @telefone";
-            adapter.SelectCommand = command;
-            adapter.Fill(DT);
-
-            if (DT.Rows.Count == 0)
-            {
-                ExecuteSQL(query, command, connection);
-            }
-            else
-            {
-                throw new Exception("Este contato já existe na base de dados");
-            }
+            ExecuteSQL(query,par,tel);
         }
 
-        //==============================================================================================================
-
-        public static DataTable BuscarContato(int contatoID)
+        public static void BuscarContato(int contatoID)
         {
-            SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-            SqlCeDataAdapter adapter = new SqlCeDataAdapter($"SELECT* FROM Contatos WHERE ContatoID = {contatoID}", connection);
-            var DT = new DataTable();
-            connection.Open();
-            adapter.Fill(DT);
-            adapter.Dispose();
-            connection.Dispose();
-            return DT;
-        }
+            var query = $"SELECT* FROM Contatos WHERE ContatoID = {contatoID}";
 
-        //==============================================================================================================
+            ExecuteSQL(query);
+        }
 
         public static void AtualizarContato(int contatoID, string nome, int telefone)
         {
             var query = $"UPDATE Contatos " +
-                        $"SET Nome = @nome," +
-                        $" Telefone = @telefone," +
-                        $" DtAtualizacao = GETDATE() " +
-                        $"WHERE ContatoID = @contatoID";
+                        $"SET Nome = '{nome}', Telefone = '{telefone}', DtAtualizacao = GETDATE() " +
+                        $"WHERE ContatoID = {contatoID}";
 
-            SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-            SqlCeCommand command = new SqlCeCommand();
-            command.Connection = connection;
-            command.Parameters.AddWithValue("@nome", nome);
-            command.Parameters.AddWithValue("@telefone", telefone);
-            command.Parameters.AddWithValue("@contatoID", contatoID);
-
-            //Verifica se o contato a ser adicionado já existe no banco.
-            var DT = new DataTable();
-            command.CommandText = "SELECT* FROM Contatos WHERE nome = @nome AND Telefone = @telefone AND ContatoID <> @contatoID";
-            var adapter = new SqlCeDataAdapter();
-            adapter.SelectCommand = command;
-            adapter.Fill(DT);
-
-            if (DT.Rows.Count == 0)
-            {
-                ExecuteSQL(query, command, connection);
-            }
-            else
-            {
-                throw new Exception("Este contato já existe na base de dados para outro ID");
-            }
-
-
+            ExecuteSQL(query);
         }
-
-        //==============================================================================================================
-
-        public static void ApagarContato(int contatoID)
-        {
-            var query = $"DELETE FROM Contatos " +
-                        $"WHERE ContatoID = @contatoID";
-
-            SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-            SqlCeCommand command = new SqlCeCommand(query, connection);
-            command.Parameters.AddWithValue("@contatoID", contatoID);
-            ExecuteSQL(query, command, connection);
-
-        }
-
-        //==============================================================================================================
-
-        public static void IniciarGrid(DataGridView gridView, string queryP = "")
-        {
-            if (queryP == "")
-            {
-                string query = "SELECT* FROM Contatos";
-
-                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-                connection.Open();
-
-                SqlCeDataAdapter adapter = new SqlCeDataAdapter(query, connection);
-                var DT = new DataTable();
-                adapter.Fill(DT);
-                gridView.DataSource = DT;
-                adapter.Dispose();
-                connection.Dispose();
-                AtribuirLarguraGrid(gridView, 15, 40, 25, 20);
-
-            }
-            else
-            {
-                string query = queryP;
-
-                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-                connection.Open();
-
-                SqlCeDataAdapter adapter = new SqlCeDataAdapter(query, connection);
-                var DT = new DataTable();
-                adapter.Fill(DT);
-                gridView.DataSource = DT;
-                adapter.Dispose();
-                connection.Dispose();
-                AtribuirLarguraGrid(gridView, 15, 40, 25, 20);
-
-            }
-
-        }
-
-        //==============================================================================================================
-
-        private static void AtribuirLarguraGrid(DataGridView gridView, int contatoID, int nome, int telefone, int dtAtualizacao)
-        {
-            gridView.Columns["ContatoID"].Width = CalcularLarguraGrid(contatoID, gridView);
-            gridView.Columns["Nome"].Width = CalcularLarguraGrid(nome, gridView);
-            gridView.Columns["Telefone"].Width = CalcularLarguraGrid(telefone, gridView);
-            gridView.Columns["DtAtualizacao"].Width = CalcularLarguraGrid(dtAtualizacao, gridView);
-        }
-
-        //==============================================================================================================
-
-        private static int CalcularLarguraGrid(int porcentagem, DataGridView dataGridView)
-        {
-            int larguraGrid = dataGridView.Width - 20;
-            int result = (larguraGrid * porcentagem / 100);
-            return result;
-        }
-
-        //==============================================================================================================
-
-        public static void ApagarBaseDados()
-        {
-            try
-            {
-                SqlCeConnection connection = new SqlCeConnection($@"Data source = {pathBancoDeDados}");
-                SqlCeCommand command = new SqlCeCommand();
-                
-
-                var query = $"DELETE FROM Contatos ";
-                ExecuteSQL(query, command, connection);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //==============================================================================================================
     }
 }
 
