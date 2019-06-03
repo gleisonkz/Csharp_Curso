@@ -28,6 +28,22 @@ namespace GestorBD
 
         //===========================================================================================================
 
+        public class SQLParametro
+        {
+            public string ParameterName { get; set; }
+            public object ParameterValue { get; set; }
+
+            public SQLParametro(string ParameterName, object ParameterValue)
+            {
+                this.ParameterName = ParameterName;
+                this.ParameterValue = ParameterValue;
+            }
+
+
+        }
+
+        //===========================================================================================================
+
         public GestorBD()
         {
 
@@ -150,18 +166,27 @@ namespace GestorBD
 
         //===========================================================================================================
 
-        public DataTable Buscar(string query)
+        public DataTable Select(string query, List<SQLParametro> parametros = null)
         {
             DataTable dataTable = new DataTable();
             adapter = new SqlCeDataAdapter(query, connection);
+            adapter.SelectCommand.Parameters.Clear();
 
             try
             {
-                adapter.Fill(dataTable);                
+                if (parametros != null)
+                {
+                    foreach (var item in parametros)
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue(item.ParameterName,item.ParameterValue);
+                    }
+                }
+                
+                adapter.Fill(dataTable);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);                
+                MessageBox.Show(ex.Message);
             }
             adapter.Dispose();
             return dataTable;

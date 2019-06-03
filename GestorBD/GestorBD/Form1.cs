@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,40 @@ using System.Windows.Forms;
 
 namespace GestorBD
 {
+
+
     public partial class Form1 : Form
     {
+        public static string dataBaseName = "loja.sdf";
+        string pathDataBase = $"{AppDomain.CurrentDomain.BaseDirectory.ToString()}{dataBaseName}";
+
         public Form1()
         {
+
+
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM Clientes";
+
+            List<GestorBD.SQLParametro> parametros = new List<GestorBD.SQLParametro>();
+            parametros.Add(new GestorBD.SQLParametro("@Nome", textBox1.Text));
+
+
+
+            GestorBD gestorBD = new GestorBD(pathDataBase);
+            gestorBD.Select(query,parametros);
+
+
+
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
             GestorBD gestorBD = new GestorBD();
 
@@ -40,15 +67,7 @@ namespace GestorBD
                 "FIM",
             };
 
-
-
-
-
-
-            //gestorBD.CriarBaseDados(@"C:\Csharp\loja.sdf", parametros, true);
-
-            gestorBD = new GestorBD(@"C:\Csharp\loja.sdf");
-            gestorBD.Buscar("SELECT * FROM Clientes");
+            gestorBD.CriarBaseDados(pathDataBase, parametros, true);
         }
     }
 }
