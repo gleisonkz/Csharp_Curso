@@ -1,0 +1,26 @@
+﻿body {
+    background-color:black;
+    color:white;
+    text-align:justify;
+}
+
+.wrapper {
+    width: 50%;
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: slategray;
+}
+
+.rodape {
+    font-size: smaller;
+    text-align: center;
+    background-color:darkblue;
+}
+
+.cabecalho {
+    text-align: center;
+    background-color: slategray;
+}
+
+

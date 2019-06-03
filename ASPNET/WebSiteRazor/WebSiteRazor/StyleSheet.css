@@ -1,0 +1,27 @@
+﻿body {
+    background-color:gray;
+}
+
+h1 {
+    font-size: 1.5em;
+    background-color:dimgray;
+    background:radial-gradient();
+    border: 0;
+    margin-bottom: 1em;
+    color: #FFF;
+    padding: 0.2em 0.6em;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    font-family:'Comic Sans MS';
+
+}
+
+fieldset{
+    background-color:darkslategray;
+    display:block;
+    height:auto;
+    width:600px;
+
+}
+
+
