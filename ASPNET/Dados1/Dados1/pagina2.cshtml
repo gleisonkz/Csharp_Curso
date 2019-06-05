@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+
+        <form action="~/pagina3.cshtml" method="post">
+
+            <p>Qual é a capital de Brasil?</p>
+
+
+            <input type="radio" name="pergunta2" value="brasilia" />Brasilia<br />
+            <input type="radio" name="pergunta2" value="rioDeJaneiro" />Rio de Janeiro<br />
+            <input type="radio" name="pergunta2" value="Amazonas" />Amazonas<br /><br />
+            <input type="submit" name="submit" value="Avançar" />
+
+            @{ 
+                string pergunta1 = Request["pergunta1"];
+                string pergunta2 = Request["pergunta2"];
+            }
+
+
+
+        </form>
+        
+    </body>
+</html>

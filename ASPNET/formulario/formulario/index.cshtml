@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    @{
+
+        bool postIsValid = false;
+
+
+        if (IsPost)
+        {
+            var userLogin = Request["text_usuario"];
+            var userSenha = Request["password_usuario"];
+
+            if (userLogin.Length == 0 || userSenha.Length == 0)
+            {
+                postIsValid = false;
+                    <p>È necessario que todos os campos estejam preenchidos</p>
+            }
+            else
+            {
+                postIsValid = true;
+                <p> O seu nome de usuário é @userLogin e a sua senha é @userSenha</p>
+            }
+
+
+
+        }
+        if (postIsValid == false)
+        {
+            <form action="/" method="post">
+                <fieldset>
+                    <label>Usuário:</label>
+                    <input type="text" name="text_usuario" value="" />
+                    <br />
+
+                    <label>Senha:</label>
+                    <input type="text" name="password_usuario" value="" />
+                    <br />
+                    <br />
+                    <input type="submit" name="send" value="Clique Aqui" />
+                </fieldset>
+            </form>
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+</body>
+</html>
