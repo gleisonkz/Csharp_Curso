@@ -15,8 +15,12 @@ namespace GestorBD
 
     public partial class Form1 : Form
     {
+        //===========================================================================================================
+
         public static string dataBaseName = "loja.sdf";
         string pathDataBase = $"{AppDomain.CurrentDomain.BaseDirectory.ToString()}{dataBaseName}";
+
+        //===========================================================================================================
 
         public Form1()
         {
@@ -25,26 +29,9 @@ namespace GestorBD
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string query = "SELECT * FROM Clientes";
+        //===========================================================================================================
 
-            List<GestorBD.SQLParametro> parametros = new List<GestorBD.SQLParametro>();
-            parametros.Add(new GestorBD.SQLParametro("@Nome", textBox1.Text));
-
-
-
-            GestorBD gestorBD = new GestorBD(pathDataBase);
-            gestorBD.Select(query,parametros);
-
-
-
-
-
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void BtnCriarBaseDeDadosClick(object sender, EventArgs e)
         {
             GestorBD gestorBD = new GestorBD();
 
@@ -69,5 +56,47 @@ namespace GestorBD
 
             gestorBD.CriarBaseDados(pathDataBase, parametros, true);
         }
+
+        //===========================================================================================================
+
+        private void BtnSelectClick(object sender, EventArgs e)
+        {
+
+
+            List<GestorBD.SQLParametro> parametros = new List<GestorBD.SQLParametro>();
+            parametros.Add(new GestorBD.SQLParametro("@Nome", textBox1.Text));
+
+            string query = "SELECT * FROM Clientes WHERE nome = @Nome";
+
+            GestorBD gestorBD = new GestorBD(pathDataBase);
+            var dados = gestorBD.Select(query, parametros);
+
+
+
+
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<GestorBD.SQLParametro> parametros = new List<GestorBD.SQLParametro>();
+            parametros.Add(new GestorBD.SQLParametro("@ClienteID", 3));
+            parametros.Add(new GestorBD.SQLParametro("@Nome", "Carlos"));
+            parametros.Add(new GestorBD.SQLParametro("@Telefone", 35462846));
+            parametros.Add(new GestorBD.SQLParametro("@DataCriacao", DateTime.Now.ToString("yyyy-MM-dd")));
+
+            string query = "INSERT INTO Clientes VALUES" +
+                " (@ClienteID," +
+                "@Nome," +
+                "@Telefone," +
+                $"@DataCriacao)";
+
+            GestorBD gestorBD = new GestorBD(pathDataBase);
+            gestorBD.ExecuteNonQuery(query, parametros);
+            MessageBox.Show("Query Executada!");
+        }
+
+        //===========================================================================================================
     }
 }

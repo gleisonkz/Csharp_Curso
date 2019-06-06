@@ -194,10 +194,32 @@ namespace GestorBD
 
         //===========================================================================================================
 
+        public void ExecuteNonQuery(string query, List<SQLParametro> parametros = null)
+        {
+            try
+            {
+                connection = new SqlCeConnection(connectionString);
+                connection.Open();
+                command = new SqlCeCommand(query, connection);
+                command.Parameters.Clear();
 
+                if (parametros != null)
+                {
+                    foreach (var item in parametros)
+                    {
+                        command.Parameters.AddWithValue(item.ParameterName, item.ParameterValue);
+                    }
+                }
 
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-
-
+            command.Dispose();
+            connection.Dispose();
+        }
     }
 }
