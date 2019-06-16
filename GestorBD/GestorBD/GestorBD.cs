@@ -21,6 +21,7 @@ namespace GestorBD
     {
         private SqlCeConnection connection;
         private SqlCeDataAdapter adapter;
+        private SqlCeDataAdapter adapterTemp;
         private SqlCeCommand command;
 
         private string connectionString = "";
@@ -216,10 +217,68 @@ namespace GestorBD
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
 
             command.Dispose();
             connection.Dispose();
+            MessageBox.Show("Query executada com sucesso!");
         }
+
+        //===========================================================================================================
+
+        public DataTable CriarTempTable(string query)
+        {
+            adapterTemp = new SqlCeDataAdapter(query, connection);
+            DataTable dataTableTemp = new DataTable();
+
+            try
+            {
+                adapterTemp.Fill(dataTableTemp);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dataTableTemp;
+        }
+
+        //===========================================================================================================
+        
+        public void GravarTempTable(DataTable dataTableTemp)
+        {
+            //SqlCeDataAdapter adapter = adapterTemp;
+            SqlCeCommandBuilder commandBuilder = new SqlCeCommandBuilder(adapterTemp);
+            adapterTemp.UpdateCommand = commandBuilder.GetUpdateCommand();
+
+            try
+            {
+                adapterTemp.Update(dataTableTemp);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            adapterTemp.Dispose();
+
+        }
+
+        //===========================================================================================================
+
+        public void CompactarBaseDados()
+        {
+            try
+            {
+                SqlCeEngine engine = new SqlCeEngine();
+                engine.Compact(connectionString);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        //===========================================================================================================
     }
 }
