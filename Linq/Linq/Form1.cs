@@ -12,16 +12,20 @@ namespace Linq
 {
     public partial class Form1 : Form
     {
-        enum eTipoConta
-        {
-            Poupança = 1,
-            Salario = 2,
-            Corrente = 3,
-        }
+        private readonly List<int> listaNumeros;
+        private readonly List<string> listaNomes;
+        private Dictionary<string, double> dicProdutos;
+        private readonly List<Alunos> listaAlunos;
+        private readonly DataTable dtDados;
 
-        class Conta
+        public class Conta
         {
-
+            public enum eTipoConta
+            {
+                Poupança = 1,
+                Salario = 2,
+                Corrente = 3,
+            }
 
 
             public string Titular { get; set; }
@@ -29,85 +33,131 @@ namespace Linq
             public Enum TipoConta { get; set; }
         }
 
-
         public Form1()
         {
             InitializeComponent();
+            Colecoes colecoes = new Colecoes();
+            this.listaNumeros = colecoes.ListaNumeros;
+            this.listaNomes = colecoes.ListaNomes;
+            this.dicProdutos = colecoes.DicProdutos;
+            this.listaAlunos = colecoes.ListaAlunos;
+            this.dtDados = colecoes.DtDados;
+
         }
 
         private void BtnExecutar_Click(object sender, EventArgs e)
         {
-            #region Lista
-            List<string> listaNomes = new List<string>
-            {
-                "João",
-                "Carlos",
-                "Renato",
-                "Demagister",
-                "Paula",
-                "Roberta",
-                "Camila",
-                "Rogerio",
-                "Carlinhos",
-                "Jesus",
-                "Rogerio",
-                "Marta",
-                "Ricardinho",
-                "Alberto"
-            };
+            listBox1.Items.Clear();
+            label1.Text = "";
+
+            #region Operador de Restrição - WHERE
+            //listaNumeros.Where(c => c > 20)
+            //            .ToList()
+            //            .ForEach(d => listBox1.Items.Add(d));
+
+            //listaNomes.Where(c => c.ToLower().Contains("ribeiro") || c.ToLower().Contains("santos"))
+            //                .ToList()
+            //                .ForEach(d => listBox1.Items.Add(d));
+
+            //dicProdutos.Where(c => c.Key.StartsWith("M"))
+            //           .ToList()
+            //           .ForEach(d => listBox1.Items.Add($"{d.Key} - {d.Value}")); 
             #endregion
 
-            List<string> final = listaNomes.Where(c => c.StartsWith("A")).ToList();
-            listBox1.Items.Add(final[0]);
+            #region Operador de Projeção - SELECT
 
-            ////var final = from c in listaNomes
-            //            where c.StartsWith("A")
-            //            select c;
+            listaNumeros.Where(b => b <= 10)
+                        .Select(c => c * 10)
+                        .ToList()
+                        .ForEach(d => listBox1.Items.Add(d));
+
+            listaAlunos.ForEach(d => listBox1.Items.Add($"O aluno nº {d.Numero} é {d.Nome}"));
+
+            listaAlunos.Where(b => b.Nome.Contains("a"))
+                       .Select(c => new
+                       {
+                           nomeAluno = c.Nome,
+                           numeroAluno = c.Numero,
+                           sexoAluno = c.Sexo
+                       })
+                       .ToList()
+                       .ForEach(d => listBox1.Items.Add(d.nomeAluno));
+
+            int[] indices = new int[] { 3, 2, 1 };
+
+            indices.Select(c => listaNomes[c])
+                   .ToList()
+                   .ForEach(d => listBox1.Items.Add(d));
+
+            listaNomes.ForEach(c => listBox1.Items.Add(c));
 
 
+
+
+
+
+
+
+
+
+
+            #endregion
+
+
+
+
+
+
+            return;
 
             #region TesteConta
-            List<Conta> listAccount = new List<Conta>
-            {
-               new Conta{
-                   Titular = "Carls",
-                   Numero = 17538049,
-                   TipoConta = eTipoConta.Corrente
-               },
-               new Conta{
-                   Titular = "Pawl",
-                   Numero = 75839203,
-                   TipoConta = eTipoConta.Poupança
-               },
-               new Conta{
-                   Titular = "Steph",
-                   Numero = 01929384,
-                   TipoConta = eTipoConta.Salario
-               },
-               new Conta{
-                   Titular = "May",
-                   Numero = 47583920,
-                   TipoConta = eTipoConta.Corrente
-               }
-            };
+            //List<Conta> listAccount = new List<Conta>
+            //{
+            //   new Conta{
+            //       Titular = "Carls",
+            //       Numero = 17538049,
+            //       TipoConta = Conta.eTipoConta.Corrente
+            //   },
+            //   new Conta{
+            //       Titular = "Pawl",
+            //       Numero = 75839203,
+            //       TipoConta = Conta.eTipoConta.Poupança
+            //   },
+            //   new Conta{
+            //       Titular = "Steph",
+            //       Numero = 01929384,
+            //       TipoConta = Conta.eTipoConta.Salario
+            //   },
+            //   new Conta{
+            //       Titular = "May",
+            //       Numero = 47583920,
+            //       TipoConta = Conta.eTipoConta.Corrente
+            //   }
+            //};
 
-            var resultado = from c in listAccount
-                            where c.TipoConta.Equals(eTipoConta.Corrente)
-                            select new { c.Titular, c.TipoConta };
+            //var resultado = from c in listAccount
+            //                where c.TipoConta.Equals(Conta.eTipoConta.Corrente)
+            //                select new { c.Titular, c.TipoConta };
 
-            var result = listAccount.Where(c => c.TipoConta.Equals(eTipoConta.Corrente))
-                                            .Select(c => new { c.Titular, c.TipoConta })
-                                            .ToList(); 
+            //var result = listAccount.Where(c => c.TipoConta.Equals(Conta.eTipoConta.Corrente))
+            //                                .Select(c => new { c.Titular, c.TipoConta })
+            //                                .ToList();
             #endregion
 
+        }
 
+        private void BtnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
-            //foreach (var item in final)
-            //{
-            //    listBox1.Items.Add(item);
-            //}
-
-
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            listBox1.Items.Add($"ListaNumeros = {listaNumeros.Count} ");
+            listBox1.Items.Add($"ListaNomes = {listaNomes.Count} ");
+            listBox1.Items.Add($"ListaProdutos = {dicProdutos.Count} ");
+            listBox1.Items.Add($"ListaAlunos = {listaAlunos.Count} ");
+            listBox1.Items.Add($"DataTable dados = {dtDados.Rows.Count} linhas ");
         }
     }
 }
