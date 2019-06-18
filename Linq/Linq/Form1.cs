@@ -66,39 +66,46 @@ namespace Linq
 
             #region Operador de Projeção - SELECT
 
-            listaNumeros.Where(b => b <= 10)
-                        .Select(c => c * 10)
-                        .ToList()
-                        .ForEach(d => listBox1.Items.Add(d));
+            //listaNumeros.Where(b => b <= 10)
+            //            .Select(c => c * 10)
+            //            .ToList()
+            //            .ForEach(d => listBox1.Items.Add(d));
 
-            listaAlunos.ForEach(d => listBox1.Items.Add($"O aluno nº {d.Numero} é {d.Nome}"));
+            //listaAlunos.ForEach(d => listBox1.Items.Add($"O aluno nº {d.Numero} é {d.Nome}"));
 
-            listaAlunos.Where(b => b.Nome.Contains("a"))
-                       .Select(c => new
-                       {
-                           nomeAluno = c.Nome,
-                           numeroAluno = c.Numero,
-                           sexoAluno = c.Sexo
-                       })
-                       .ToList()
-                       .ForEach(d => listBox1.Items.Add(d.nomeAluno));
+            //listaAlunos.Where(b => b.Nome.Contains("a"))
+            //           .Select(c => new
+            //           {
+            //               nomeAluno = c.Nome,
+            //               numeroAluno = c.Numero,
+            //               sexoAluno = c.Sexo
+            //           })
+            //           .ToList()
+            //           .ForEach(d => listBox1.Items.Add(d.nomeAluno));
 
-            int[] indices = new int[] { 3, 2, 1 };
+            //int[] indices = new int[] { 3, 2, 1 };
 
-            indices.Select(c => listaNomes[c])
-                   .ToList()
-                   .ForEach(d => listBox1.Items.Add(d));
+            //indices.Select(c => listaNomes[c])
+            //       .ToList()
+            //       .ForEach(d => listBox1.Items.Add(d));
 
-            listaNomes.ForEach(c => listBox1.Items.Add(c));
+            //listaNomes.ForEach(c => listBox1.Items.Add(c));
 
+            #endregion
 
+            #region Operador de Ordenaçao - ORDER BY
 
+            //listaNumeros.OrderBy(c => c)
+            //            .ToList()
+            //            .ForEach(d => listBox1.Items.Add(d));
 
-
-
-
-
-
+            //listaAlunos.OrderByDescending(c => c.Nome.Length)
+            //           .ToList()
+            //           .ForEach(d => listBox1.Items.Add($"{d.Nome} ({d.Nome.Length})"));
+            FCM - 16 / 05 / 2019 - 19:12
+            //dicProdutos.OrderByDescending(a => a.Key)
+            //           .ToList()
+            //           .ForEach(b => listBox1.Items.Add(b.Value));
 
 
             #endregion
