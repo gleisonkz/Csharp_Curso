@@ -102,7 +102,7 @@ namespace Linq
             //listaAlunos.OrderByDescending(c => c.Nome.Length)
             //           .ToList()
             //           .ForEach(d => listBox1.Items.Add($"{d.Nome} ({d.Nome.Length})"));
-            FCM - 16 / 05 / 2019 - 19:12
+
             //dicProdutos.OrderByDescending(a => a.Key)
             //           .ToList()
             //           .ForEach(b => listBox1.Items.Add(b.Value));
@@ -110,7 +110,23 @@ namespace Linq
 
             #endregion
 
+            #region Operador de Agregação
+            FCM - 16 / 05 / 2019 - 19:12
+            //listBox1.Items.Add(listaNumeros.Count);
 
+            //listBox1.Items.Add(listaNumeros.Count(c => c < 20));
+
+            label1.Text = listaNumeros.Where(a => a < 20)
+                                      .ToList()
+                                      .Sum()
+                                      .ToString();
+
+            listaNumeros.Where(a => a < 20)
+                        .ToList()
+                        .ForEach(b => listBox1.Items.Add(b));
+
+
+            #endregion
 
 
 
