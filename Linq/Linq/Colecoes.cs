@@ -33,10 +33,7 @@ namespace Linq
                 Laboratório = 3
             }
 
-            public Dictionary<eDisciplina,int> DicExames { get; set; }
-
-            public eDisciplina Disciplina { get; set; }
-            public int NotaExame { get; set; }
+            public Dictionary<eDisciplina, int> DicExames { get; set; }
         }
     }
 
@@ -90,15 +87,6 @@ namespace Linq
             };
             #endregion
 
-
-
-
-
-
-
-
-
-
             //------------------------------------------
             #region LISTA_ALUNOS
 
@@ -111,12 +99,19 @@ namespace Linq
                         Nome = "Ana Carolina",
                         Sexo = eSexo.Feminino,
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 12},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 14},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 9 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 11},
-                    }},
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,12 },
+                                    {eDisciplina.Inglês,14 },
+                                    {eDisciplina.Biologia,9 },
+                                    {eDisciplina.Laboratório,1 }
+                                }
+                            }
+                        }
+                    },
 
                     //Aluno 2
                     new Alunos()
@@ -125,12 +120,19 @@ namespace Linq
                         Nome = "Bernardo José",
                         Sexo = eSexo.Masculino,
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 15},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 17 },
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 16},
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 18}
-                    }},                    
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,16 },
+                                    {eDisciplina.Inglês,15 },
+                                    {eDisciplina.Biologia,17 },
+                                    {eDisciplina.Laboratório,18 }
+                                }
+                            }
+                        }
+                    },                    
 
                     //Aluno 3
                     new Alunos()
@@ -139,12 +141,19 @@ namespace Linq
                         Nome = "Cristina Marques",
                         Sexo = eSexo.Feminino,
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 8},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 11},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 10 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 7}
-                    }},                   
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,8 },
+                                    {eDisciplina.Inglês,11 },
+                                    {eDisciplina.Biologia,10 },
+                                    {eDisciplina.Laboratório,7 }
+                                }
+                            }
+                        }
+                    },                   
 
                     //Aluno 4
                     new Alunos()
@@ -153,12 +162,19 @@ namespace Linq
                         Nome = "Fernando Castro",
                         Sexo = eSexo.Masculino,
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 13},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 15},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 12 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 13}
-                    }},                    
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,13 },
+                                    {eDisciplina.Inglês,15 },
+                                    {eDisciplina.Biologia,12 },
+                                    {eDisciplina.Laboratório,13 }
+                                }
+                            }
+                        }
+                    },                    
 
                     //Aluno 5
                     new Alunos()
@@ -167,12 +183,19 @@ namespace Linq
                         Nome = "Helena Cristina",
                         Sexo = eSexo.Feminino,
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 18},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 17},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 18 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 20}
-                    }},                    
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,18 },
+                                    {eDisciplina.Inglês,17 },
+                                    {eDisciplina.Biologia,18 },
+                                    {eDisciplina.Laboratório,20 }
+                                }
+                            }
+                        }
+                    },                    
 
                     //Aluno 6
                     new Alunos()
@@ -181,12 +204,19 @@ namespace Linq
                         Nome = "Luis Miguel",
                         Sexo = eSexo.Masculino,
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 11},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 12},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 10 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 11}
-                    }},                    
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,11 },
+                                    {eDisciplina.Inglês,12 },
+                                    {eDisciplina.Biologia,10 },
+                                    {eDisciplina.Laboratório,11 }
+                                }
+                            }
+                        }
+                    },                    
 
                     //Aluno 7
                     new Alunos()
@@ -194,13 +224,21 @@ namespace Linq
                         Numero = 7,
                         Nome = "Márcia Correia",
                         Sexo = eSexo.Feminino,
+
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 16},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 15},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 17 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 12}
-                    }},                    
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,16 },
+                                    {eDisciplina.Inglês,15 },
+                                    {eDisciplina.Biologia,17 },
+                                    {eDisciplina.Laboratório,12 }
+                                }
+                            }
+                        }
+                    },                    
 
                     //Aluno 8
                     new Alunos()
@@ -208,13 +246,21 @@ namespace Linq
                         Numero = 8,
                         Nome = "Rogério Fernandes",
                         Sexo = eSexo.Masculino,
+
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 8},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 9},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 9 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 7}
-                    }},                    
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,8 },
+                                    {eDisciplina.Inglês,9 },
+                                    {eDisciplina.Biologia,9 },
+                                    {eDisciplina.Laboratório,7 }
+                                }
+                            }
+                        }
+                    },                    
 
                     //Aluno 9
                     new Alunos()
@@ -222,13 +268,21 @@ namespace Linq
                         Numero = 9,
                         Nome = "Susana Martins",
                         Sexo = eSexo.Feminino,
+
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 13},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 13},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 16 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 14}
-                    }},                    
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,13 },
+                                    {eDisciplina.Inglês,13 },
+                                    {eDisciplina.Biologia,16 },
+                                    {eDisciplina.Laboratório,14 }
+                                }
+                            }
+                        }
+                    },                    
 
                     //Aluno 10
                     new Alunos()
@@ -236,13 +290,21 @@ namespace Linq
                         Numero = 10,
                         Nome = "Tomé Costa",
                         Sexo = eSexo.Masculino,
+
                         ListaExames = new List<Exames>()
-                    {
-                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 18},
-                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 19},
-                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 19 },
-                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 17}
-                    }}
+                        {
+                            new Exames()
+                            {
+                                DicExames = new Dictionary<eDisciplina, int>()
+                                {
+                                    {eDisciplina.Matemática,18 },
+                                    {eDisciplina.Inglês,19 },
+                                    {eDisciplina.Biologia,19 },
+                                    {eDisciplina.Laboratório,17 }
+                                }
+                            }
+                        }
+                    }
             };
 
 

@@ -185,9 +185,9 @@ namespace Linq
 
             #region Exemplos Praticos Parte 1
 
-            ////ALUNOS DO SEXO FEMININO
+            //ALUNOS DO SEXO FEMININO
 
-            //listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo.Equals(eSexo.Feminino)).Count()} alunas.");
+            listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo == eSexo.Feminino).Count()} alunas.");
 
             ////NOTAS DO EXAME DE MATEMATICA
 
@@ -203,73 +203,23 @@ namespace Linq
 
             #region Exemplo Praticos Parte 2
 
-            //MÉDIA DOS EXAMES DE MATEMÁTICA
+            ////MÉDIA DOS EXAMES DE MATEMÁTICA
+
+            //listBox1.Items.Add("A média da turma em Matemática é :" + listaAlunos.Select(a => a.ListaExames
+            //                                                                     .Average(b => b.DicExames[eDisciplina.Matemática])));
+
+            ////MÉDIA E TOTAL DOS EXAMES DE BIOLOGIA
+
+            //listBox1.Items.Add("A soma das notas de Biologia é:" + listaAlunos.Select(a => a.ListaExames
+            //                                                                  .Sum(b => b.DicExames[eDisciplina.Biologia])));
             
-            listBox1.Items.Add($"A média da turma em Matemática é: {(listaAlunos.Average(a => a.ListaExames[0].NotaExame))}");
+            //listBox1.Items.Add("A soma das notas de Biologia acima da média é:" + listaAlunos.Select(a => a.ListaExames
+            //                                                                                 .Where(b => b.DicExames[eDisciplina.Biologia] >= 10)
+            //                                                                                 .Sum(c => c.DicExames[eDisciplina.Biologia])));
 
-            //MÉDIA E TOTAL DOS EXAMES DE BIOLOGIA
-
-            
-            listBox1.Items.Add($"A soma total das notas de Biologia é:{listaAlunos.Sum(a=> a.ListaExames[2].NotaExame)}");
-            listBox1.Items.Add($"A soma das notas de Biologia acima da média é:{listaAlunos.Where(a => a.ListaExames[2].NotaExame >= 10).Sum(a=>a.ListaExames[2].NotaExame)}");
-            listBox1.Items.Add($"A média das notas positivas de Biologia é: {listaAlunos.Where(a => a.ListaExames[2].NotaExame >= 10).Average(a => a.ListaExames[2].NotaExame)}");
-
-            #endregion
-
-            #region Teste Classe Aluno com Dicionario
-
-            List<AlunosDic> ListaAlunosDic = new List<AlunosDic>()
-            {   
-                    //Aluno 1
-                    new AlunosDic()
-                    {
-                        Numero = 1,
-                        Nome = "Ana Carolina",
-                        Sexo = AlunosDic.eSexo.Feminino,
-                        ListaExames = new List<AlunosDic.Exames>()
-                        {
-                            new AlunosDic.Exames()
-                            {
-                                DicExames = new Dictionary<AlunosDic.Exames.eDisciplina, int>()
-                                {
-                                    {AlunosDic.Exames.eDisciplina.Matemática,12 },
-                                    {AlunosDic.Exames.eDisciplina.Biologia,15 },
-                                    {AlunosDic.Exames.eDisciplina.Inglês,20 },
-                                    {AlunosDic.Exames.eDisciplina.Laboratório,25 }
-                                }
-                            }
-
-                        
-
-                        }
-                    },
-
-                    //Aluno 2
-                    new AlunosDic()
-                    {
-                        Numero = 2,
-                        Nome = "Bernardo José",
-                        Sexo = AlunosDic.eSexo.Masculino,
-                        ListaExames = new List<AlunosDic.Exames>()
-                        {
-                            new AlunosDic.Exames()
-                            {
-                                DicExames = new Dictionary<AlunosDic.Exames.eDisciplina, int>()
-                                {
-                                    {AlunosDic.Exames.eDisciplina.Matemática,20 },
-                                    {AlunosDic.Exames.eDisciplina.Biologia,10 },
-                                    {AlunosDic.Exames.eDisciplina.Inglês,12 },
-                                    {AlunosDic.Exames.eDisciplina.Laboratório,21 }
-                                }
-                            }
-                        }
-                    }
-            };
-
-            var somaMat = ListaAlunosDic.Select(c => c.ListaExames.Sum(b => b.DicExames[AlunosDic.Exames.eDisciplina.Matemática]));
-
-            var s2 = ListaAlunosDic.Sum(c => c.ListaExames.Sum(f => f.DicExames[AlunosDic.Exames.eDisciplina.Matemática]));
-
+            //listBox1.Items.Add("A média das notas positivas de Biologia é :" + listaAlunos.Select(a => a.ListaExames
+            //                                                                              .Where(b => b.DicExames[eDisciplina.Biologia] >= 10)
+            //                                                                              .Average(c=> c.DicExames[eDisciplina.Biologia])));
             #endregion
 
 
