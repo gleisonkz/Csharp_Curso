@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Linq.Alunos;
+using static Linq.Alunos.Exames;
+using static Linq.Form1.Conta;
 
 namespace Linq
 {
@@ -30,7 +33,33 @@ namespace Linq
 
             public string Titular { get; set; }
             public int Numero { get; set; }
-            public Enum TipoConta { get; set; }
+            public eTipoConta TipoConta { get; set; }
+        }
+
+        public class AlunosDic
+        {
+            public enum eSexo
+            {
+                Masculino = 1,
+                Feminino = 2,
+            }
+            public int Numero { get; set; }
+            public string Nome { get; set; }
+            public eSexo Sexo { get; set; }
+            public List<Exames> ListaExames { get; set; }
+
+            public class Exames
+            {
+                public enum eDisciplina
+                {
+                    Matemática = 0,
+                    Inglês = 1,
+                    Biologia = 2,
+                    Laboratório = 3
+                }
+
+                public Dictionary<eDisciplina, int> DicExames { get; set; }
+            }
         }
 
         public Form1()
@@ -42,7 +71,6 @@ namespace Linq
             this.dicProdutos = colecoes.DicProdutos;
             this.listaAlunos = colecoes.ListaAlunos;
             this.dtDados = colecoes.DtDados;
-
         }
 
         private void BtnExecutar_Click(object sender, EventArgs e)
@@ -51,6 +79,7 @@ namespace Linq
             label1.Text = "";
 
             #region Operador de Restrição - WHERE
+
             //listaNumeros.Where(c => c > 20)
             //            .ToList()
             //            .ForEach(d => listBox1.Items.Add(d));
@@ -61,7 +90,8 @@ namespace Linq
 
             //dicProdutos.Where(c => c.Key.StartsWith("M"))
             //           .ToList()
-            //           .ForEach(d => listBox1.Items.Add($"{d.Key} - {d.Value}")); 
+            //           .ForEach(d => listBox1.Items.Add($"{d.Key} - {d.Value}"));
+
             #endregion
 
             #region Operador de Projeção - SELECT
@@ -110,25 +140,137 @@ namespace Linq
 
             #endregion
 
-            #region Operador de Agregação
-            FCM - 16 / 05 / 2019 - 19:12
-            //listBox1.Items.Add(listaNumeros.Count);
+            #region Operadores de Agregação COUNT - SUM - AVERAGE - MAX E MIN
 
-            //listBox1.Items.Add(listaNumeros.Count(c => c < 20));
+            //// COUNT
 
-            label1.Text = listaNumeros.Where(a => a < 20)
-                                      .ToList()
-                                      .Sum()
-                                      .ToString();
+            //listBox1.Items.Add($"Total Count = {listaNumeros.Count}");
+            //listBox1.Items.Add($"Count Numbers < 20 = {listaNumeros.Count(c => c < 20)}");
 
-            listaNumeros.Where(a => a < 20)
-                        .ToList()
-                        .ForEach(b => listBox1.Items.Add(b));
+            //// MAX E MIN
+
+            //listBox1.Items.Add($"The smallest even number is {listaNumeros.Where(a=> a%2 == 0).ToList().Min()}");
+            //listBox1.Items.Add($"The biggest odd number is {listaNumeros.Where(a=> a%2 == 1).ToList().Max()}");
+
+            //listaAlunos.Where(c=>c.Nome.Length == listaAlunos.Max(d=> d.Nome.Length))
+            //           .ToList().ForEach(a=> listBox1.Items.Add($"O aluno com o maior nome é: {a.Nome}"));
+
+            //// AVERAGE
+
+
+            //listBox1.Items.Add($"The average of numbers is {decimal.Round(Convert.ToDecimal((listaNumeros.Average())),2)}");
+            //listBox1.Items.Add($"The average of numbers is {listaNumeros.Average()}");
+
+            //// SUM
+
+            //label1.Text = listaNumeros.Where(a => a < 20)
+            //                          .ToList()
+            //                          .Sum()
+            //                          .ToString();
+
+            //listaNumeros.Where(a => a < 20)
+            //            .ToList()
+            //            .ForEach(b => listBox1.Items.Add(b));
 
 
             #endregion
 
+            #region Operadores de Elementos - FIRST / ELEMENT AT / LAST
 
+            //listBox1.Items.Add($"O terceiro resultado que corresponde a pesquisa é: {listaNomes.Where(a => a.Contains("a")).ElementAtOrDefault(2)}");
+            //listBox1.Items.Add($"O primeiro nome da lista é: {listaNomes.First()}");
+            //listBox1.Items.Add($"O ultimo nome da lista é: {listaNomes.Last()}");
+
+            #endregion
+
+            #region Exemplos Praticos Parte 1
+
+            ////ALUNOS DO SEXO FEMININO
+
+            //listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo.Equals(eSexo.Feminino)).Count()} alunas.");
+
+            ////NOTAS DO EXAME DE MATEMATICA
+
+            //listaAlunos.Select(a => a.ListaExames[0].NotaExame).ToList().ForEach(b => listBox1.Items.Add(b));
+            //listBox1.Items.Add($"A soma das notas do exames de Matemática é: {listaAlunos.Select(a => a.ListaExames[0]).Sum(b => b.NotaExame)}");
+
+            ////QUANTOS ALUNOS FICARAM NA MÉDIA EM MATEMÁTICA
+
+            //label1.Text = listaAlunos.Where(a => a.ListaExames[0].NotaExame >= 11).Count().ToString();
+            //listaAlunos.Where(a => a.ListaExames[0].NotaExame >= 11).ToList().ForEach(b => listBox1.Items.Add($"{b.Numero} {b.Nome}"));
+
+            #endregion
+
+            #region Exemplo Praticos Parte 2
+
+            //MÉDIA DOS EXAMES DE MATEMÁTICA
+            
+            listBox1.Items.Add($"A média da turma em Matemática é: {(listaAlunos.Average(a => a.ListaExames[0].NotaExame))}");
+
+            //MÉDIA E TOTAL DOS EXAMES DE BIOLOGIA
+
+            
+            listBox1.Items.Add($"A soma total das notas de Biologia é:{listaAlunos.Sum(a=> a.ListaExames[2].NotaExame)}");
+            listBox1.Items.Add($"A soma das notas de Biologia acima da média é:{listaAlunos.Where(a => a.ListaExames[2].NotaExame >= 10).Sum(a=>a.ListaExames[2].NotaExame)}");
+            listBox1.Items.Add($"A média das notas positivas de Biologia é: {listaAlunos.Where(a => a.ListaExames[2].NotaExame >= 10).Average(a => a.ListaExames[2].NotaExame)}");
+
+            #endregion
+
+            #region Teste Classe Aluno com Dicionario
+
+            List<AlunosDic> ListaAlunosDic = new List<AlunosDic>()
+            {   
+                    //Aluno 1
+                    new AlunosDic()
+                    {
+                        Numero = 1,
+                        Nome = "Ana Carolina",
+                        Sexo = AlunosDic.eSexo.Feminino,
+                        ListaExames = new List<AlunosDic.Exames>()
+                        {
+                            new AlunosDic.Exames()
+                            {
+                                DicExames = new Dictionary<AlunosDic.Exames.eDisciplina, int>()
+                                {
+                                    {AlunosDic.Exames.eDisciplina.Matemática,12 },
+                                    {AlunosDic.Exames.eDisciplina.Biologia,15 },
+                                    {AlunosDic.Exames.eDisciplina.Inglês,20 },
+                                    {AlunosDic.Exames.eDisciplina.Laboratório,25 }
+                                }
+                            }
+
+                        
+
+                        }
+                    },
+
+                    //Aluno 2
+                    new AlunosDic()
+                    {
+                        Numero = 2,
+                        Nome = "Bernardo José",
+                        Sexo = AlunosDic.eSexo.Masculino,
+                        ListaExames = new List<AlunosDic.Exames>()
+                        {
+                            new AlunosDic.Exames()
+                            {
+                                DicExames = new Dictionary<AlunosDic.Exames.eDisciplina, int>()
+                                {
+                                    {AlunosDic.Exames.eDisciplina.Matemática,20 },
+                                    {AlunosDic.Exames.eDisciplina.Biologia,10 },
+                                    {AlunosDic.Exames.eDisciplina.Inglês,12 },
+                                    {AlunosDic.Exames.eDisciplina.Laboratório,21 }
+                                }
+                            }
+                        }
+                    }
+            };
+
+            var somaMat = ListaAlunosDic.Select(c => c.ListaExames.Sum(b => b.DicExames[AlunosDic.Exames.eDisciplina.Matemática]));
+
+            var s2 = ListaAlunosDic.Sum(c => c.ListaExames.Sum(f => f.DicExames[AlunosDic.Exames.eDisciplina.Matemática]));
+
+            #endregion
 
 
             return;
@@ -139,30 +281,27 @@ namespace Linq
             //   new Conta{
             //       Titular = "Carls",
             //       Numero = 17538049,
-            //       TipoConta = Conta.eTipoConta.Corrente
+            //       TipoConta = eTipoConta.Corrente
             //   },
             //   new Conta{
             //       Titular = "Pawl",
             //       Numero = 75839203,
-            //       TipoConta = Conta.eTipoConta.Poupança
+            //       TipoConta = eTipoConta.Poupança
             //   },
             //   new Conta{
             //       Titular = "Steph",
             //       Numero = 01929384,
-            //       TipoConta = Conta.eTipoConta.Salario
+            //       TipoConta = eTipoConta.Salario
             //   },
             //   new Conta{
             //       Titular = "May",
             //       Numero = 47583920,
-            //       TipoConta = Conta.eTipoConta.Corrente
+            //       TipoConta = eTipoConta.Corrente
             //   }
             //};
 
-            //var resultado = from c in listAccount
-            //                where c.TipoConta.Equals(Conta.eTipoConta.Corrente)
-            //                select new { c.Titular, c.TipoConta };
 
-            //var result = listAccount.Where(c => c.TipoConta.Equals(Conta.eTipoConta.Corrente))
+            //var result2 = listAccount.Where(c => c.TipoConta == eTipoConta.Corrente)
             //                                .Select(c => new { c.Titular, c.TipoConta })
             //                                .ToList();
             #endregion

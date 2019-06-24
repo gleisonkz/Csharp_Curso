@@ -5,22 +5,39 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Linq.Alunos;
+using static Linq.Alunos.Exames;
 
 namespace Linq
 {
     //============================================================================================================================
     public class Alunos
     {
-        public class Exames
+        public enum eSexo
         {
-            public string Disciplina { get; set; }
-            public int NotaExame { get; set; }
+            Masculino = 1,
+            Feminino = 2,
         }
-
         public int Numero { get; set; }
         public string Nome { get; set; }
-        public string Sexo { get; set; }
+        public eSexo Sexo { get; set; }
         public List<Exames> ListaExames { get; set; }
+
+        public class Exames
+        {
+            public enum eDisciplina
+            {
+                Matemática = 0,
+                Inglês = 1,
+                Biologia = 2,
+                Laboratório = 3
+            }
+
+            public Dictionary<eDisciplina,int> DicExames { get; set; }
+
+            public eDisciplina Disciplina { get; set; }
+            public int NotaExame { get; set; }
+        }
     }
 
     //============================================================================================================================
@@ -44,9 +61,16 @@ namespace Linq
             //------------------------------------------
             #region LISTA_NOMES
             ListaNomes = new List<string>()
-            { "João Ribeiro", "Carla Marques", "Paulo Silva", "Franciso Matos",
-              "Anabela Santos", "Carolina Soares", "Marta Silva", "Ricardo Almeida",
-              "Tiago Ribeiro", "Paulo Fonseca"};
+            { "João Ribeiro",
+              "Carla Marques",
+              "Paulo Silva",
+              "Franciso Matos",
+              "Anabela Santos",
+              "Carolina Soares",
+              "Marta Silva",
+              "Ricardo Almeida",
+              "Tiago Ribeiro",
+              "Paulo Fonseca" };
             #endregion
 
             //------------------------------------------
@@ -66,150 +90,162 @@ namespace Linq
             };
             #endregion
 
+
+
+
+
+
+
+
+
+
             //------------------------------------------
             #region LISTA_ALUNOS
-            ListaAlunos = new List<Alunos>();
-            Alunos aluno;
 
-            //aluno 1
-            aluno = new Alunos();
-            aluno.Numero = 1;
-            aluno.Nome = "Ana Carolina";
-            aluno.Sexo = "feminino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 12},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 14},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 9 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 11}
-            };
-            ListaAlunos.Add(aluno);
+            ListaAlunos = new List<Alunos>()
+            {   
+                    //Aluno 1
+                    new Alunos()
+                    {
+                        Numero = 1,
+                        Nome = "Ana Carolina",
+                        Sexo = eSexo.Feminino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 12},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 14},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 9 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 11},
+                    }},
 
-            //aluno 2
-            aluno = new Alunos();
-            aluno.Numero = 2;
-            aluno.Nome = "Bernardo José";
-            aluno.Sexo = "masculino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 16},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 15},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 17 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 18}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 2
+                    new Alunos()
+                    {
+                        Numero = 2,
+                        Nome = "Bernardo José",
+                        Sexo = eSexo.Masculino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 15},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 17 },
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 16},
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 18}
+                    }},                    
 
-            //aluno 3
-            aluno = new Alunos();
-            aluno.Numero = 3;
-            aluno.Nome = "Cristina Marques";
-            aluno.Sexo = "feminino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 8},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 11},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 10 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 7}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 3
+                    new Alunos()
+                    {
+                        Numero = 3,
+                        Nome = "Cristina Marques",
+                        Sexo = eSexo.Feminino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 8},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 11},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 10 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 7}
+                    }},                   
 
-            //aluno 4
-            aluno = new Alunos();
-            aluno.Numero = 4;
-            aluno.Nome = "Fernando Castro";
-            aluno.Sexo = "masculino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 13},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 15},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 12 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 13}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 4
+                    new Alunos()
+                    {
+                        Numero = 4,
+                        Nome = "Fernando Castro",
+                        Sexo = eSexo.Masculino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 13},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 15},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 12 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 13}
+                    }},                    
 
-            //aluno 5
-            aluno = new Alunos();
-            aluno.Numero = 5;
-            aluno.Nome = "Helena Cristina";
-            aluno.Sexo = "feminino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 18},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 17},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 18 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 20}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 5
+                    new Alunos()
+                    {
+                        Numero = 5,
+                        Nome = "Helena Cristina",
+                        Sexo = eSexo.Feminino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 18},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 17},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 18 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 20}
+                    }},                    
 
-            //aluno 6
-            aluno = new Alunos();
-            aluno.Numero = 6;
-            aluno.Nome = "Luis Miguel";
-            aluno.Sexo = "masculino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 11},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 12},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 10 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 11}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 6
+                    new Alunos()
+                    {
+                        Numero = 6,
+                        Nome = "Luis Miguel",
+                        Sexo = eSexo.Masculino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 11},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 12},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 10 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 11}
+                    }},                    
 
-            //aluno 7
-            aluno = new Alunos();
-            aluno.Numero = 7;
-            aluno.Nome = "Márcia Correia";
-            aluno.Sexo = "feminino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 16},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 15},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 17 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 12}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 7
+                    new Alunos()
+                    {
+                        Numero = 7,
+                        Nome = "Márcia Correia",
+                        Sexo = eSexo.Feminino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 16},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 15},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 17 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 12}
+                    }},                    
 
-            //aluno 8
-            aluno = new Alunos();
-            aluno.Numero = 8;
-            aluno.Nome = "Rogério Fernandes";
-            aluno.Sexo = "masculino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 8},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 9},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 9 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 7}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 8
+                    new Alunos()
+                    {
+                        Numero = 8,
+                        Nome = "Rogério Fernandes",
+                        Sexo = eSexo.Masculino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 8},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 9},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 9 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 7}
+                    }},                    
 
-            //aluno 9
-            aluno = new Alunos();
-            aluno.Numero = 9;
-            aluno.Nome = "Susana Martins";
-            aluno.Sexo = "feminino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 13},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 13},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 16 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 14}
-            };
-            ListaAlunos.Add(aluno);
+                    //Aluno 9
+                    new Alunos()
+                    {
+                        Numero = 9,
+                        Nome = "Susana Martins",
+                        Sexo = eSexo.Feminino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 13},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 13},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 16 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 14}
+                    }},                    
 
-            //aluno 10
-            aluno = new Alunos();
-            aluno.Numero = 2;
-            aluno.Nome = "Tomé Costa";
-            aluno.Sexo = "masculino";
-            aluno.ListaExames = new List<Alunos.Exames>()
-            {
-                new Alunos.Exames() { Disciplina = "Matemática", NotaExame = 18},
-                new Alunos.Exames() { Disciplina = "Inglês", NotaExame = 19},
-                new Alunos.Exames() { Disciplina = "Biologia", NotaExame = 19 },
-                new Alunos.Exames() { Disciplina = "Laboratório", NotaExame = 17}
+                    //Aluno 10
+                    new Alunos()
+                    {
+                        Numero = 10,
+                        Nome = "Tomé Costa",
+                        Sexo = eSexo.Masculino,
+                        ListaExames = new List<Exames>()
+                    {
+                        new Exames() { Disciplina = eDisciplina.Matemática, NotaExame = 18},
+                        new Exames() { Disciplina = eDisciplina.Inglês, NotaExame = 19},
+                        new Exames() { Disciplina = eDisciplina.Biologia, NotaExame = 19 },
+                        new Exames() { Disciplina = eDisciplina.Laboratório, NotaExame = 17}
+                    }}
             };
-            ListaAlunos.Add(aluno);
+
+
             #endregion
 
             //------------------------------------------
