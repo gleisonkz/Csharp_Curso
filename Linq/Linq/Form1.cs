@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Linq.Alunos;
 using static Linq.Alunos.Exames;
-using static Linq.Form1.Conta;
 
 namespace Linq
 {
@@ -36,31 +31,9 @@ namespace Linq
             public eTipoConta TipoConta { get; set; }
         }
 
-        public class AlunosDic
-        {
-            public enum eSexo
-            {
-                Masculino = 1,
-                Feminino = 2,
-            }
-            public int Numero { get; set; }
-            public string Nome { get; set; }
-            public eSexo Sexo { get; set; }
-            public List<Exames> ListaExames { get; set; }
 
-            public class Exames
-            {
-                public enum eDisciplina
-                {
-                    Matemática = 0,
-                    Inglês = 1,
-                    Biologia = 2,
-                    Laboratório = 3
-                }
 
-                public Dictionary<eDisciplina, int> DicExames { get; set; }
-            }
-        }
+
 
         public Form1()
         {
@@ -185,11 +158,14 @@ namespace Linq
 
             #region Exemplos Praticos Parte 1
 
-            //ALUNOS DO SEXO FEMININO
+            ////ALUNOS DO SEXO FEMININO
 
-            listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo == eSexo.Feminino).Count()} alunas.");
+            //listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo == eSexo.Feminino).Count()} alunas.");
 
             ////NOTAS DO EXAME DE MATEMATICA
+
+            //listaAlunos.ForEach(a => a.ListaExames.ForEach(b => listBox1.Items.Add(b.DicExames[eDisciplina.Matemática])));
+            //listaAlunos.SelectMany(a => a.ListaExames).ToList().ForEach(b => listBox1.Items.Add(b.DicExames[eDisciplina.Matemática]));
 
             //listaAlunos.Select(a => a.ListaExames[0].NotaExame).ToList().ForEach(b => listBox1.Items.Add(b));
             //listBox1.Items.Add($"A soma das notas do exames de Matemática é: {listaAlunos.Select(a => a.ListaExames[0]).Sum(b => b.NotaExame)}");
@@ -205,21 +181,21 @@ namespace Linq
 
             ////MÉDIA DOS EXAMES DE MATEMÁTICA
 
-            //listBox1.Items.Add("A média da turma em Matemática é :" + listaAlunos.Select(a => a.ListaExames
-            //                                                                     .Average(b => b.DicExames[eDisciplina.Matemática])));
+            //listBox1.Items.Add($@"A média da turma em Matemática é : {listaAlunos.Select(a => a.ListaExames
+            //                                                                     .Average(b => b.DicExames[eDisciplina.Matemática]))}");
 
             ////MÉDIA E TOTAL DOS EXAMES DE BIOLOGIA
 
-            //listBox1.Items.Add("A soma das notas de Biologia é:" + listaAlunos.Select(a => a.ListaExames
-            //                                                                  .Sum(b => b.DicExames[eDisciplina.Biologia])));
-            
-            //listBox1.Items.Add("A soma das notas de Biologia acima da média é:" + listaAlunos.Select(a => a.ListaExames
+            //listBox1.Items.Add($@"A soma das notas de Biologia é: {listaAlunos.Select(a => a.ListaExames
+            //                                                                  .Sum(b => b.DicExames[eDisciplina.Biologia]))}");
+
+            //listBox1.Items.Add($@"A soma das notas de Biologia acima da média é: {listaAlunos.Select(a => a.ListaExames
             //                                                                                 .Where(b => b.DicExames[eDisciplina.Biologia] >= 10)
-            //                                                                                 .Sum(c => c.DicExames[eDisciplina.Biologia])));
+            //                                                                                 .Sum(c => c.DicExames[eDisciplina.Biologia]))}");
 
             //listBox1.Items.Add("A média das notas positivas de Biologia é :" + listaAlunos.Select(a => a.ListaExames
             //                                                                              .Where(b => b.DicExames[eDisciplina.Biologia] >= 10)
-            //                                                                              .Average(c=> c.DicExames[eDisciplina.Biologia])));
+            //                                                                              .Average(c => c.DicExames[eDisciplina.Biologia])));
             #endregion
 
 
