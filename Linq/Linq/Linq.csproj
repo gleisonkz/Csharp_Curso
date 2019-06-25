@@ -45,7 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Colecoes.cs" />
+    <Compile Include="Class\Colecoes.cs" />
+    <Compile Include="Class\Conta.cs" />
+    <Compile Include="Enumeradores\Sexo.cs" />
+    <Compile Include="Enumeradores\Disciplina.cs" />
+    <Compile Include="Enumeradores\TipoConta.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

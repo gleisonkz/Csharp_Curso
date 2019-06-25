@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Linq.Enumeradores;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,25 +16,6 @@ namespace Linq
         private Dictionary<string, double> dicProdutos;
         private readonly List<Alunos> listaAlunos;
         private readonly DataTable dtDados;
-
-        public class Conta
-        {
-            public enum eTipoConta
-            {
-                Poupança = 1,
-                Salario = 2,
-                Corrente = 3,
-            }
-
-
-            public string Titular { get; set; }
-            public int Numero { get; set; }
-            public eTipoConta TipoConta { get; set; }
-        }
-
-
-
-
 
         public Form1()
         {
@@ -69,12 +51,18 @@ namespace Linq
 
             #region Operador de Projeção - SELECT
 
+            ////Selecionando na lista de numeros os menores ou igual a 10 e multiplicando por 10.
+
             //listaNumeros.Where(b => b <= 10)
             //            .Select(c => c * 10)
             //            .ToList()
             //            .ForEach(d => listBox1.Items.Add(d));
 
+            ////Inserindo na listbox o nome e nº dos alunos.
+
             //listaAlunos.ForEach(d => listBox1.Items.Add($"O aluno nº {d.Numero} é {d.Nome}"));
+
+            ////Selecionando na lista de alunos os que contém a letra a e projetando o objeto com uma nova estrutura e inserindo na listbox.
 
             //listaAlunos.Where(b => b.Nome.Contains("a"))
             //           .Select(c => new
@@ -86,13 +74,22 @@ namespace Linq
             //           .ToList()
             //           .ForEach(d => listBox1.Items.Add(d.nomeAluno));
 
+
+
+            ////Utilizando uma lista de índices para realizar a seleção dos nomes na lista.
+
             //int[] indices = new int[] { 3, 2, 1 };
+            //var index = 1;
 
             //indices.Select(c => listaNomes[c])
             //       .ToList()
-            //       .ForEach(d => listBox1.Items.Add(d));
+            //       .ForEach(d => listBox1.Items.Add($"Lista de índices {index++} {d}"));
 
-            //listaNomes.ForEach(c => listBox1.Items.Add(c));
+            ////Selecionando todas as notas dos exames de Biologia e adicionando ao Grid.
+
+            //listaAlunos.SelectMany(a => a.ListaExames)                       
+            //           .ToList()
+            //           .ForEach(c=> listBox1.Items.Add(c.DicExames[eDisciplina.Biologia]));
 
             #endregion
 
@@ -158,21 +155,41 @@ namespace Linq
 
             #region Exemplos Praticos Parte 1
 
-            ////ALUNOS DO SEXO FEMININO
+            //ALUNOS DO SEXO FEMININO
 
-            //listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo == eSexo.Feminino).Count()} alunas.");
+            listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo == eSexo.Feminino).Count()} alunas.");
 
-            ////NOTAS DO EXAME DE MATEMATICA
+            //NOTAS DO EXAME DE MATEMATICA
 
-            //listaAlunos.ForEach(a => a.ListaExames.ForEach(b => listBox1.Items.Add(b.DicExames[eDisciplina.Matemática])));
-            //listaAlunos.SelectMany(a => a.ListaExames).ToList().ForEach(b => listBox1.Items.Add(b.DicExames[eDisciplina.Matemática]));
+            listaAlunos.SelectMany(a => a.ListaExames).ToList().ForEach(b => listBox1.Items.Add(b.DicExames[eDisciplina.Matemática]));
 
-            //listaAlunos.Select(a => a.ListaExames[0].NotaExame).ToList().ForEach(b => listBox1.Items.Add(b));
-            //listBox1.Items.Add($"A soma das notas do exames de Matemática é: {listaAlunos.Select(a => a.ListaExames[0]).Sum(b => b.NotaExame)}");
+            listBox1.Items.Add($@"A soma das notas do exames de Matemática é: {listaAlunos.SelectMany(a => a.ListaExames)
+                                                                                          .Sum(b => b.DicExames[eDisciplina.Matemática])}");
 
-            ////QUANTOS ALUNOS FICARAM NA MÉDIA EM MATEMÁTICA
+            //QUANTOS ALUNOS FICARAM NA MÉDIA EM MATEMÁTICA
 
-            //label1.Text = listaAlunos.Where(a => a.ListaExames[0].NotaExame >= 11).Count().ToString();
+            label1.Text = listaAlunos.SelectMany(a => a.ListaExames)
+                                     .Where(b => b.DicExames[eDisciplina.Matemática] >= 11)
+                                     .ToList()
+                                     .Count()
+                                     .ToString();
+
+            listaAlunos.Select(a => a.ListaExames.Where(b => b.DicExames[eDisciplina.Matemática] >=11))
+                       .ToList()
+                       .ForEach(c => listBox1.Items.Add($"{c} {c}"));
+
+            listaAlunos.Select(a => new
+                      {   a.Nome,
+                          a.Numero,
+                          a.ListaExames
+                      }.ListaExames
+                       .Where(b => b.DicExames[eDisciplina.Matemática] >= 11)
+                       .ToList()
+                       .ForEach(listBox1.Items.Add($"{a.Numero.ToString()} {a.Nome.ToString()}")));
+
+            //listaAlunos.Select(a=> a.ListaExames.Where(b=> b.))
+
+
             //listaAlunos.Where(a => a.ListaExames[0].NotaExame >= 11).ToList().ForEach(b => listBox1.Items.Add($"{b.Numero} {b.Nome}"));
 
             #endregion
