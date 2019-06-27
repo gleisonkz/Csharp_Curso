@@ -30,6 +30,7 @@ namespace Linq
 
         private void BtnExecutar_Click(object sender, EventArgs e)
         {
+            
             listBox1.Items.Clear();
             label1.Text = "";
 
@@ -178,17 +179,13 @@ namespace Linq
                        .ToList()
                        .ForEach(c => listBox1.Items.Add($"{c} {c}"));
 
-            listaAlunos.Select(a => new
-                      {   a.Nome,
-                          a.Numero,
-                          a.ListaExames
-                      }.ListaExames
-                       .Where(b => b.DicExames[eDisciplina.Matemática] >= 11)
-                       .ToList()
-                       .ForEach(listBox1.Items.Add($"{a.Numero.ToString()} {a.Nome.ToString()}")));
+            listaAlunos.Where(a => a.ListaExames
+                                               .Any(b => b.DicExames[eDisciplina.Matemática] >= 11))
+                                  .Select(c => $"{c.Numero} {c.Nome}")
+                                  .ToList()
+                                  .ForEach(d=> listBox1.Items.Add(d)) ;
 
             //listaAlunos.Select(a=> a.ListaExames.Where(b=> b.))
-
 
             //listaAlunos.Where(a => a.ListaExames[0].NotaExame >= 11).ToList().ForEach(b => listBox1.Items.Add($"{b.Numero} {b.Nome}"));
 
@@ -214,6 +211,7 @@ namespace Linq
             //                                                                              .Where(b => b.DicExames[eDisciplina.Biologia] >= 10)
             //                                                                              .Average(c => c.DicExames[eDisciplina.Biologia])));
             #endregion
+
 
 
             return;
