@@ -1,4 +1,5 @@
-﻿using Linq.Enumeradores;
+﻿using Linq.Class;
+using Linq.Enumeradores;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -156,38 +157,34 @@ namespace Linq
 
             #region Exemplos Praticos Parte 1
 
-            //ALUNOS DO SEXO FEMININO
+            ////ALUNOS DO SEXO FEMININO
 
-            listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo == eSexo.Feminino).Count()} alunas.");
+            //listBox1.Items.Add($"Esta turma tem {listaAlunos.Where(a => a.Sexo == eSexo.Feminino).Count()} alunas.");
 
-            //NOTAS DO EXAME DE MATEMATICA
+            ////NOTAS DO EXAME DE MATEMATICA
 
-            listaAlunos.SelectMany(a => a.ListaExames).ToList().ForEach(b => listBox1.Items.Add(b.DicExames[eDisciplina.Matemática]));
+            //listaAlunos.SelectMany(a => a.ListaExames).ToList().ForEach(b => listBox1.Items.Add(b.DicExames[eDisciplina.Matemática]));
 
-            listBox1.Items.Add($@"A soma das notas do exames de Matemática é: {listaAlunos.SelectMany(a => a.ListaExames)
-                                                                                          .Sum(b => b.DicExames[eDisciplina.Matemática])}");
+            //listBox1.Items.Add($@"A soma das notas do exames de Matemática é: {listaAlunos.SelectMany(a => a.ListaExames)
+            //                                                                              .Sum(b => b.DicExames[eDisciplina.Matemática])}");
 
-            //QUANTOS ALUNOS FICARAM NA MÉDIA EM MATEMÁTICA
+            ////QUANTOS ALUNOS FICARAM NA MÉDIA EM MATEMÁTICA
 
-            label1.Text = listaAlunos.SelectMany(a => a.ListaExames)
-                                     .Where(b => b.DicExames[eDisciplina.Matemática] >= 11)
-                                     .ToList()
-                                     .Count()
-                                     .ToString();
+            //label1.Text = listaAlunos.SelectMany(a => a.ListaExames)
+            //                         .Where(b => b.DicExames[eDisciplina.Matemática] >= 11)
+            //                         .ToList()
+            //                         .Count()
+            //                         .ToString();
 
-            listaAlunos.Select(a => a.ListaExames.Where(b => b.DicExames[eDisciplina.Matemática] >=11))
-                       .ToList()
-                       .ForEach(c => listBox1.Items.Add($"{c} {c}"));
+            //listaAlunos.Select(a => a.ListaExames.Where(b => b.DicExames[eDisciplina.Matemática] >=11))
+            //           .ToList()
+            //           .ForEach(c => listBox1.Items.Add($"{c} {c}"));
 
-            listaAlunos.Where(a => a.ListaExames
-                                               .Any(b => b.DicExames[eDisciplina.Matemática] >= 11))
-                                  .Select(c => $"{c.Numero} {c.Nome}")
-                                  .ToList()
-                                  .ForEach(d=> listBox1.Items.Add(d)) ;
-
-            //listaAlunos.Select(a=> a.ListaExames.Where(b=> b.))
-
-            //listaAlunos.Where(a => a.ListaExames[0].NotaExame >= 11).ToList().ForEach(b => listBox1.Items.Add($"{b.Numero} {b.Nome}"));
+            //listaAlunos.Where(a => a.ListaExames
+            //                                   .Any(b => b.DicExames[eDisciplina.Matemática] >= 11))
+            //                      .Select(c => $"{c.Numero} {c.Nome}")
+            //                      .ToList()
+            //                      .ForEach(d=> listBox1.Items.Add(d)) ;
 
             #endregion
 
@@ -212,39 +209,38 @@ namespace Linq
             //                                                                              .Average(c => c.DicExames[eDisciplina.Biologia])));
             #endregion
 
-
-
+            
             return;
 
             #region TesteConta
-            //List<Conta> listAccount = new List<Conta>
-            //{
-            //   new Conta{
-            //       Titular = "Carls",
-            //       Numero = 17538049,
-            //       TipoConta = eTipoConta.Corrente
-            //   },
-            //   new Conta{
-            //       Titular = "Pawl",
-            //       Numero = 75839203,
-            //       TipoConta = eTipoConta.Poupança
-            //   },
-            //   new Conta{
-            //       Titular = "Steph",
-            //       Numero = 01929384,
-            //       TipoConta = eTipoConta.Salario
-            //   },
-            //   new Conta{
-            //       Titular = "May",
-            //       Numero = 47583920,
-            //       TipoConta = eTipoConta.Corrente
-            //   }
-            //};
 
+            List<Conta> listAccount = new List<Conta>
+            {
+               new Conta{
+                   Titular = "Carls",
+                   Numero = 17538049,
+                   TipoConta = eTipoConta.Corrente
+               },
+               new Conta{
+                   Titular = "Pawl",
+                   Numero = 75839203,
+                   TipoConta = eTipoConta.Poupança
+               },
+               new Conta{
+                   Titular = "Steph",
+                   Numero = 01929384,
+                   TipoConta = eTipoConta.Salario
+               },
+               new Conta{
+                   Titular = "May",
+                   Numero = 47583920,
+                   TipoConta = eTipoConta.Corrente
+               }
+            };
 
-            //var result2 = listAccount.Where(c => c.TipoConta == eTipoConta.Corrente)
-            //                                .Select(c => new { c.Titular, c.TipoConta })
-            //                                .ToList();
+            var projecaoContas = listAccount.Where(c => c.TipoConta == eTipoConta.Corrente)
+                                            .Select(c => new { c.Titular, c.TipoConta })
+                                                .ToList();
             #endregion
 
         }
