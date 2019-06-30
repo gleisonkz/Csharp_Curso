@@ -92,7 +92,7 @@ namespace Linq
                                 {eDisciplina.Matemática,12 },
                                 {eDisciplina.Inglês,14 },
                                 {eDisciplina.Biologia,9 },
-                                {eDisciplina.Laboratório,1 }
+                                {eDisciplina.Laboratório,11 }
                             }
                         }
                     }

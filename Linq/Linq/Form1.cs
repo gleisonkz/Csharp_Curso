@@ -31,7 +31,7 @@ namespace Linq
 
         private void BtnExecutar_Click(object sender, EventArgs e)
         {
-            
+
             listBox1.Items.Clear();
             label1.Text = "";
 
@@ -176,15 +176,11 @@ namespace Linq
             //                         .Count()
             //                         .ToString();
 
-            //listaAlunos.Select(a => a.ListaExames.Where(b => b.DicExames[eDisciplina.Matemática] >=11))
-            //           .ToList()
-            //           .ForEach(c => listBox1.Items.Add($"{c} {c}"));
-
             //listaAlunos.Where(a => a.ListaExames
             //                                   .Any(b => b.DicExames[eDisciplina.Matemática] >= 11))
             //                      .Select(c => $"{c.Numero} {c.Nome}")
             //                      .ToList()
-            //                      .ForEach(d=> listBox1.Items.Add(d)) ;
+            //                      .ForEach(d => listBox1.Items.Add(d));
 
             #endregion
 
@@ -192,55 +188,126 @@ namespace Linq
 
             ////MÉDIA DOS EXAMES DE MATEMÁTICA
 
-            //listBox1.Items.Add($@"A média da turma em Matemática é : {listaAlunos.Select(a => a.ListaExames
-            //                                                                     .Average(b => b.DicExames[eDisciplina.Matemática]))}");
+            //listBox1.Items.Add($@"A média da turma em Matemática é : {listaAlunos.SelectMany(a => a.ListaExames)
+            //                                                                     .Average(b => b.DicExames[eDisciplina.Matemática])}");
 
             ////MÉDIA E TOTAL DOS EXAMES DE BIOLOGIA
 
-            //listBox1.Items.Add($@"A soma das notas de Biologia é: {listaAlunos.Select(a => a.ListaExames
-            //                                                                  .Sum(b => b.DicExames[eDisciplina.Biologia]))}");
+            //listBox1.Items.Add($@"A soma das notas de Biologia é: {listaAlunos.SelectMany(a => a.ListaExames)
+            //                                                                  .Sum(b => b.DicExames[eDisciplina.Biologia])}");
 
-            //listBox1.Items.Add($@"A soma das notas de Biologia acima da média é: {listaAlunos.Select(a => a.ListaExames
+            //listBox1.Items.Add($@"A soma das notas de Biologia acima da média é: {listaAlunos.SelectMany(a => a.ListaExames)
             //                                                                                 .Where(b => b.DicExames[eDisciplina.Biologia] >= 10)
-            //                                                                                 .Sum(c => c.DicExames[eDisciplina.Biologia]))}");
+            //                                                                                 .Sum(c => c.DicExames[eDisciplina.Biologia])}");
 
-            //listBox1.Items.Add("A média das notas positivas de Biologia é :" + listaAlunos.Select(a => a.ListaExames
+            //listBox1.Items.Add("A média das notas positivas de Biologia é :" + listaAlunos.SelectMany(a => a.ListaExames)
             //                                                                              .Where(b => b.DicExames[eDisciplina.Biologia] >= 10)
-            //                                                                              .Average(c => c.DicExames[eDisciplina.Biologia])));
+            //                                                                              .Average(c => c.DicExames[eDisciplina.Biologia]));
+
             #endregion
 
+            #region Exemplos Praticos Parte 3
+
+            //MÉDIA GERAL ENTRE OS EXAMES
+
+            //listaAlunos.Select(b => new
+            //                        {
+            //                          nome = b.Nome,
+            //                          media = b.ListaExames
+            //                                   .Sum(
+            //                                           (c => c.DicExames[eDisciplina.Biologia] +
+            //                                            c.DicExames[eDisciplina.Inglês] +
+            //                                            c.DicExames[eDisciplina.Laboratório] +
+            //                                            c.DicExames[eDisciplina.Matemática])
+            //                                           ) / b.ListaExames[0].DicExames.Count
+            //                        }
+            //                  ).ToList()
+            //                   .ForEach( d=> listBox1.Items.Add($@"{d.nome} média geral: {d.media}"));
+
             
+            //// SOMA TOTAL DAS NOTAS DE MATEMATICA
+
+            //listaAlunos.Select(b => new
+            //{
+            //    nome = b.Nome,
+            //    notaMatematica = b.ListaExames
+            //                       .Sum(
+            //                               c => c.DicExames[eDisciplina.Matemática]
+            //                           )
+            //}
+            //      ).ToList().OrderByDescending(n=> n.notaMatematica).ToList()
+            //       .ForEach(d => listBox1.Items.Add($@"{d.nome + "\t"} : {d.notaMatematica}"));
+
+
+
+            //var melhorAluno = listaAlunos.SelectMany(a => a.ListaExames).Sum(b => b.DicExames[eDisciplina.Biologia]);
+
+            //// SOMA DE TODAS A NOTAS
+
+            //listaAlunos.Select(b => new
+            //{
+            //    nome = b.Nome,
+            //    media = b.ListaExames
+            //                                   .Sum(
+            //                                           (c => c.DicExames[eDisciplina.Biologia] +
+            //                                            c.DicExames[eDisciplina.Inglês] +
+            //                                            c.DicExames[eDisciplina.Laboratório] +
+            //                                            c.DicExames[eDisciplina.Matemática])
+            //                                           )
+            //}
+            //                  ).OrderByDescending(o => o.media).ToList()
+            //                   .ForEach(d => listBox1.Items.Add($@"{d.nome} : {d.media}"));
+
+
+            var melhorAluno = listaAlunos.Select(a => new
+                                                         {
+                                                            nome = a.Nome,
+                                                            notaTotal = a.ListaExames.Sum(
+                                                                                            c => c.DicExames[eDisciplina.Biologia] +
+                                                                                            c.DicExames[eDisciplina.Inglês] +
+                                                                                            c.DicExames[eDisciplina.Laboratório] +
+                                                                                            c.DicExames[eDisciplina.Matemática]
+                                                                                         )
+
+                                                         }
+                                                ).OrderByDescending(b=> b.notaTotal).First();
+
+
             return;
 
+            #endregion
+
+
+         
             #region TesteConta
 
-            List<Conta> listAccount = new List<Conta>
-            {
-               new Conta{
-                   Titular = "Carls",
-                   Numero = 17538049,
-                   TipoConta = eTipoConta.Corrente
-               },
-               new Conta{
-                   Titular = "Pawl",
-                   Numero = 75839203,
-                   TipoConta = eTipoConta.Poupança
-               },
-               new Conta{
-                   Titular = "Steph",
-                   Numero = 01929384,
-                   TipoConta = eTipoConta.Salario
-               },
-               new Conta{
-                   Titular = "May",
-                   Numero = 47583920,
-                   TipoConta = eTipoConta.Corrente
-               }
-            };
+            //List<Conta> listAccount = new List<Conta>
+            //{
+            //   new Conta{
+            //       Titular = "Carls",
+            //       Numero = 17538049,
+            //       TipoConta = eTipoConta.Corrente
+            //   },
+            //   new Conta{
+            //       Titular = "Pawl",
+            //       Numero = 75839203,
+            //       TipoConta = eTipoConta.Poupança
+            //   },
+            //   new Conta{
+            //       Titular = "Steph",
+            //       Numero = 01929384,
+            //       TipoConta = eTipoConta.Salario
+            //   },
+            //   new Conta{
+            //       Titular = "May",
+            //       Numero = 47583920,
+            //       TipoConta = eTipoConta.Corrente
+            //   }
+            //};
 
-            var projecaoContas = listAccount.Where(c => c.TipoConta == eTipoConta.Corrente)
-                                            .Select(c => new { c.Titular, c.TipoConta })
-                                                .ToList();
+            //var projecaoContas = listAccount.Where(c => c.TipoConta == eTipoConta.Corrente)
+            //                                .Select(c => new { c.Titular, c.TipoConta })
+            //                                    .ToList();
             #endregion
 
         }
