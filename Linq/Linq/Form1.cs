@@ -224,20 +224,21 @@ namespace Linq
             //                  ).ToList()
             //                   .ForEach( d=> listBox1.Items.Add($@"{d.nome} média geral: {d.media}"));
 
+
+            // SOMA TOTAL DAS NOTAS DE MATEMATICA
+
+            listaAlunos.Select(b => new
+            {
+                nome = b.Nome,
+                notaMatematica = b.ListaExames
+                                   .Sum(
+                                           c => c.DicExames[eDisciplina.Matemática]
+                                       )
+            }
+                  ).ToList().OrderByDescending(n => n.notaMatematica).ToList()
+                   .ForEach(d => listBox1.Items.Add( $@"{d.nome.PadRight(50,' ')} : {d.notaMatematica}"));
+
             
-            //// SOMA TOTAL DAS NOTAS DE MATEMATICA
-
-            //listaAlunos.Select(b => new
-            //{
-            //    nome = b.Nome,
-            //    notaMatematica = b.ListaExames
-            //                       .Sum(
-            //                               c => c.DicExames[eDisciplina.Matemática]
-            //                           )
-            //}
-            //      ).ToList().OrderByDescending(n=> n.notaMatematica).ToList()
-            //       .ForEach(d => listBox1.Items.Add($@"{d.nome + "\t"} : {d.notaMatematica}"));
-
 
 
             //var melhorAluno = listaAlunos.SelectMany(a => a.ListaExames).Sum(b => b.DicExames[eDisciplina.Biologia]);
@@ -259,18 +260,32 @@ namespace Linq
             //                   .ForEach(d => listBox1.Items.Add($@"{d.nome} : {d.media}"));
 
 
-            var melhorAluno = listaAlunos.Select(a => new
-                                                         {
-                                                            nome = a.Nome,
-                                                            notaTotal = a.ListaExames.Sum(
-                                                                                            c => c.DicExames[eDisciplina.Biologia] +
-                                                                                            c.DicExames[eDisciplina.Inglês] +
-                                                                                            c.DicExames[eDisciplina.Laboratório] +
-                                                                                            c.DicExames[eDisciplina.Matemática]
-                                                                                         )
+            //var melhorAluno = listaAlunos.Select(a => new
+            //                                             {
+            //                                                nome = a.Nome,
+            //                                                notaTotal = a.ListaExames.Sum(
+            //                                                                                c => c.DicExames[eDisciplina.Biologia] +
+            //                                                                                c.DicExames[eDisciplina.Inglês] +
+            //                                                                                c.DicExames[eDisciplina.Laboratório] +
+            //                                                                                c.DicExames[eDisciplina.Matemática]
+            //                                                                             )
 
-                                                         }
-                                                ).OrderByDescending(b=> b.notaTotal).First();
+            //                                             }
+            //                                    ).OrderByDescending(b=> b.notaTotal).First();
+
+
+
+            //var teste = listaAlunos.Select(a => new
+            //{
+            //    nome = a.Nome,
+            //    totalNotas = a.ListaExames.Select(b => b.DicExames.Sum(c => c.Value)).Single()
+            //}
+            //).ToList().OrderByDescending(d=> d.totalNotas);
+
+            //foreach (var aluno in teste)
+            //{
+            //    listBox1.Items.Add($@"{aluno.nome} {aluno.totalNotas}");
+            //}
 
 
             return;
