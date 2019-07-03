@@ -227,18 +227,18 @@ namespace Linq
 
             // SOMA TOTAL DAS NOTAS DE MATEMATICA
 
-            listaAlunos.Select(b => new
-            {
-                nome = b.Nome,
-                notaMatematica = b.ListaExames
-                                   .Sum(
-                                           c => c.DicExames[eDisciplina.Matemática]
-                                       )
-            }
-                  ).ToList().OrderByDescending(n => n.notaMatematica).ToList()
-                   .ForEach(d => listBox1.Items.Add( $@"{d.nome.PadRight(50,' ')} : {d.notaMatematica}"));
+            //listaAlunos.Select(b => new
+            //{
+            //    nome = b.Nome,
+            //    notaMatematica = b.ListaExames
+            //                       .Sum(
+            //                               c => c.DicExames[eDisciplina.Matemática]
+            //                           )
+            //}
+            //      ).ToList().OrderByDescending(n => n.notaMatematica).ToList()
+            //       .ForEach(d => listBox1.Items.Add( $@"{d.nome.PadRight(19,' ')} : {d.notaMatematica}"));
 
-            
+
 
 
             //var melhorAluno = listaAlunos.SelectMany(a => a.ListaExames).Sum(b => b.DicExames[eDisciplina.Biologia]);
@@ -288,12 +288,80 @@ namespace Linq
             //}
 
 
-            return;
+            #region Teste postfix e prefix
+            //int a = 1, f = 1;
+
+
+            //var valor1 = a++ * a++;
+            //var valor2 = a++ + a++;
+
+            //bool op = valor1 < valor2;
+
+            ////----------------------------------//
+            //a = 1;
+            //f = 1;
+
+            //var valor3 = a++ * f++;
+            //var valor4 = a++ + f++;
+
+            //bool op2 = valor3 < valor4; 
+            #endregion
+
+            #endregion
+
+            #region Exemplos com DataTable
+
+            ////APRESENTANDO OS DADOS DO DATA TABLE NO LIST BOX
+
+            //foreach (DataRow linha in dtDados.Rows)
+            //{
+            //    listBox1.Items.Add($"{linha["ClienteID"].ToString().PadRight(2,' ')} {linha["NomeCliente"].ToString().PadRight(19,' ')} {linha["Cidade"]} {linha["NumeroEncomendas"]} ");
+            //}
+
+            ////ADICIONAR OS NOMES DO DATA TABLE NO LISTBOX UTILIZANDO O LINK
+            //var clientes = dtDados.AsEnumerable().Select(b => b["NomeCliente"]).ToList();
+
+            //foreach (var item in clientes)
+            //    listBox1.Items.Add(item);
+
+            ////APRESENTANDO OS NOMES EM ORDEM ALFABÉTICA
+
+            //var nomes = dtDados.AsEnumerable().Select(a => a["NomeCliente"]).OrderBy(b => b);
+
+            //foreach (var item in nomes)
+            //{
+            //    listBox1.Items.Add(item);
+            //}
+
+            ////RECUPERANDO OS CLIENTES E O NUMERO DE ENCOMENDAS ORDENADOS PELO Nº DE ENCOMENDAS
+
+            //var dados = dtDados.AsEnumerable().Select(a => new
+            //{
+            //    nome = a["NomeCliente"],
+            //    numeroEncomendas = a["NumeroEncomendas"]
+            //}).OrderByDescending(b=> b.numeroEncomendas).ToList();
+
+            //foreach (var item in dados)
+            //{
+            //    listBox1.Items.Add($"{item.nome.ToString().PadRight(20,' ')} Nº encomendas = {item.numeroEncomendas}");
+            //}
+
+            ////RECUPERANDO OS CLIENTES DO DATATABLE QUE SÃO DA CIDADE DO RIO DE JANEIRO
+
+            //var clientesRioDeJaneiro = dtDados.AsEnumerable().Select(a => new
+            //{
+            //    nome = a["NomeCliente"],
+            //    numeroEconmendas = a["NumeroEncomendas"],
+            //    cidade = a["Cidade"].ToString()
+            //}).Where(c => c.cidade == "Rio de Janeiro").ToList();
+
+
+
 
             #endregion
 
 
-         
+
             #region TesteConta
 
             //List<Conta> listAccount = new List<Conta>
